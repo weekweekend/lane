@@ -1,0 +1,63 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#app {
+  width: 100vw;
+  height: 100vh;
+}
+
+.layout > header {
+  width: 100%;
+  height: 48px;
+  padding: 0 24px;
+  box-sizing: border-box;
+  box-shadow: 0 1px 6px 0px #cccccc;
+  display: flex;
+
+  .logo {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    gap: 4px;
+    flex-grow: 0;
+  }
+  .logo::before {
+    content: '';
+    display: inline-block;
+    width: 2em;
+    height: 2em;
+    background-image: url(https://coding-net-production-static-ci.codehub.cn/503dd137-fe4f-4393-8ff8-1ec96400e23f.png?imageMogr2/cut/200x200x0x0);
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  nav {
+    height: 100%;
+    flex-grow: 1;
+    display: flex;
+    gap: 16px;
+    justify-content: end;
+    align-items: center;
+  }
+}
+
+.layout > main {
+  box-sizing: border-box;
+  height: calc(100vh - 48px - 36px);
+  padding: 24px;
+}
+
+.layout > footer {
+  width: 100%;
+  text-align: center;
+  height: 36px;
+  line-height: 36px;
+  box-shadow: 0 -1px 6px 0px #cccccc;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
