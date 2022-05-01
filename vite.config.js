@@ -27,6 +27,13 @@ export default () => ({
 
   build: {
     cssCodeSplit: false,
+    rollupOptions: {
+      output: {
+        entryFileNames: '[name].js',
+        chunkFileNames: '[name].js',
+        assetFileNames: '[name][extname]',
+      },
+    },
   },
 
   server: {
