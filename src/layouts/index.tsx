@@ -8,7 +8,7 @@ const Layout: FC<{}> = () => {
     <div className="layout">
       <header>
         <Link to="/" className="logo">
-          桃子404
+          桃子505
         </Link>
 
         <nav>
