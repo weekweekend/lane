@@ -18,6 +18,7 @@ module.exports = {
     },
   },
   rules: {
+    'arrow-body-style': 'off',
     'no-shadow': 'off',
     'no-param-reassign': ['error', { props: false }],
     'no-console': 'off',
@@ -28,8 +29,9 @@ module.exports = {
       },
     ],
     'react/display-name': 'off',
+    'react/react-in-jsx-scope': 'off',
     // jsx 单引号
-    'jsx-quotes': [2, 'prefer-single'],
+    // 'jsx-quotes': [2, 'prefer-single'],
     'import/no-cycle': 'off', // TODO: remove
     'import/extensions': 'off',
     'import/no-unresolved': 'off',
