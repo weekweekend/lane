@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { CloseOutline } from 'antd-mobile-icons';
+import { CloseOutline, DownOutline } from 'antd-mobile-icons';
 import './index.less';
 
 const ShopCard: FC<{
@@ -9,9 +9,9 @@ const ShopCard: FC<{
   score?: number;
   monthSale?: number;
   /** 单位分钟 */
-  time?: number;
+  time: number;
   /** 单位米 */
-  distance?: number;
+  distance: number;
   flagFall?: number;
   deliveryCost?: number;
   deliveryDiscount?: boolean;
@@ -30,21 +30,24 @@ const ShopCard: FC<{
       <div className="shop-card-content">
         <div className="shop-card-content-title">
           <h3>{title}</h3>
-          <CloseOutline />
+          <CloseOutline fontSize={'0.65rem'} />
         </div>
-        <div className="shop-card-content-shopmsg">
+        <div className="shop-card-content-info  text-desc">
           <div>
-            <span>{score}</span>
-            <span>{monthSale}</span>
+            <span className="score">
+              {score}
+              <i>分 </i>
+            </span>
+            <span> 月售{monthSale}</span>
           </div>
           <div>
-            <span>{time}</span>
-            <span>{distance}</span>
+            <span>{time < 60 ? time + '分钟 ' : Math.floor(time / 60) + '小时 '} </span>
+            <span> {distance < 1000 ? distance + 'm' : (distance / 1000).toFixed(1) + 'km'}</span>
           </div>
         </div>
-        <div className="shop-card-content-delivery">
-          <span>{flagFall}</span>
-          <span>{deliveryCost}</span>
+        <div className="shop-card-content-delivery text-desc">
+          <span>起送￥{flagFall} </span>
+          <span> 配送￥{deliveryCost}</span>
         </div>
         <div className="shop-card-content-tags">
           {tags?.map((item) => (
@@ -52,8 +55,15 @@ const ShopCard: FC<{
           ))}
         </div>
         <div className="shop-card-content-discount">
-          <span>{discount?.[0]?.tag?.[0]}</span>
-          <span>{discount?.[1]?.tag?.[0]}</span>
+          <div>
+            <span>
+              {discount?.[0]?.tag?.[0]}
+              <i> </i>
+              {discount?.[0]?.tag?.[1]}
+            </span>
+            <span className="dis-vip">{discount?.[1]?.tag?.[0]}</span>
+          </div>
+          <DownOutline fontSize={'0.5rem'} />
         </div>
       </div>
     </div>

@@ -1,27 +1,106 @@
-html {
-  font-size: 27px;
-}
 body {
   background-color: #f5f5f5;
 }
+
 .shop-card {
   background-color: #fff;
   display: flex;
-  padding: 0.5rem 0.75rem;
+  padding: 0.45rem 0.65rem;
+  min-height: 6.5rem;
+  width: 17.4rem;
+  border-radius: 0.45rem;
+  margin-bottom: 0.5rem;
   .shop-card-image {
     img {
       height: 6.5rem;
       width: 6.5rem;
+      border-radius: 0.45rem;
     }
   }
   .shop-card-content {
     display: flex;
-    width: 100%;
-    padding-left: 0.5rem;
     flex-direction: column;
+    gap: 0.05rem;
+    line-height: 100%;
+    margin-left: 0.5rem;
+    height: 100%;
+    width: 10.4rem;
     .shop-card-content-title {
       display: flex;
       justify-content: space-between;
+      h3 {
+        max-width: 9rem;
+        font-size: 0.8rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+    .shop-card-content-info {
+      display: flex;
+      justify-content: space-between;
+      .score {
+        font-size: 0.75rem;
+        color: #ff6300;
+        i {
+          font-size: 0.65rem;
+        }
+      }
+    }
+    .shop-card-content-tags {
+      display: flex;
+      overflow: hidden;
+      gap: 0.25rem;
+      margin-top: 0.2rem;
+      span {
+        flex-shrink: 0;
+        font-size: 0.6rem;
+        background-color: #fef0e5;
+        color: #f56105;
+        border-radius: 0.15rem;
+        padding: 0.15rem 0.25rem;
+      }
+    }
+    .shop-card-content-discount {
+      margin-top: 0.3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.6rem;
+      > div {
+        display: flex;
+        gap: 0.25rem;
+        overflow: hidden;
+        justify-content: space-between;
+        max-width: 9.25rem;
+        > span {
+          flex-shrink: 0;
+          border: 1px solid #f3b087;
+          padding: 0 0.2rem;
+          border-radius: 0.15rem;
+          flex-shrink: 0;
+          color: #f56105;
+          i {
+            position: relative;
+            top: 0.15rem;
+            display: inline-block;
+            margin: 0 0.2rem;
+            height: 0.8rem;
+            width: 1px;
+            border-left: 1px solid #f3b087;
+          }
+        }
+        .dis-vip {
+          border: 1px solid #ae6c28;
+          color: #ae6c28;
+        }
+      }
+    }
+  }
+  .text-desc {
+    span {
+      font-size: 0.65rem;
+      color: #333;
     }
   }
 }

@@ -5,6 +5,7 @@ import Welcome from 'pages/Welcome';
 import List from 'pages/List';
 import Item from 'pages/Item';
 import Page404 from 'pages/404';
+import HomePage from 'pages/HomePage';
 
 const root = createRoot(document.getElementById('app')!);
 
@@ -12,7 +13,8 @@ root.render(
   <HashRouter>
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<Welcome />} />
+        {/* <Route index element={<Welcome />} /> */}
+        <Route index element={<HomePage />} />
         <Route path="list" element={<List />} />
         <Route path="item/:id" element={<Item />} />
         <Route path="*" element={<Page404 />} />
