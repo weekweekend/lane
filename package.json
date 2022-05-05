@@ -1,6 +1,6 @@
 {
-  "name": "react-vite-template",
-  "description": "一个基于 vite 的 react 模板",
+  "name": "lane",
+  "description": "一个饿了么的仿写",
   "version": "1.2.0",
   "scripts": {
     "dev": "vite --open --mode development",

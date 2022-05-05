@@ -1,5 +1,6 @@
 import ShopCard from 'components/ShopCard';
 import React, { memo, FC } from 'react';
+import './index.less';
 
 const HomePage: FC<{}> = () => {
   return (

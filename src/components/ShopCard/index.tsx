@@ -36,18 +36,18 @@ const ShopCard: FC<{
           <div>
             <span className="score">
               {score}
-              <i>分 </i>
+              <i>分&nbsp;&nbsp;</i>
             </span>
-            <span> 月售{monthSale}</span>
+            <span>月售{monthSale}</span>
           </div>
           <div>
-            <span>{time < 60 ? time + '分钟 ' : Math.floor(time / 60) + '小时 '} </span>
-            <span> {distance < 1000 ? distance + 'm' : (distance / 1000).toFixed(1) + 'km'}</span>
+            <span>{time < 60 ? time + '分钟 ' : Math.floor(time / 60) + '小时 '}&nbsp;</span>
+            <span>{distance < 1000 ? distance + 'm' : (distance / 1000).toFixed(1) + 'km'}</span>
           </div>
         </div>
         <div className="shop-card-content-delivery text-desc">
-          <span>起送￥{flagFall} </span>
-          <span> 配送￥{deliveryCost}</span>
+          <span>起送￥{flagFall}&nbsp;&nbsp;</span>
+          <span>配送￥{deliveryCost}</span>
         </div>
         <div className="shop-card-content-tags">
           {tags?.map((item) => (
@@ -57,11 +57,11 @@ const ShopCard: FC<{
         <div className="shop-card-content-discount">
           <div>
             <span>
-              {discount?.[0]?.tag?.[0]}
+              {discount?.find((e) => e.name === '活动')?.tag?.[0]}
               <i> </i>
-              {discount?.[0]?.tag?.[1]}
+              {discount?.find((e) => e.name === '活动')?.tag?.[1]}
             </span>
-            <span className="dis-vip">{discount?.[1]?.tag?.[0]}</span>
+            <span className="dis-vip">{discount?.find((e) => e.name === '红包')?.tag?.[0]}</span>
           </div>
           <DownOutline fontSize={'0.5rem'} />
         </div>
