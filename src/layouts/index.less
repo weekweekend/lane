@@ -10,6 +10,7 @@ body,
 #app {
   width: 100vw;
   height: 100vh;
+  background-color: #fff;
 }
 html {
   font-size: calc(100vw / 20);
@@ -52,17 +53,27 @@ html {
 
 .layout > main {
   box-sizing: border-box;
-  height: calc(100vh - 2.4rem - 1.8rem);
+  height: calc(100vh - 2.5rem - 2.4rem);
   padding: 0.65rem;
 }
 
 .layout > footer {
+  box-sizing: border-box;
+  padding: 0.1rem 1.5rem 0 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
   text-align: center;
-  height: 1.8rem;
-  line-height: 1.8rem;
+  height: 2.4rem;
   box-shadow: 0 -0.05rem 0.3rem 0 #cccccc;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    span {
+      font-size: 0.6rem;
+      transform: scale(0.8);
+    }
+  }
 }

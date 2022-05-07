@@ -6,6 +6,9 @@ import List from 'pages/List';
 import Item from 'pages/Item';
 import Page404 from 'pages/404';
 import HomePage from 'pages/HomePage';
+import SignIn from 'pages/SignIn';
+import ChangePassword from 'pages/SignIn/ChangePassword';
+import PersonalCenter from 'pages/PersonalCenter';
 
 const root = createRoot(document.getElementById('app')!);
 
@@ -17,8 +20,12 @@ root.render(
         <Route index element={<HomePage />} />
         <Route path="list" element={<List />} />
         <Route path="item/:id" element={<Item />} />
+        <Route path="personalCenter" element={<PersonalCenter />} />
         <Route path="*" element={<Page404 />} />
       </Route>
+      <Route path="signIn" element={<SignIn />} />
+
+      <Route path="signIn/changePassword" element={<ChangePassword />} />
     </Routes>
   </HashRouter>,
 );
