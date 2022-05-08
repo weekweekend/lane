@@ -23,18 +23,18 @@ const Layout: FC<{}> = () => {
       </main>
 
       <footer>
-        <div>
+        <a href="">
           <RiHome5Line size={'1.15rem'} /> <span>首页</span>
-        </div>
-        <div>
+        </a>
+        <a href="#/shareList">
           <RiCake3Fill size={'1.15rem'} /> <span>真香</span>
-        </div>
-        <div>
+        </a>
+        <a href="#/order">
           <RiFileList2Line size={'1.15rem'} /> <span>订单</span>
-        </div>
-        <div>
+        </a>
+        <a href="#/mine">
           <RiEmotion2Line size={'1.15rem'} /> <span>我的</span>
-        </div>
+        </a>
       </footer>
     </div>
   );

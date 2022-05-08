@@ -8,7 +8,9 @@ import Page404 from 'pages/404';
 import HomePage from 'pages/HomePage';
 import SignIn from 'pages/SignIn';
 import ChangePassword from 'pages/SignIn/ChangePassword';
-import PersonalCenter from 'pages/PersonalCenter';
+import Mine from 'pages/Mine';
+import Order from 'pages/Order';
+import ShareList from 'pages/ShareList';
 
 const root = createRoot(document.getElementById('app')!);
 
@@ -20,7 +22,11 @@ root.render(
         <Route index element={<HomePage />} />
         <Route path="list" element={<List />} />
         <Route path="item/:id" element={<Item />} />
-        <Route path="personalCenter" element={<PersonalCenter />} />
+        <Route path="item/:id" element={<Item />} />
+        <Route path="order" element={<Order />} />
+        <Route path="shareList" element={<ShareList />} />
+
+        <Route path="mine" element={<Mine />} />
         <Route path="*" element={<Page404 />} />
       </Route>
       <Route path="signIn" element={<SignIn />} />

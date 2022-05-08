@@ -12,7 +12,7 @@ const SignIn = () => {
   return (
     <>
       <div className="switch">
-        <a href="#/personalCenter">
+        <a href="#/mine">
           <CloseOutline />
         </a>
         <Button fill="none" onClick={() => setLoginType(loginType === 'code' ? 'password' : 'code')}>
