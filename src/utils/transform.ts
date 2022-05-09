@@ -16,5 +16,5 @@ export function filterObject<T extends Record<string, any>>(
 }
 
 export function clearObject<T extends Record<string, any>>(obj: T) {
-  return filterObject(obj, (key, value) => [undefined, null].includes(value));
+  return filterObject(obj, (key, value) => ![undefined, null].includes(value));
 }

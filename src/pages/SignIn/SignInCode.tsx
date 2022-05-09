@@ -2,21 +2,36 @@ import React, { Suspense, useState, useEffect } from 'react';
 import { Form, Input, Button, Radio, Toast, Modal, Checkbox } from 'antd-mobile';
 import { CloseOutline } from 'antd-mobile-icons';
 import './index.less';
-import { get } from 'utils/request';
-import CountDown from 'components/CountDown';
+import request from 'utils/request';
+import Countdown from 'components/Countdown';
 
-const SignInCode = (props: { show: string }) => {
-  const [getCode, setGetCode] = useState(false);
-  const [timeShow, setTimeShow] = useState(false);
-  const [submitCode, setSubmitCode] = useState(false);
+const SignInCode = () => {
+  const [canGetCode, setCanGetCode] = useState(false);
+  const [isShowCountdown, setIsShowCountdown] = useState(false);
+  const [canSubmit, setCanSubmit] = useState(false);
 
   const phoneReg = /^1[3-9]\d{9}$/;
   const codeReg = /^\d{6}$/;
 
   const [form] = Form.useForm();
 
-  const onCodeFinish = ({ ...values }) => {
-    console.log(values);
+  const onFinish = ({ ...values }) => {
+    const searchParams = {
+      phone: values.phone,
+      code: values.code,
+    };
+    if (!phoneReg.test(values.phone)) {
+      Toast.show({
+        content: '请检查手机号码是否正确',
+        position: 'top',
+      });
+    }
+    if (!codeReg.test(values.code)) {
+      Toast.show({
+        content: '验证码错误',
+        position: 'top',
+      });
+    }
     if (!values.agree) {
       Modal.show({
         content:
@@ -33,81 +48,62 @@ const SignInCode = (props: { show: string }) => {
             primary: true,
             onClick: () => {
               form.setFieldsValue({ agree: true });
-              phoneReg.test(values.phone) &&
-                codeReg.test(values.code) &&
-                get('mock/test.json').then((data) => console.log(data));
+              request('mock/test.json', 'POST', searchParams).then((data) => console.log(data));
             },
           },
         ],
       });
     }
-    values.agree &&
-      phoneReg.test(values.phone) &&
-      codeReg.test(values.code) &&
-      get(`mock/test.json`).then((data) => console.log(data));
+    request('mock/test.json', 'POST', searchParams).then((data) => console.log(data));
   };
 
-  const onCodeValChange = ({ ...changed }, { ...all }) => {
+  const onValChange = ({ ...changed }, { ...all }) => {
     if (changed.hasOwnProperty('phone')) {
-      setGetCode(phoneReg.test(all.phone));
+      setCanGetCode(phoneReg.test(all.phone));
     }
-    phoneReg.test(all.phone) && codeReg.test(all.code) && setSubmitCode(true);
+    phoneReg.test(all.phone) && codeReg.test(all.code) && setCanSubmit(true);
   };
 
-  const getCodeClick = () => {
+  const getCode = () => {
     const val = form.getFieldValue('phone');
     console.log(val);
-    get(`mock/test.json`).then((data) => console.log(data));
-    setTimeShow(true);
-    setGetCode(false);
+    request('mock/test.json', 'GET', { phone: val }).then((data) => console.log(data));
+    setIsShowCountdown(true);
+    setCanGetCode(false);
   };
 
   return (
-    <Form
-      layout="horizontal"
-      mode="card"
-      form={form}
-      onFinish={onCodeFinish}
-      onValuesChange={onCodeValChange}
-      style={{ display: props.show }}
-    >
+    <Form layout="horizontal" mode="card" form={form} onFinish={onFinish} onValuesChange={onValChange}>
       <Form.Header>手机号登陆</Form.Header>
       <Form.Item name="phone">
-        <Input placeholder="请输入手机号" clearable={true} />
+        <Input placeholder="请输入手机号" clearable />
       </Form.Item>
       <Form.Item
         name="code"
         extra={
-          timeShow ? (
+          isShowCountdown ? (
             <Button color="primary" fill="outline" shape="rounded" size="mini" disabled>
               已发送（
-              <CountDown
+              <Countdown
                 diff={59}
-                endCountDown={() => {
-                  setTimeShow(false);
-                  setGetCode(true);
+                onEnd={() => {
+                  setIsShowCountdown(false);
+                  setCanGetCode(true);
                 }}
               />
               s）
             </Button>
           ) : (
-            <Button
-              color="primary"
-              fill="outline"
-              shape="rounded"
-              size="mini"
-              disabled={!getCode}
-              onClick={getCodeClick}
-            >
+            <Button color="primary" fill="outline" shape="rounded" size="mini" disabled={!canGetCode} onClick={getCode}>
               发送验证码
             </Button>
           )
         }
       >
-        <Input placeholder="验证码" clearable={true} />
+        <Input placeholder="验证码" clearable />
       </Form.Item>
       <Form.Item>
-        <Button block color="primary" shape="rounded" size="large" type="submit" disabled={!submitCode}>
+        <Button block color="primary" shape="rounded" size="large" type="submit" disabled={!canSubmit}>
           登 录
         </Button>
       </Form.Item>

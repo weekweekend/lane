@@ -1,25 +1,41 @@
 import { FC, useEffect, useRef, useState } from 'react';
-import moment from 'moment';
+import dayjs from 'dayjs';
+import duration from 'dayjs/plugin/duration';
+dayjs.extend(duration);
 
-const CountDown: FC<{
+const Countdown: FC<{
   /** 单位秒 */
   diff: number;
-  endCountDown: any;
-}> = ({ diff, endCountDown }) => {
+  onEnd: () => void;
+}> = ({ diff, onEnd }) => {
   const [restTime, setRestTime] = useState(diff);
-  let timer: any;
+  const ref = useRef<any>();
+
   useEffect(() => {
-    if (restTime && restTime !== 0) {
-      timer = setTimeout(() => {
-        setRestTime((time) => time - 1);
-      }, 1000);
-    } else if (restTime === 0) {
-      endCountDown();
-    }
+    ref.current = setInterval(() => {
+      setRestTime(--diff);
+      if (!diff) {
+        console.log('清除计时器');
+        clearInterval(ref.current);
+        onEnd();
+      }
+    }, 1000);
+
     return () => {
-      clearTimeout(timer);
+      console.log('清除计时器卸载时');
+      clearInterval(ref.current);
+      onEnd();
     };
-  });
-  return <>{moment().second(restTime).format('ss')}</>;
+  }, []);
+
+  return (
+    <>
+      {dayjs
+        .duration({
+          seconds: restTime,
+        })
+        .format('ss')}
+    </>
+  );
 };
-export default CountDown;
+export default Countdown;

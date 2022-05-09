@@ -23,7 +23,7 @@ const Layout: FC<{}> = () => {
       </main>
 
       <footer>
-        <a href="">
+        <a href="#/">
           <RiHome5Line size={'1.15rem'} /> <span>首页</span>
         </a>
         <a href="#/shareList">

@@ -2,14 +2,30 @@ import React, { Suspense, useState, useEffect } from 'react';
 import { Form, Input, Button, Radio, Toast, Modal, Checkbox } from 'antd-mobile';
 import { CloseOutline } from 'antd-mobile-icons';
 import './index.less';
-import { get } from 'utils/request';
+import request from 'utils/request';
 
-const SignInPassword = (props: { show: string }) => {
-  const [submitPassword, setSubmitPassword] = useState(false);
+const SignInPassword = () => {
+  const [canSubmit, setCanSubmit] = useState(false);
 
   const [form] = Form.useForm();
 
   const onPasswordFinish = ({ ...values }) => {
+    const searchParams = {
+      userName: values.username,
+      password: values.password,
+    };
+    if (!values.username) {
+      Toast.show({
+        content: '请输入用户名',
+        position: 'top',
+      });
+    }
+    if (!values.password) {
+      Toast.show({
+        content: '请输入密码',
+        position: 'top',
+      });
+    }
     if (!values.agree) {
       Modal.show({
         content: '请您认真阅读《用户服务协议》和《隐私政策》的全部条款，接收后可开始使用我们的服务',
@@ -25,29 +41,24 @@ const SignInPassword = (props: { show: string }) => {
             primary: true,
             onClick: () => {
               form.setFieldsValue({ agree: true });
-              values.password && values.username && get('mock/test.json').then((data) => console.log(data));
+              request('mock/test.json', 'POST', searchParams).then((data) => console.log(data));
             },
           },
         ],
       });
     }
-    values.username && values.password && values.agree && get('mock/test.json').then((data) => console.log(data));
+    request('mock/test.json', 'POST', searchParams).then((data) => console.log(data));
   };
-  const onPasswordValChange = ({ ...changed }, { ...all }) => {
+
+  const onValChange = ({ ...changed }, { ...all }) => {
     console.log(changed);
     if (all.username && all.password) {
-      setSubmitPassword(true);
+      setCanSubmit(true);
     }
   };
+
   return (
-    <Form
-      layout="horizontal"
-      mode="card"
-      form={form}
-      onFinish={onPasswordFinish}
-      onValuesChange={onPasswordValChange}
-      style={{ display: props.show }}
-    >
+    <Form layout="horizontal" mode="card" form={form} onFinish={onPasswordFinish} onValuesChange={onValChange}>
       <Form.Header>密码登陆</Form.Header>
       <Form.Item name="username">
         <Input placeholder="用户名" clearable />
@@ -56,7 +67,7 @@ const SignInPassword = (props: { show: string }) => {
         <Input placeholder="密码" clearable type="password" />
       </Form.Item>
       <Form.Item>
-        <Button block color="primary" shape="rounded" size="large" type="submit" disabled={!submitPassword}>
+        <Button block color="primary" shape="rounded" size="large" type="submit" disabled={!canSubmit}>
           登 录
         </Button>
       </Form.Item>
