@@ -11,7 +11,6 @@ const Countdown: FC<{
   const [restTime, setRestTime] = useState(diff);
   const ref = useRef<any>();
 
-  console.log('diff', diff);
   useEffect(() => {
     let tmp = diff;
     setRestTime(diff);
