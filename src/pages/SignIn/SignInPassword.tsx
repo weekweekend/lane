@@ -58,7 +58,14 @@ const SignInPassword = () => {
   };
 
   return (
-    <Form layout="horizontal" mode="card" form={form} onFinish={onPasswordFinish} onValuesChange={onValChange}>
+    <Form
+      className="sign-in"
+      layout="horizontal"
+      mode="card"
+      form={form}
+      onFinish={onPasswordFinish}
+      onValuesChange={onValChange}
+    >
       <Form.Header>密码登陆</Form.Header>
       <Form.Item name="username">
         <Input placeholder="用户名" clearable />

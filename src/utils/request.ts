@@ -12,8 +12,7 @@ import { FC } from 'react';
 
 function request(
   url: string,
-  /**请求方法大写*/
-  method: string,
+  method: 'GET' | 'POST' | 'PUT' | 'DELETE',
   params: Record<string, string | number | null | undefined> = {},
   headers: Record<string, string> = {},
 ) {

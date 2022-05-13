@@ -10,11 +10,13 @@ const Countdown: FC<{
 }> = ({ diff, onEnd }) => {
   const [restTime, setRestTime] = useState(diff);
   const ref = useRef<any>();
+  let tmp = diff;
 
   useEffect(() => {
+    setRestTime(diff);
     ref.current = setInterval(() => {
-      setRestTime(--diff);
-      if (!diff) {
+      setRestTime(--tmp);
+      if (!tmp) {
         console.log('清除计时器');
         clearInterval(ref.current);
         onEnd();
@@ -26,7 +28,7 @@ const Countdown: FC<{
       clearInterval(ref.current);
       onEnd();
     };
-  }, []);
+  }, [diff]);
 
   return (
     <>

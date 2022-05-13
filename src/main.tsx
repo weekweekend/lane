@@ -7,10 +7,10 @@ import Item from 'pages/Item';
 import Page404 from 'pages/404';
 import HomePage from 'pages/HomePage';
 import SignIn from 'pages/SignIn';
-import ChangePassword from 'pages/SignIn/ChangePassword';
 import Mine from 'pages/Mine';
 import Order from 'pages/Order';
 import ShareList from 'pages/ShareList';
+import ChangePassword from 'pages/SignIn/ChangePassword';
 
 const root = createRoot(document.getElementById('app')!);
 

@@ -1,5 +1,5 @@
 import React, { Suspense, useState, useEffect } from 'react';
-import { Form, Input, Button, Radio, Toast, Modal, Checkbox } from 'antd-mobile';
+import { Form, Input, Button, Radio, Toast, Modal, Checkbox, Dialog } from 'antd-mobile';
 import { CloseOutline } from 'antd-mobile-icons';
 import './index.less';
 import request from 'utils/request';
@@ -54,26 +54,34 @@ const SignInCode = () => {
         ],
       });
     }
-    request('mock/test.json', 'POST', searchParams).then((data) => console.log(data));
+    request('http://10.1.115.171:8080/user/loginByCode', 'POST', searchParams).then((data) => console.log(data));
   };
 
   const onValChange = ({ ...changed }, { ...all }) => {
     if (changed.hasOwnProperty('phone')) {
       setCanGetCode(phoneReg.test(all.phone));
     }
-    phoneReg.test(all.phone) && codeReg.test(all.code) && setCanSubmit(true);
+    if (phoneReg.test(all.phone) && codeReg.test(all.code)) setCanSubmit(true);
+    else setCanSubmit(false);
   };
 
   const getCode = () => {
     const val = form.getFieldValue('phone');
     console.log(val);
-    request('mock/test.json', 'GET', { phone: val }).then((data) => console.log(data));
+    request('http://10.1.115.171:8080/email/sendMail', 'POST', { phone: val }).then((data) => console.log(data));
     setIsShowCountdown(true);
     setCanGetCode(false);
   };
 
   return (
-    <Form layout="horizontal" mode="card" form={form} onFinish={onFinish} onValuesChange={onValChange}>
+    <Form
+      className="sign-in"
+      layout="horizontal"
+      mode="card"
+      form={form}
+      onFinish={onFinish}
+      onValuesChange={onValChange}
+    >
       <Form.Header>手机号登陆</Form.Header>
       <Form.Item name="phone">
         <Input placeholder="请输入手机号" clearable />
@@ -82,7 +90,7 @@ const SignInCode = () => {
         name="code"
         extra={
           isShowCountdown ? (
-            <Button color="primary" fill="outline" shape="rounded" size="mini" disabled>
+            <Button color="primary" fill="outline" shape="rounded" size="small" disabled>
               已发送（
               <Countdown
                 diff={59}
