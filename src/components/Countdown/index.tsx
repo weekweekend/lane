@@ -10,9 +10,10 @@ const Countdown: FC<{
 }> = ({ diff, onEnd }) => {
   const [restTime, setRestTime] = useState(diff);
   const ref = useRef<any>();
-  let tmp = diff;
 
+  console.log('diff', diff);
   useEffect(() => {
+    let tmp = diff;
     setRestTime(diff);
     ref.current = setInterval(() => {
       setRestTime(--tmp);
