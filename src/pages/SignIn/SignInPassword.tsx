@@ -14,6 +14,10 @@ const SignInPassword = () => {
       userName: values.username,
       password: values.password,
     };
+    if (values.username && values.password && values.agree)
+      request('mock/test.json', 'POST', searchParams).then((data) => {
+        if (data.data.msg === 'ok') window.location.href = '#/mine';
+      });
     if (!values.username) {
       Toast.show({
         content: '请输入用户名',
@@ -28,6 +32,7 @@ const SignInPassword = () => {
     }
     if (!values.agree) {
       Modal.show({
+        bodyClassName: 'agree',
         content: '请您认真阅读《用户服务协议》和《隐私政策》的全部条款，接收后可开始使用我们的服务',
         closeOnAction: true,
         actions: [
@@ -41,17 +46,17 @@ const SignInPassword = () => {
             primary: true,
             onClick: () => {
               form.setFieldsValue({ agree: true });
-              request('mock/test.json', 'POST', searchParams).then((data) => console.log(data));
+              request('mock/test.json', 'POST', searchParams).then((data) => {
+                if (data.data.msg === 'ok') window.location.href = '#/mine';
+              });
             },
           },
         ],
       });
     }
-    request('mock/test.json', 'POST', searchParams).then((data) => console.log(data));
   };
 
   const onValChange = ({ ...changed }, { ...all }) => {
-    console.log(changed);
     if (all.username && all.password) {
       setCanSubmit(true);
     }

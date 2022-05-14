@@ -17,7 +17,9 @@ const ResetPassword = () => {
       password: values.newPassword,
     };
     if (passwordReg.test(values.newPassword)) {
-      request('mock/test.json', 'POST', searchParams).then((data) => console.log(data));
+      request('mock/test.json', 'POST', searchParams).then((data) => {
+        if (data.data.msg === 'ok') window.location.href = '#/mine';
+      });
     } else {
       Toast.show({
         content: '密码必须是6-20个英文字母、数字或符号（除空格），且字母、数字和标点符号至少包含两种',

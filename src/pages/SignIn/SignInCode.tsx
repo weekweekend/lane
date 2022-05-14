@@ -1,6 +1,5 @@
 import React, { Suspense, useState, useEffect } from 'react';
 import { Form, Input, Button, Radio, Toast, Modal, Checkbox, Dialog } from 'antd-mobile';
-import { CloseOutline } from 'antd-mobile-icons';
 import './index.less';
 import request from 'utils/request';
 import Countdown from 'components/Countdown';
@@ -20,20 +19,28 @@ const SignInCode = () => {
       phone: values.phone,
       code: values.code,
     };
+    if (phoneReg.test(values.phone) && codeReg.test(values.code) && values.agree)
+      request('mock/test.json', 'POST', searchParams).then((data) => {
+        if (data.data.msg === 'ok') window.location.href = '#/mine';
+      });
+
     if (!phoneReg.test(values.phone)) {
       Toast.show({
         content: '请检查手机号码是否正确',
         position: 'top',
       });
+      return;
     }
     if (!codeReg.test(values.code)) {
       Toast.show({
         content: '验证码错误',
         position: 'top',
       });
+      return;
     }
     if (!values.agree) {
       Modal.show({
+        bodyClassName: 'agree',
         content:
           '未注册手机号登录后自动生成账号，请您认真阅读《用户服务协议》和《隐私政策》的全部条款，接收后可开始使用我们的服务',
         closeOnAction: true,
@@ -48,13 +55,14 @@ const SignInCode = () => {
             primary: true,
             onClick: () => {
               form.setFieldsValue({ agree: true });
-              request('mock/test.json', 'POST', searchParams).then((data) => console.log(data));
+              request('mock/test.json', 'POST', searchParams).then((data) => {
+                if (data.data.msg === 'ok') window.location.href = '#/mine';
+              });
             },
           },
         ],
       });
     }
-    request('http://10.1.115.171:8080/user/loginByCode', 'POST', searchParams).then((data) => console.log(data));
   };
 
   const onValChange = ({ ...changed }, { ...all }) => {

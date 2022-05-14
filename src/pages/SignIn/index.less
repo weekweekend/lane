@@ -49,33 +49,34 @@ a {
 .adm-radio-content {
   color: #666;
 }
-.adm-modal-body {
-  padding: 1rem;
-  .adm-modal-content {
-    color: #666;
-    line-height: 1.5;
-    font-size: 0.85rem;
-  }
 
-  .adm-modal-footer {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+.adm-modal-wrap {
+  .agree {
+    padding: 1rem;
+    .adm-modal-content {
+      color: #666;
+      line-height: 1.5;
+      font-size: 0.8rem;
+    }
 
-    .adm-space-item {
-      margin: 0;
-      width: 45%;
-      border-radius: 1rem;
-      button {
-        padding: 0;
-        border-radius: 1.25rem;
-        height: 1.75rem;
-        font-size: 0.8rem;
-      }
-      .adm-button-fill-none {
-        border: 1px solid #ccc;
-        color: #333;
+    .adm-modal-footer {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      .adm-space-item {
+        margin: 0;
+        width: 45%;
+        button {
+          text-align: center;
+          padding: 0;
+          border-radius: 1.25rem;
+          height: 1.75rem;
+          font-size: 0.8rem;
+        }
+        .adm-button-fill-none {
+          border: 1px solid #ccc !important;
+          color: #333;
+        }
       }
     }
   }

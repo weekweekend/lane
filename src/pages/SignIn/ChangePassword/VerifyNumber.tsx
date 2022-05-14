@@ -19,7 +19,13 @@ const VerifyNumber: FC<{ phone: string; onVerifyNumber: () => void }> = ({ phone
       phone: phone,
       code: values.code,
     };
-    request('mock/isNumberExist.json', 'POST', searchParams).then((data) => data.data && onVerifyNumber());
+    request('mock/isNumberExist.json', 'POST', searchParams).then((data) => {
+      if (data.data) onVerifyNumber();
+      else
+        Toast.show({
+          content: '验证码错误',
+        });
+    });
   };
 
   const getCode = () => {
