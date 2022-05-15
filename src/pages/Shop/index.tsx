@@ -22,9 +22,9 @@ const Shop = () => {
     <>
       <div className="shop-bgi"></div>
       <div className="shop-main">
-        <div className="shop-card">
-          <div className="shop-card-msg">
-            <div className="shop-card-msg-title">
+        <div className="shop-board">
+          <div className="shop-board-msg">
+            <div className="shop-board-msg-title">
               <h2>江湖烧烤烧烤</h2>
               <div>
                 <span>4.9分</span>
@@ -34,23 +34,23 @@ const Shop = () => {
                 <span>月售1233</span>
               </div>
             </div>
-            <div className="shop-card-msg-img"></div>
+            <div className="shop-board-msg-img"></div>
           </div>
-          <div className="shop-card-discount">
-            <div className="shop-card-discount-notice">
+          <div className="shop-board-discount">
+            <div className="shop-board-discount-notice">
               公告：这里是公告这里是公告这里是公告这里是公告这里是公告这里是公告这里是公告
             </div>
             <div>
-              <div className="shop-card-hongbao-vip">
+              <div className="shop-board-hongbao-vip">
                 <span>￥8无门槛</span>
                 <span>兑</span>
               </div>
-              <div className="shop-card-hongbao-shop">
+              <div className="shop-board-hongbao-shop">
                 <span>￥3</span>
                 <span>兑</span>
               </div>
             </div>
-            <div className="shop-card-discount-shop">
+            <div className="shop-board-discount-shop">
               <div>
                 <span>28减4</span>
                 <Divider direction="vertical" />
