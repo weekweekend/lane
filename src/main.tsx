@@ -11,6 +11,9 @@ import Mine from 'pages/Mine';
 import Order from 'pages/Order';
 import ShareList from 'pages/ShareList';
 import ChangePassword from 'pages/SignIn/ChangePassword';
+import ShopDetailsLayout from 'layouts/ShopDetails';
+import Shop from 'pages/Shop';
+import Recommended from 'pages/Shop/Recommended';
 
 const root = createRoot(document.getElementById('app')!);
 
@@ -29,8 +32,11 @@ root.render(
         <Route path="mine" element={<Mine />} />
         <Route path="*" element={<Page404 />} />
       </Route>
+      <Route path="/" element={<ShopDetailsLayout />}>
+        <Route path="shop" element={<Shop />}></Route>
+        <Route path="shop/recommended" element={<Recommended />}></Route>
+      </Route>
       <Route path="signIn" element={<SignIn />} />
-
       <Route path="signIn/changePassword" element={<ChangePassword />} />
     </Routes>
   </HashRouter>,

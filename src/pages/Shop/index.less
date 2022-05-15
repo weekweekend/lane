@@ -1,0 +1,139 @@
+.shop-bgi {
+  width: 100%;
+  height: 20%;
+  background-image: url(https://cube.elemecdn.com/2/f2/b87d9434e357673eca8285c158028jpeg.jpeg);
+  background-size: 100%;
+  background-position: center;
+}
+.shop-main {
+  background-color: #f8f8f8;
+  .shop-main-nav {
+    margin-top: -2rem;
+    .adm-tabs {
+      width: 50%;
+      .adm-tabs-header {
+        border: none;
+        .adm-tabs-tab {
+          font-size: 0.8rem;
+        }
+      }
+    }
+    .shop-main-content {
+      .ad-image {
+        background-image: url(https://img.alicdn.com/imgextra/i1/2214132892774/O1CN01b9yBtS1WMXRWycVTm_!!2214132892774-0-koubei.jpg_400x400Q85s50.jpg);
+        background-size: 100%;
+        background-position: center;
+        height: 4rem;
+        border-radius: 10px;
+        margin: 0.6rem 0.6rem;
+      }
+      .ad-recommended {
+        color: #333;
+        display: flex;
+        justify-content: space-between;
+        font-weight: 600;
+        margin: 0 0.6rem;
+      }
+      .ad-goods {
+        margin: 0.6rem 0.6rem;
+        display: flex;
+        gap: 0.5rem;
+        div {
+          flex: 1;
+          height: 4rem;
+          background-color: #eee;
+        }
+      }
+      .order-content {
+        display: flex;
+        gap: 0.6rem;
+        .content-category {
+          width: 20%;
+          height: 100%;
+          background-color: #eee;
+        }
+      }
+    }
+  }
+}
+.shop-card {
+  padding: 0.6rem;
+  display: block;
+  position: relative;
+  top: -3rem;
+  background-color: #fff;
+  margin: 0 0.6rem;
+  z-index: 9;
+  border-radius: 0.6rem;
+  .shop-card-msg {
+    height: 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    .shop-card-msg-title {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      > div {
+        display: flex;
+        gap: 0.3rem;
+      }
+    }
+    .shop-card-msg-img {
+      background-image: url(https://img.alicdn.com/imgextra/i2/2209448391393/O1CN01AtKE031MA2MFx2F8n_!!2209448391393-0-koubei.jpg_400x400Q85s50.jpg);
+      width: 2.5rem;
+      height: 100%;
+      background-size: 100%;
+      border-radius: 0.3rem;
+    }
+  }
+  .shop-card-discount {
+    margin-top: 0.3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.6rem;
+    .shop-card-discount-notice {
+      max-width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: #999;
+      + div {
+        display: flex;
+        gap: 0.5rem;
+        .shop-card-hongbao-vip {
+          span {
+            color: #5c340d;
+            padding: 0.25rem;
+            background-color: #f7c972;
+            border-radius: 3px;
+          }
+        }
+        .shop-card-hongbao-shop {
+          span {
+            color: #fff;
+            padding: 0.25rem;
+            background-color: #e94c29;
+            border-radius: 3px;
+          }
+        }
+      }
+    }
+    .shop-card-discount-shop {
+      display: flex;
+      gap: 0.5rem;
+      > div {
+        color: #e94c29;
+        border-radius: 3px;
+        border: 1px solid #f76555;
+        padding: 0.1rem 0.3rem;
+        .adm-divider-vertical {
+          margin: 0 0.3rem;
+          border-color: #f08276;
+          height: 0.75rem;
+          top: -0.1rem;
+        }
+      }
+    }
+  }
+}

@@ -1,8 +1,10 @@
 import TuWei from 'components/TuWei';
-import { memo, FC } from 'react';
+import { memo, FC, useState } from 'react';
+import { Button, ActionSheet, Popup } from 'antd-mobile';
 import { Outlet, Link } from 'react-router-dom';
-import { RiHome5Line, RiCake3Fill, RiEmotion2Line, RiFileList2Line } from 'react-icons/ri';
+import { RiHome5Line, RiCake3Fill, RiEmotion2Line, RiFileList2Line, RiShoppingBag3Fill } from 'react-icons/ri';
 import './index.less';
+import type { Action, ActionSheetShowHandler } from 'antd-mobile/es/components/action-sheet';
 
 const Layout: FC<{}> = () => {
   return (
@@ -18,7 +20,7 @@ const Layout: FC<{}> = () => {
         </nav>
       </header>
 
-      <main>
+      <main style={{ position: 'relative' }}>
         <Outlet />
       </main>
 
