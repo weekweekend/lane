@@ -4,7 +4,7 @@ import { Outlet, Link } from 'react-router-dom';
 import { RiHome5Line, RiCake3Fill, RiEmotion2Line, RiFileList2Line, RiShoppingBag3Fill } from 'react-icons/ri';
 import './index.less';
 const ShopDetails: FC<{}> = () => {
-  const [visible, setVisible] = useState(false);
+  const [isShowShoppingCar, setIsShowShoppingCar] = useState(false);
   const [height, setHeight] = useState('0');
 
   return (
@@ -14,10 +14,11 @@ const ShopDetails: FC<{}> = () => {
       <main style={{ position: 'relative' }}>
         <Outlet></Outlet>
         <Popup
+          className="shopping-car-popup"
           bodyStyle={{ height: height }}
-          visible={visible}
+          visible={isShowShoppingCar}
           onMaskClick={() => {
-            setVisible(false);
+            setIsShowShoppingCar(false);
             setHeight('0');
           }}
         >
@@ -29,7 +30,7 @@ const ShopDetails: FC<{}> = () => {
         <Button
           className="shopping-car"
           onClick={() => {
-            setVisible(!visible);
+            setIsShowShoppingCar(!isShowShoppingCar);
             setHeight(height === '0' ? '100px' : '0');
           }}
         >

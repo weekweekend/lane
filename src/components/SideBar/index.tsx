@@ -4,37 +4,51 @@ import './index.less';
 import { useThrottleFn } from 'ahooks';
 import ShopGoodsCard from 'components/ShopGoodsCard';
 
+const params = {
+  image: 'https://cube.elemecdn.com/2/5b/ba2f7d05eb4e84d1e0bc929f66c24jpg.jpg',
+  title: '砂锅砂锅沙索',
+  tag: '销量第一',
+  rowMaterial: ['鸡肉', '猪肉'],
+  mSales: 1233,
+  price: 17,
+  praised: 0.98,
+};
 const items = [
   {
     key: '1',
     title: '第一项第一项第一项第一项第一项第一项第一项',
     description: '大家喜欢吃，才是真的好吃大家喜欢吃，才是真的好吃',
-    content: [<ShopGoodsCard />, <ShopGoodsCard />, <ShopGoodsCard />],
+    content: [<ShopGoodsCard {...params} />, <ShopGoodsCard {...params} />, <ShopGoodsCard {...params} />],
   },
   {
     key: '2',
     title: '第二项',
     description: '大家喜欢,大家喜欢吃，才是真的好吃大家喜欢吃，',
-    content: [<ShopGoodsCard />, <ShopGoodsCard />, <ShopGoodsCard />, <ShopGoodsCard />],
+    content: [
+      <ShopGoodsCard {...params} />,
+      <ShopGoodsCard {...params} />,
+      <ShopGoodsCard {...params} />,
+      <ShopGoodsCard {...params} />,
+    ],
   },
   {
     key: '3',
     title: '第三项',
     description: '大家喜欢',
-    content: [<ShopGoodsCard />, <ShopGoodsCard />],
+    content: [<ShopGoodsCard {...params} />, <ShopGoodsCard {...params} />],
   },
   {
     key: '4',
     title: '第四项',
     description: '大家喜欢',
     content: [
-      <ShopGoodsCard />,
-      <ShopGoodsCard />,
-      <ShopGoodsCard />,
-      <ShopGoodsCard />,
-      <ShopGoodsCard />,
-      <ShopGoodsCard />,
-      <ShopGoodsCard />,
+      <ShopGoodsCard {...params} />,
+      <ShopGoodsCard {...params} />,
+      <ShopGoodsCard {...params} />,
+      <ShopGoodsCard {...params} />,
+      <ShopGoodsCard {...params} />,
+      <ShopGoodsCard {...params} />,
+      <ShopGoodsCard {...params} />,
     ],
   },
 ];
@@ -93,10 +107,7 @@ export default () => {
       <div className="main" ref={mainElementRef}>
         {items.map((item) => (
           <div key={item.key}>
-            <div
-              className="main-title"
-              style={item.key === activeKey ? { position: 'fixed', width: '70%', top: '212px' } : {}}
-            >
+            <div className="main-title">
               <div>
                 <h2 id={`anchor-${item.key}`}>{item.title}</h2>
                 <span> {item.description}</span>

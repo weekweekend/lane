@@ -14,9 +14,11 @@ import ChangePassword from 'pages/SignIn/ChangePassword';
 import ShopDetailsLayout from 'layouts/ShopDetails';
 import Shop from 'pages/Shop';
 import Recommended from 'pages/Shop/Recommended';
+import ShoppingCar from 'pages/ShoppingCar';
+import ShopSearch from 'pages/Shop/ShopSearch';
+import GoodsDetails from 'pages/Shop/GoodsDetails';
 
 const root = createRoot(document.getElementById('app')!);
-
 root.render(
   <HashRouter>
     <Routes>
@@ -35,9 +37,12 @@ root.render(
       <Route path="/" element={<ShopDetailsLayout />}>
         <Route path="shop" element={<Shop />}></Route>
         <Route path="shop/recommended" element={<Recommended />}></Route>
+        <Route path="shop/shopSearch" element={<ShopSearch />}></Route>
+        <Route path="shop/goodsDetails" element={<GoodsDetails />}></Route>
       </Route>
       <Route path="signIn" element={<SignIn />} />
       <Route path="signIn/changePassword" element={<ChangePassword />} />
+      <Route path="shoppingCar" element={<ShoppingCar />}></Route>
     </Routes>
   </HashRouter>,
 );
