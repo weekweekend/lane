@@ -23,8 +23,9 @@ const Shop = () => {
   const [isShowMore, setIsShowMore] = useState(false);
   const [scroll, setScroll] = useState(0);
 
-  window.addEventListener('scroll', () => {
-    setScroll(document.documentElement.scrollTop);
+  window.addEventListener('scroll', (e) => {
+    setScroll(window.scrollY);
+    console.log(e.target === document);
   });
   useEffect(() => {
     const name: string = new URLSearchParams(window.location.hash.split('?')[1])?.get('shopName') || '';

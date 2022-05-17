@@ -1,14 +1,14 @@
 import { memo, FC, useState } from 'react';
 import { Button, ActionSheet, Popup } from 'antd-mobile';
 import { Outlet, Link } from 'react-router-dom';
-import { RiHome5Line, RiCake3Fill, RiEmotion2Line, RiFileList2Line, RiShoppingBag3Fill } from 'react-icons/ri';
+import { RiShoppingBag3Fill } from 'react-icons/ri';
 import './index.less';
 const ShopDetails: FC<{}> = () => {
   const [isShowShoppingCar, setIsShowShoppingCar] = useState(false);
   const [height, setHeight] = useState('0');
 
   return (
-    <div className="ShopDetails">
+    <div className="shopDetails">
       {/* <header>123</header> */}
 
       <main style={{ position: 'relative' }}>
