@@ -21,10 +21,10 @@ const Shop = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isFocus, setIsFocus] = useState(false);
   const [isShowMore, setIsShowMore] = useState(false);
-  const [scroll, setScroll] = useState(0);
+  const [shopScroll, setShopScroll] = useState(0);
 
-  window.addEventListener('scroll', (e) => {
-    setScroll(window.scrollY);
+  window.addEventListener('shopScroll', (e) => {
+    setShopScroll(window.scrollY);
     console.log(e.target === document);
   });
   useEffect(() => {
@@ -32,7 +32,6 @@ const Shop = () => {
     setShopName(name);
   }, []);
 
-  const back = () => window.history.go(-1);
   const onFocus = () => {
     const tmp = isFocus;
     setIsFocus(!isFocus);
@@ -153,8 +152,8 @@ const Shop = () => {
       <div
         className="shop-nav"
         style={{
-          backgroundColor: `rgba(255,255,255,${scroll / 300})`,
-          color: `rgb(${255 - scroll / 2},${255 - scroll / 2},${255 - scroll / 2})`,
+          backgroundColor: `rgba(255,255,255,${shopScroll / 300})`,
+          color: `rgb(${255 - shopScroll / 2},${255 - shopScroll / 2},${255 - shopScroll / 2})`,
         }}
       >
         <div className="shop-nav-left">

@@ -1,13 +1,21 @@
 import ShopCard from 'components/ShopCard';
-import React, { memo, FC } from 'react';
+import React, { memo, FC, useState } from 'react';
 import './index.less';
 import { SearchBar } from 'antd-mobile';
 import { SearchOutline } from 'antd-mobile-icons';
 import { Link } from 'react-router-dom';
+import { useSetState } from 'ahooks';
 
 const HomePage: FC<{}> = () => {
+  const [homeScroll, setHomeScroll] = useState(0);
+  // const [offsetTop, setOffsetTop] = useState(0);
+
+  window.addEventListener('scroll', (e) => {
+    setHomeScroll(window.scrollY);
+    // console.log(window.scrollY);
+  });
   return (
-    <>
+    <div>
       <Link to="search" className="home-search">
         <span>
           <div>
@@ -124,7 +132,7 @@ const HomePage: FC<{}> = () => {
           ]}
         />
       </div>
-    </>
+    </div>
   );
 };
 
