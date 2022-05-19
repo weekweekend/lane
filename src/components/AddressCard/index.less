@@ -1,0 +1,39 @@
+.address-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .address-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    .address-card-content-msg {
+      span {
+        line-height: 1rem;
+        color: #999;
+        font-size: 0.7rem;
+      }
+    }
+    > div {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+
+      h2 {
+        font-size: 0.85rem;
+        color: #333;
+        max-width: 12rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+  .adm-tag {
+    background-color: #e6f4fc;
+    border: none;
+    color: #31a8db;
+    font-size: 0.6rem;
+    width: 1.7rem;
+    text-align: center;
+  }
+}

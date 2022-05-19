@@ -5,6 +5,7 @@ import './index.less';
 import { Link } from 'react-router-dom';
 
 const ShopCard: FC<{
+  id: number;
   image?: string;
   imageTag?: string;
   title: string;
@@ -22,7 +23,21 @@ const ShopCard: FC<{
     name?: '活动' | '红包' | '服务';
     tag?: Array<string>;
   }>;
-}> = ({ image, imageTag, title, score, monthSale, time, distance, flagFall, deliveryCost, tags, discount }) => {
+}> = ({
+  id,
+  image,
+  imageTag,
+  title,
+  score,
+  monthSale,
+  time,
+  distance,
+  flagFall,
+  deliveryCost,
+  deliveryDiscount,
+  tags,
+  discount,
+}) => {
   const [isShowShopCard, setIsShowShopCard] = useState(true);
 
   const target = `shop?shopName=${encodeURIComponent(title)}`;
@@ -30,7 +45,12 @@ const ShopCard: FC<{
     <Link to={target} className="shop-card" style={isShowShopCard ? { display: 'flex' } : { display: 'none' }}>
       <div className="shop-card-image">
         <Image src={image} alt="店铺图片" />
-        <span>{imageTag}</span>
+        {imageTag && (
+          <span className="img-tag">
+            {imageTag}
+            <span></span>
+          </span>
+        )}
       </div>
       <div className="shop-card-content">
         <div className="shop-card-content-title">
@@ -58,26 +78,51 @@ const ShopCard: FC<{
         </div>
         <div className="shop-card-content-delivery text-desc">
           <span>起送￥{flagFall}&nbsp;&nbsp;</span>
-          <span>配送￥{deliveryCost}</span>
+          {!deliveryDiscount && <span>配送￥{deliveryCost}</span>}
+          {deliveryDiscount && <span style={{ color: 'orangered' }}>免配送费</span>}
         </div>
         <div className="shop-card-content-tags">
-          {tags?.map((item) => (
-            <Tag key={item} color="#fef0e5">
+          {tags?.map((item, idx) => (
+            <Tag key={'tag' && id && idx} color="#fef0e5">
               {item}
             </Tag>
           ))}
         </div>
         <div className="shop-card-content-discount">
-          <div>
-            <span>
-              {discount?.find((e) => e.name === '活动')?.tag?.[0]}
-              <Divider direction="vertical" />
-              {discount?.find((e) => e.name === '活动')?.tag?.[1]}
-            </span>
-            <Tag color="#ae6c28" fill="outline" className="dis-vip">
-              {discount?.find((e) => e.name === '红包')?.tag?.[0]}
-            </Tag>
-          </div>
+          <span>
+            {discount
+              ?.find((e) => e.name === '活动')
+              ?.tag?.map((item, idx) => {
+                if (idx && idx < 2)
+                  return (
+                    <i key={'hd' && id && idx}>
+                      <Divider direction="vertical" />
+                      {item}
+                    </i>
+                  );
+                else if (idx < 2) return item;
+              })}
+          </span>
+          {discount
+            ?.find((e) => e.name === '红包')
+            ?.tag?.map((item, idx) => {
+              if (idx < 2)
+                return (
+                  <Tag key={'hb' && id && idx} color="#ae6c28" fill="outline" className="dis-vip">
+                    {item}
+                  </Tag>
+                );
+            })}
+          {discount
+            ?.find((e) => e.name === '服务')
+            ?.tag?.map((item, idx) => {
+              if (idx < 2)
+                return (
+                  <Tag key={'fw' && id && idx} color="#eee" fill="outline">
+                    {item}
+                  </Tag>
+                );
+            })}
         </div>
       </div>
     </Link>

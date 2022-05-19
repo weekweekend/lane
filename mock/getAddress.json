@@ -1,0 +1,55 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "address": "当前地址当前地址当前",
+            "addrDetail": "89798",
+            "name": "喵喵喵",
+            "sex": "女",
+            "phone": "13333333333",
+            "tag": "学校",
+            "cur": false
+        },
+        {
+            "id": 2,
+            "address": "阿实践活动法兰克福哈卡就很烦",
+            "addrDetail": "345",
+            "name": "zxc",
+            "sex": "女",
+            "phone": "13333333333",
+            "tag": "家",
+            "cur": false
+        },
+        {
+            "id": 3,
+            "address": "拉卡德饭卡里的说法",
+            "addrDetail": "654",
+            "name": "s",
+            "sex": "男",
+            "phone": "13333333333",
+            "tag": "公司",
+            "cur": false
+        },
+        {
+            "id": 4,
+            "address": "卡萨丁和空间",
+            "addrDetail": "213",
+            "name": "森岛帆高",
+            "sex": "女",
+            "phone": "13333333333",
+            "tag": "家",
+            "cur": true
+        },
+        {
+            "id": 5,
+            "address": "奥斯卡兑换积分空间啊哈",
+            "addrDetail": "2345",
+            "name": "喵喵喵",
+            "sex": "男",
+            "phone": "13333333333",
+            "tag": "学校",
+            "cur": false
+        }
+    ],
+    "total": 5
+}

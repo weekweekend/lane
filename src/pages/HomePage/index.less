@@ -25,9 +25,16 @@ body {
     color: #66c4ff;
     border-right: none;
     padding-left: 0.5rem;
-    i {
-      padding-left: 0.5rem;
-      color: #aaa;
+    > div {
+      max-width: 13rem;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+
+      i {
+        padding-left: 0.5rem;
+        color: #aaa;
+      }
     }
 
     span {
@@ -41,6 +48,36 @@ body {
       background: linear-gradient(90deg, #66ccff, #60c6f9);
       border-radius: 0.8rem;
       color: #fff;
+    }
+  }
+}
+.home-content {
+  padding: 0 0.6rem;
+  padding-bottom: 3rem;
+  box-sizing: border-box;
+  > p {
+    text-align: center;
+    font-size: 0.7rem;
+    margin-bottom: 0.5rem;
+  }
+  .home-service {
+    margin-bottom: 0.5rem;
+    .adm-swiper-track-inner {
+      .adm-swiper-item {
+        > div {
+          padding: 1rem 0;
+          a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0.5rem 0;
+            font-size: 0.7rem;
+            svg {
+              font-size: 2rem;
+            }
+          }
+        }
+      }
     }
   }
 }

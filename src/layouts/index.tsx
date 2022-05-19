@@ -1,19 +1,26 @@
 import TuWei from 'components/TuWei';
-import { memo, FC, useState } from 'react';
+import { memo, FC, useState, useEffect } from 'react';
 import { Button, ActionSheet, Popup, Tabs, Avatar } from 'antd-mobile';
 import { Outlet, Link } from 'react-router-dom';
 import { RiHome5Line, RiEmotion2Line, RiFileList2Line, RiShoppingCartLine, RiArrowDownSFill } from 'react-icons/ri';
 import './index.less';
-
+import request from 'utils/request';
 const Layout: FC<{}> = () => {
   const [homeCurPage, setHomeCurPage] = useState('home');
+  const [homeCurAddress, setHomeCurAddress] = useState('');
+  useEffect(() => {
+    request('mock/getAddress.json', 'GET').then((data) => {
+      const idx = data.data.findIndex((item: { cur: boolean }) => item.cur);
+      setHomeCurAddress(data.data[idx].address + data.data[idx].addrDetail);
+    });
+  }, []);
   return (
     <div className="layout">
       <header>
         {homeCurPage === 'home' && (
           <div className="header-nav">
             <div>
-              <Link to="address">地址地址地址地址地址地址地址地址地址地址</Link>
+              <Link to="address">{homeCurAddress} &nbsp;</Link>
               <RiArrowDownSFill />
             </div>
             <Link to="shoppingCar">
