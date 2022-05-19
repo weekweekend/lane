@@ -20,7 +20,7 @@ const tmp = [
   [
     {
       name: '美食外卖',
-      url: 'acc',
+      url: '/',
       icon: <FcLinux />,
     },
     {
@@ -71,27 +71,27 @@ const tmp = [
       icon: <SmileFill />,
     },
     {
-      name: '岁的法国',
+      name: '的师父说过',
       url: 'acc',
       icon: <SmileFill />,
     },
     {
-      name: '士大夫',
+      name: '是法国',
       url: 'acc',
       icon: <SmileFill />,
     },
     {
-      name: '岁的法国',
+      name: '优化',
       url: 'acc',
       icon: <SmileFill />,
     },
     {
-      name: '士大夫',
+      name: '微软',
       url: 'acc',
       icon: <SmileFill />,
     },
     {
-      name: '岁的法国',
+      name: '你好过分',
       url: 'acc',
       icon: <SmileFill />,
     },
@@ -135,7 +135,7 @@ const HomePage: FC<{}> = () => {
               <div>
                 <Grid columns={4}>
                   {item.map((ele) => (
-                    <Link to={ele.url}>
+                    <Link to={ele.url} key={ele.name}>
                       <Grid.Item>{ele.icon}</Grid.Item>
                       <span>{ele.name}</span>
                     </Link>

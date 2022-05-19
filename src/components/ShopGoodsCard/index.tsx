@@ -21,7 +21,7 @@ const ShopGoodsCard: FC<{
   return (
     <div className="goods-card" onClick={() => (window.location.href = target)}>
       <div className="goods-card-left">
-        <Image src={image} width="100%" fit="cover" style={{ borderRadius: 4 }} />
+        <Image src={image} width="100%" fit="cover" style={{ borderRadius: '.2rem' }} />
       </div>
       <div className="goods-card-right">
         <div className="goods-card-right-title">{title}</div>
@@ -33,7 +33,7 @@ const ShopGoodsCard: FC<{
           <div>
             原料：
             {rowMaterial.map((item, idx) => (
-              <span key={title}>{idx ? ', ' + item : item}</span>
+              <span key={Math.random()}>{idx ? ', ' + item : item}</span>
             ))}
           </div>
           <div></div>
