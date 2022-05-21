@@ -1,11 +1,22 @@
-import { Button, Popup, SearchBar, Tabs, Swiper, Divider, NavBar, Space, Toast, Popover, Image } from 'antd-mobile';
-import { RightOutline, SearchOutline, MoreOutline, HeartOutline, HeartFill, LeftOutline } from 'antd-mobile-icons';
+import { Button, Popup, Tag, Tabs, Swiper, Divider, Rate, Space, Toast, Selector, Image } from 'antd-mobile';
+import {
+  RightOutline,
+  SearchOutline,
+  MoreOutline,
+  HeartOutline,
+  HeartFill,
+  LeftOutline,
+  PhoneFill,
+  EnvironmentOutline,
+} from 'antd-mobile-icons';
 import { useState, useEffect, useRef } from 'react';
 import './index.less';
 import { SwiperRef } from 'antd-mobile/es/components/swiper';
 import SideBar from 'components/SideBar';
 import { Action } from 'antd-mobile/es/components/popover';
 import { RiShoppingCart2Line } from 'react-icons/ri';
+import ShopEvaluateCard from 'components/ShopEvaluateCard';
+import request from 'utils/request';
 
 const tabItems = [
   { key: 'order', title: '点餐' },
@@ -22,14 +33,21 @@ const Shop = () => {
   const [isFocus, setIsFocus] = useState(false);
   const [isShowMore, setIsShowMore] = useState(false);
   const [shopScroll, setShopScroll] = useState(0);
+  const [evaluateCurTag, setEvaluateCurTag] = useState('1');
+  const [shopEvaluateList, setShopEvaluateList] = useState<Array<any>>([]);
+  const [shopIntro, setShopIntro] = useState<any>({});
 
-  window.addEventListener('shopScroll', (e) => {
-    setShopScroll(window.scrollY);
-    console.log(e.target === document);
-  });
   useEffect(() => {
     const name: string = new URLSearchParams(window.location.hash.split('?')[1])?.get('shopName') || '';
     setShopName(name);
+    window.addEventListener('scroll', (e) => {
+      setShopScroll(window.scrollY);
+    });
+    request('mock/getEvaluate.json', 'GET').then((data) => setShopEvaluateList(data.data));
+    request('mock/getShopIntro.json', 'GET').then((data) => setShopIntro(data.data));
+    return removeEventListener('scroll', (e) => {
+      setShopScroll(window.scrollY);
+    });
   }, []);
 
   const onFocus = () => {
@@ -44,7 +62,9 @@ const Shop = () => {
         content: '关注成功',
       });
   };
+
   const onMore = () => setIsShowMore(!isShowMore);
+
   return (
     <>
       <div className="shop-bgi" />
@@ -72,37 +92,130 @@ const Shop = () => {
               setActiveIndex(index);
             }}
           >
-            <Swiper.Item>
-              <div className="shop-main-content">
-                <a href="#/shop/recommended">
-                  <div className="ad-image"></div>
+            <Swiper.Item className="shop-main-content">
+              <a href="#/shop/recommended">
+                <div className="ad-image"></div>
+              </a>
+              <div>
+                <a href="#/shop/recommended" className="ad-recommended">
+                  <span>商家推荐</span>
+                  <RightOutline />
                 </a>
-                <div>
-                  <a href="#/shop/recommended" className="ad-recommended">
-                    <span>商家推荐</span>
-                    <RightOutline />
-                  </a>
-                  <div className="ad-goods">
-                    <div>推荐1</div>
-                    <div>推荐2</div>
-                    <div>推荐3</div>
+                <div className="ad-goods">
+                  <div>推荐1</div>
+                  <div>推荐2</div>
+                  <div>推荐3</div>
+                </div>
+              </div>
+              <div className="order-content">
+                <SideBar />
+              </div>
+            </Swiper.Item>
+            <Swiper.Item className="shop-main-evaluate">
+              <div className="evaluate-summary">
+                <div className="evaluate-score">
+                  <div>
+                    <h1>4.9</h1>
+                    <span>
+                      高于附近0.00%的商家
+                      <Rate readOnly value={4.9} />
+                    </span>
+                  </div>
+                  <div>
+                    <span>
+                      味道 <strong>4.9</strong>
+                    </span>
+                    <span>
+                      包装<strong>4.9</strong>
+                    </span>
+                    <span>
+                      配送满意度<strong>93%</strong>
+                    </span>
                   </div>
                 </div>
-                <div className="order-content">
-                  <SideBar />
+                <Selector
+                  className="evaluate-tags"
+                  showCheckMark={false}
+                  options={[
+                    {
+                      label: '全部',
+                      value: '1',
+                    },
+                    {
+                      label: '好评',
+                      value: '2',
+                    },
+                    {
+                      label: '最新',
+                      value: '3',
+                    },
+                    {
+                      label: '最近差评',
+                      value: '4',
+                    },
+                    {
+                      label: '回头客评价',
+                      value: '5',
+                    },
+                  ]}
+                  value={[evaluateCurTag]}
+                  onChange={(v) => {
+                    if (v.length) {
+                      setEvaluateCurTag(v[0]);
+                    }
+                  }}
+                />
+              </div>
+              <div className="evaluate-content">
+                {shopEvaluateList.map((item) => (
+                  <ShopEvaluateCard key={item.id} {...item} />
+                ))}
+                <Divider>暂无更多评价</Divider>
+              </div>
+            </Swiper.Item>
+            <Swiper.Item className="shop-main-intro">
+              <div>
+                <div className="intro-shop">
+                  <h3>{shopIntro.name}</h3>
+                  <span>
+                    <EnvironmentOutline />
+                    &nbsp; {shopIntro.position}
+                  </span>
+                </div>
+                <div className="intro-img">
+                  {shopIntro.image?.map((item: string, idx: number) => (
+                    <Image key={idx} src={item} />
+                  ))}
+                </div>
+                <div className="intro-msg">
+                  <h3>商家信息</h3>
+                  <div>商家品类：{shopIntro.type}</div>
+                  <div>
+                    营业时间：
+                    {shopIntro.time?.map((item: string, idx: number) => (
+                      <span key={idx}>{item}&nbsp;</span>
+                    ))}
+                  </div>
+                </div>
+                <div className="intro-service">
+                  <h3>商家服务</h3>
+                  {shopIntro.service?.map((item: any, idx: number) => (
+                    <div key={idx}>
+                      <Tag color="#999" fill="outline">
+                        {item.name}
+                      </Tag>
+                      &nbsp;&nbsp;
+                      <span>{item.content}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="shop-phone">
+                  <h3>商家热线</h3>
+                  {shopIntro.phone}
                 </div>
               </div>
             </Swiper.Item>
-            <Swiper.Item>
-              <div>西红柿</div>
-            </Swiper.Item>
-            <Swiper.Item>
-              <div>蚂蚁</div>
-            </Swiper.Item>
           </Swiper>
-          {/* <Button color="primary" fill="outline" shape="rounded" size="mini">
-            好友拼单
-          </Button> */}
         </div>
       </div>
       <div className="shop-board">
@@ -152,8 +265,8 @@ const Shop = () => {
       <div
         className="shop-nav"
         style={{
-          backgroundColor: `rgba(255,255,255,${shopScroll / 300})`,
-          color: `rgb(${255 - shopScroll / 2},${255 - shopScroll / 2},${255 - shopScroll / 2})`,
+          backgroundColor: `rgba(255,255,255,${shopScroll / 200})`,
+          color: `rgb(${255 - shopScroll},${255 - shopScroll},${255 - shopScroll})`,
         }}
       >
         <div className="shop-nav-left">

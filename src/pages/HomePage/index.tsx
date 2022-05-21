@@ -129,7 +129,7 @@ const HomePage: FC<{}> = () => {
         </span>
       </Link>
       <div className="home-content">
-        <Swiper className="home-service">
+        {/* <Swiper className="home-service">
           {tmp.map((item, index) => (
             <Swiper.Item key={index}>
               <div>
@@ -144,7 +144,7 @@ const HomePage: FC<{}> = () => {
               </div>
             </Swiper.Item>
           ))}
-        </Swiper>
+        </Swiper> */}
 
         {homeShopList.map((item) => (
           <ShopCard key={item.id} {...item} />

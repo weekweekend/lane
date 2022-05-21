@@ -32,7 +32,7 @@ const Address = () => {
             key={item.address}
             onClick={() => {
               setCurAddress(addressList[idx]);
-              request('mock/test.json', 'PUT').then((data) => console.log('换地址>>>', data.data.msg));
+              request('mock/test.json', 'PUT').then((data) => console.log('换地址>>>', data.data.msg, item));
             }}
           >
             <AddressCard {...item} />

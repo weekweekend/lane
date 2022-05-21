@@ -40,7 +40,7 @@ const ShopCard: FC<{
 }) => {
   const [isShowShopCard, setIsShowShopCard] = useState(true);
 
-  const target = `shop?shopName=${encodeURIComponent(title)}`;
+  const target = `shop?shopId=${encodeURIComponent(id)}`;
   return (
     <Link to={target} className="shop-card" style={isShowShopCard ? { display: 'flex' } : { display: 'none' }}>
       <div className="shop-card-image">

@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { Image, Button, Popup, Stepper } from 'antd-mobile';
+import { Image, Button, Popup, Stepper, Selector } from 'antd-mobile';
 import { CloseOutline, DownOutline } from 'antd-mobile-icons';
 import './index.less';
 import { BiMedal } from 'react-icons/bi';
@@ -7,7 +7,8 @@ import { BiMedal } from 'react-icons/bi';
 const ShopGoodsDetailsCard: FC<{
   onClose: () => void;
 }> = ({ onClose }) => {
-  const [num, setNum] = useState(1);
+  const [goodsNum, setGoodsNum] = useState(1);
+  const [tasteVal, setTasteVal] = useState('1');
   return (
     <>
       <div className="goods-des">
@@ -30,20 +31,37 @@ const ShopGoodsDetailsCard: FC<{
         <h3>数量</h3>
         <Stepper
           min={0}
-          value={num}
+          value={goodsNum}
           onChange={(value) => {
-            setNum(value);
+            setGoodsNum(value);
           }}
         />
       </div>
       <div>
         <h3>口味</h3>
-        <div className="goods-taste">
-          <Button>香辣</Button>
-          <Button>香辣</Button>
-          <Button>香辣</Button>
-          <Button>香辣</Button>
-        </div>
+        <Selector
+          className="goods-taste"
+          options={[
+            {
+              label: '香辣',
+              value: '1',
+            },
+            {
+              label: '麻辣',
+              value: '2',
+            },
+            {
+              label: '不辣',
+              value: '3',
+            },
+          ]}
+          value={[tasteVal]}
+          onChange={(v) => {
+            if (v.length) {
+              setTasteVal(v[0]);
+            }
+          }}
+        />
       </div>
       <Button
         type="submit"

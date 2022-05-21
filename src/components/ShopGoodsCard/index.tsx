@@ -6,6 +6,7 @@ import { BiMedal } from 'react-icons/bi';
 import ShopGoodsDetailsCard from './ShopGoodsDetailsCard';
 
 const ShopGoodsCard: FC<{
+  id: number;
   image?: string;
   title: string;
   tag?: string;
@@ -13,10 +14,10 @@ const ShopGoodsCard: FC<{
   mSales: number;
   praised: number;
   price: number;
-}> = ({ image, title, tag, rowMaterial, mSales, price, praised }) => {
+}> = ({ id, image, title, tag, rowMaterial, mSales, price, praised }) => {
   const [isShowGoodsChoose, setIsShowGoodsChoose] = useState(false);
 
-  const target = `#/shop/goodsDetails?goodName=${encodeURIComponent(title)}`;
+  const target = `#/shop/goodsDetails?goodsId=${encodeURIComponent(id)}`;
 
   return (
     <div className="goods-card" onClick={() => (window.location.href = target)}>
@@ -36,7 +37,6 @@ const ShopGoodsCard: FC<{
               <span key={Math.random()}>{idx ? ', ' + item : item}</span>
             ))}
           </div>
-          <div></div>
         </div>
         <div className="goods-card-right-sales">
           <div>月售 {mSales}</div>

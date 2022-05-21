@@ -5,6 +5,7 @@ import { useThrottleFn } from 'ahooks';
 import ShopGoodsCard from 'components/ShopGoodsCard';
 
 const params = {
+  id: Math.random(),
   image: 'https://cube.elemecdn.com/2/5b/ba2f7d05eb4e84d1e0bc929f66c24jpg.jpg',
   title: '砂锅砂锅沙索',
   tag: '销量第一',
@@ -106,14 +107,18 @@ export default () => {
       </div>
       <div className="main" ref={mainElementRef}>
         {items.map((item) => (
-          <div key={item.key}>
+          <div key={'main' && item.key}>
             <div className="main-title">
               <div>
                 <h2 id={`anchor-${item.key}`}>{item.title}</h2>
                 <span> {item.description}</span>
               </div>
             </div>
-            <div className="main-content">{item.content}</div>
+            <div className="main-content">
+              {item.content.map((ele, idx) => (
+                <div key={idx}>{ele}</div>
+              ))}
+            </div>
           </div>
         ))}
       </div>

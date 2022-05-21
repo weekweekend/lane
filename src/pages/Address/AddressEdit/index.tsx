@@ -7,7 +7,7 @@ import getSearchParams from 'utils/getSearchParams';
 import request from 'utils/request';
 
 const AddressEdit = () => {
-  const [value, setValue] = useState<string>();
+  const [addrSexValue, setAddrSexValue] = useState<string>();
   const params = new URLSearchParams(window.location.hash.split('?')[1]);
 
   useEffect(() => {
@@ -84,9 +84,9 @@ const AddressEdit = () => {
         </Form.Item>
         <Form.Item className="address-sex" name="addressSex" label="性别" rules={[{ required: true }]}>
           <Radio.Group
-            value={value}
+            value={addrSexValue}
             onChange={(val) => {
-              setValue(val as string);
+              setAddrSexValue(val as string);
             }}
           >
             <Radio value="男">先生</Radio>
