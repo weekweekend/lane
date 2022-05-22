@@ -2,7 +2,7 @@
   background-color: #fff;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  // align-items: center;
   gap: 0.5rem;
   border-radius: 0.5rem;
   padding: 0.4rem 0.6rem;
@@ -105,6 +105,29 @@
       .dis-vip {
         color: #ae6c28;
         padding: 0.08rem 0.15rem;
+      }
+    }
+    .shop-card-content-search {
+      display: flex;
+      gap: 0.5rem;
+      > div {
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+        .adm-image {
+          border-radius: 0.2rem;
+        }
+        font-size: 0.6rem;
+        i {
+          display: inline-block;
+          transform: scale(0.7);
+        }
+        span {
+          max-width: 4rem;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
       }
     }
     .text-desc {

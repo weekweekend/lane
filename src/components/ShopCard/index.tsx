@@ -23,6 +23,11 @@ const ShopCard: FC<{
     name?: '活动' | '红包' | '服务';
     tag?: Array<string>;
   }>;
+  goods?: Array<{
+    name: string;
+    img: string;
+    price: number;
+  }>;
 }> = ({
   id,
   image,
@@ -37,13 +42,14 @@ const ShopCard: FC<{
   deliveryDiscount,
   tags,
   discount,
+  goods,
 }) => {
   const [isShowShopCard, setIsShowShopCard] = useState(true);
 
-  const target = `shop?shopId=${encodeURIComponent(id)}`;
+  const target = `#/shop?shopId=${encodeURIComponent(id)}`;
   return (
-    <Link to={target} className="shop-card" style={isShowShopCard ? { display: 'flex' } : { display: 'none' }}>
-      <div className="shop-card-image">
+    <a href={target} className="shop-card" style={isShowShopCard ? { display: 'flex' } : { display: 'none' }}>
+      <div className="shop-card-image" style={goods ? { flex: 1 } : { flex: 2 }}>
         <Image src={image} alt="店铺图片" />
         {imageTag && (
           <span className="img-tag">
@@ -55,13 +61,17 @@ const ShopCard: FC<{
       <div className="shop-card-content">
         <div className="shop-card-content-title">
           <h3>{title}</h3>
-          <CloseOutline
-            fontSize={'0.65rem'}
-            onClick={(e) => {
-              e.preventDefault();
-              setIsShowShopCard(false);
-            }}
-          />
+          {goods ? (
+            ''
+          ) : (
+            <CloseOutline
+              fontSize={'0.65rem'}
+              onClick={(e) => {
+                e.preventDefault();
+                setIsShowShopCard(false);
+              }}
+            />
+          )}
         </div>
         <div className="shop-card-content-info  text-desc">
           <div>
@@ -81,13 +91,17 @@ const ShopCard: FC<{
           {!deliveryDiscount && <span>配送￥{deliveryCost}</span>}
           {deliveryDiscount && <span style={{ color: 'orangered' }}>免配送费</span>}
         </div>
-        <div className="shop-card-content-tags">
-          {tags?.map((item, idx) => (
-            <Tag key={'tag' && id && idx} color="#fef0e5">
-              {item}
-            </Tag>
-          ))}
-        </div>
+        {goods ? (
+          ''
+        ) : (
+          <div className="shop-card-content-tags">
+            {tags?.map((item, idx) => (
+              <Tag key={'tag' && id && idx} color="#fef0e5">
+                {item}
+              </Tag>
+            ))}
+          </div>
+        )}
         <div className="shop-card-content-discount">
           <span>
             {discount
@@ -124,8 +138,24 @@ const ShopCard: FC<{
                 );
             })}
         </div>
+        {goods ? (
+          <div className="shop-card-content-search">
+            {goods.map((item, idx) => (
+              <div key={idx}>
+                <Image src={item.img} />
+                <span>{item.name}</span>
+                <span style={{ color: 'orangered' }}>
+                  <i>￥</i>
+                  {item.price}
+                </span>
+              </div>
+            ))}
+          </div>
+        ) : (
+          ''
+        )}
       </div>
-    </Link>
+    </a>
   );
 };
 

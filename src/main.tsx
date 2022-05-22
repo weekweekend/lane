@@ -21,6 +21,7 @@ import Profile from 'pages/Profile';
 import Search from 'pages/Search';
 import AddressEdit from 'pages/Address/AddressEdit';
 import SelectAddress from 'pages/Address/AddressEdit/SelectAddress/SelectAddress';
+import SearchResult from 'pages/Search/SearchResult';
 
 const root = createRoot(document.getElementById('app')!);
 root.render(
@@ -42,6 +43,7 @@ root.render(
         <Route path="shop/shopSearch" element={<ShopSearch />}></Route>
         <Route path="shop/goodsDetails" element={<GoodsDetails />}></Route>
       </Route>
+
       <Route path="signIn" element={<SignIn />} />
       <Route path="signIn/changePassword" element={<ChangePassword />} />
       <Route path="shoppingCar" element={<ShoppingCar />}></Route>
@@ -50,6 +52,7 @@ root.render(
       <Route path="address/edit/selectAddress" element={<SelectAddress />}></Route>
       <Route path="profile" element={<Profile />}></Route>
       <Route path="search" element={<Search />}></Route>
+      <Route path="search/searchResult" element={<SearchResult />}></Route>
     </Routes>
   </HashRouter>,
 );
