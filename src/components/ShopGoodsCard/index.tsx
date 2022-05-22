@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { Image, Button, Popup } from 'antd-mobile';
+import { Image, Button, Popup, Stepper } from 'antd-mobile';
 import { CloseOutline, DownOutline } from 'antd-mobile-icons';
 import './index.less';
 import { BiMedal } from 'react-icons/bi';
@@ -7,14 +7,21 @@ import ShopGoodsDetailsCard from './ShopGoodsDetailsCard';
 
 const ShopGoodsCard: FC<{
   id: number;
-  image?: string;
+  image: string;
   title: string;
   tag?: string;
-  rowMaterial: Array<string>;
-  mSales: number;
-  praised: number;
+  raw: Array<string>;
+  monthSale: number;
+  likeRate: number;
   price: number;
-}> = ({ id, image, title, tag, rowMaterial, mSales, price, praised }) => {
+  minNum?: number;
+  maxNum?: number;
+  details?: Array<{
+    id: number;
+    name: string;
+    params: Array<string>;
+  }>;
+}> = ({ id, image, title, tag, raw, monthSale, price, likeRate, minNum, maxNum, details }) => {
   const [isShowGoodsChoose, setIsShowGoodsChoose] = useState(false);
 
   const target = `#/shop/goodsDetails?goodsId=${encodeURIComponent(id)}`;
@@ -26,35 +33,46 @@ const ShopGoodsCard: FC<{
       </div>
       <div className="goods-card-right">
         <div className="goods-card-right-title">{title}</div>
-        <div className="goods-card-right-tag">
-          <BiMedal color="#e67e29" />
-          销量第一
-        </div>
+        {tag ? (
+          <div className="goods-card-right-tag">
+            <BiMedal color="#e67e29" />
+            {tag}
+          </div>
+        ) : (
+          ''
+        )}
+
         <div style={{ color: '#999' }}>
           <div>
             原料：
-            {rowMaterial.map((item, idx) => (
+            {raw.map((item, idx) => (
               <span key={Math.random()}>{idx ? ', ' + item : item}</span>
             ))}
           </div>
         </div>
         <div className="goods-card-right-sales">
-          <div>月售 {mSales}</div>
-          <div>好评率 {praised * 100}%</div>
+          <div>月售 {monthSale}</div>
+          <div>好评率 {likeRate}%</div>
         </div>
         <div className="goods-card-right-price">
           <span>￥{price}</span>
-          <Button
-            color="primary"
-            shape="rounded"
-            size="mini"
-            onClick={(e) => {
-              e.stopPropagation();
-              setIsShowGoodsChoose(true);
-            }}
-          >
-            选规格
-          </Button>
+          {details ? (
+            <Button
+              color="primary"
+              shape="rounded"
+              size="mini"
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsShowGoodsChoose(true);
+              }}
+            >
+              选规格
+            </Button>
+          ) : (
+            <div onClick={(e) => e.stopPropagation()}>
+              <Stepper min={minNum || 0} max={maxNum} />
+            </div>
+          )}
           <Popup
             className="goods-choose-popup"
             visible={isShowGoodsChoose}
@@ -67,7 +85,15 @@ const ShopGoodsCard: FC<{
               minHeight: '80vh',
             }}
           >
-            <ShopGoodsDetailsCard onClose={() => setIsShowGoodsChoose(false)} />
+            <ShopGoodsDetailsCard
+              onClose={() => setIsShowGoodsChoose(false)}
+              details={details}
+              title={title}
+              image={image}
+              price={price}
+              minNum={minNum}
+              maxNum={maxNum}
+            />
           </Popup>
         </div>
       </div>

@@ -30,7 +30,8 @@ const Address = () => {
         {addressList.map((item, idx) => (
           <List.Item
             key={item.address}
-            onClick={() => {
+            onClick={(e) => {
+              console.log(e.target);
               setCurAddress(addressList[idx]);
               request('mock/test.json', 'PUT').then((data) => console.log('换地址>>>', data.data.msg, item));
             }}

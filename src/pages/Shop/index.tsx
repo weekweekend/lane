@@ -12,7 +12,7 @@ import {
 import { useState, useEffect, useRef } from 'react';
 import './index.less';
 import { SwiperRef } from 'antd-mobile/es/components/swiper';
-import SideBar from 'components/SideBar';
+import GoodsContent from 'components/GoodsContent';
 import { Action } from 'antd-mobile/es/components/popover';
 import { RiShoppingCart2Line } from 'react-icons/ri';
 import ShopEvaluateCard from 'components/ShopEvaluateCard';
@@ -37,18 +37,20 @@ const Shop = () => {
   const [shopEvaluateList, setShopEvaluateList] = useState<Array<any>>([]);
   const [shopIntro, setShopIntro] = useState<any>({});
 
+  const shopId = new URLSearchParams(window.location.hash.split('?')[1]).get('shopId');
+
   useEffect(() => {
     const name: string = new URLSearchParams(window.location.hash.split('?')[1])?.get('shopName') || '';
     setShopName(name);
     window.addEventListener('scroll', (e) => {
       setShopScroll(window.scrollY);
     });
-    request('mock/getEvaluate.json', 'GET').then((data) => setShopEvaluateList(data.data));
-    request('mock/getShopIntro.json', 'GET').then((data) => setShopIntro(data.data));
+    request('mock/getEvaluate.json', 'GET', { shopId: shopId }).then((data) => setShopEvaluateList(data.data));
+    request('mock/getShopIntro.json', 'GET', { shopId: shopId }).then((data) => setShopIntro(data.data));
     return removeEventListener('scroll', (e) => {
       setShopScroll(window.scrollY);
     });
-  }, []);
+  }, [shopId]);
 
   const onFocus = () => {
     const tmp = isFocus;
@@ -108,7 +110,7 @@ const Shop = () => {
                 </div>
               </div>
               <div className="order-content">
-                <SideBar />
+                <GoodsContent id={shopId || ''} />
               </div>
             </Swiper.Item>
             <Swiper.Item className="shop-main-evaluate">

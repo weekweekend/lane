@@ -9,6 +9,7 @@ import dayjs from 'dayjs';
 import type { DatePickerRef } from 'antd-mobile/es/components/date-picker';
 
 const AddressCard: FC<{
+  id: number;
   address: string;
   addrDetail: string;
   name: string;
@@ -16,7 +17,7 @@ const AddressCard: FC<{
   phone: string;
   tag?: string;
   cur: boolean;
-}> = ({ address, addrDetail, name, sex, phone, tag, cur }) => {
+}> = ({ id, address, addrDetail, name, sex, phone, tag, cur }) => {
   return (
     <div className="address-card">
       <div className="address-card-content">
@@ -35,8 +36,7 @@ const AddressCard: FC<{
           <span>{phone}</span>
         </div>
       </div>
-
-      <Link to="edit">
+      <Link to={`edit?id=${encodeURIComponent(id)}`} onClick={(e) => e.stopPropagation()}>
         <EditSOutline color="#ccc" />
       </Link>
     </div>

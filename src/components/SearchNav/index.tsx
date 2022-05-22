@@ -29,7 +29,7 @@ const SearchNav: FC<{ onShowB: (bl: boolean) => void }> = ({ onShowB }) => {
   return (
     <div className="search-layout">
       <div className="search-nav">
-        <a href="#/search">
+        <a href={window.location.hash === '#/search' ? '/' : '#/search'}>
           <LeftOutline fontSize={'1.1rem'} />
         </a>
 

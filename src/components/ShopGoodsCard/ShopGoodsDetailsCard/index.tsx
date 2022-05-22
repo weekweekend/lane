@@ -6,18 +6,23 @@ import { BiMedal } from 'react-icons/bi';
 
 const ShopGoodsDetailsCard: FC<{
   onClose: () => void;
-}> = ({ onClose }) => {
-  const [goodsNum, setGoodsNum] = useState(1);
-  const [tasteVal, setTasteVal] = useState('1');
+  image: string;
+  title: string;
+  price: number;
+  minNum?: number;
+  maxNum?: number;
+  details?: Array<{
+    id: number;
+    name: string;
+    params: Array<string>;
+  }>;
+}> = ({ onClose, image, title, price, minNum, maxNum, details }) => {
+  const [goodsNum, setGoodsNum] = useState(0);
+  const [tasteVal, setTasteVal] = useState();
   return (
     <>
       <div className="goods-des">
-        <Image
-          src={'https://cube.elemecdn.com/2/5b/ba2f7d05eb4e84d1e0bc929f66c24jpg.jpg'}
-          width="100%"
-          fit="cover"
-          style={{ borderRadius: 4 }}
-        />
+        <Image src={image} width="100%" fit="cover" style={{ borderRadius: 4 }} />
         <div>
           <div className="goods-des-title">
             砂锅砂锅砂锅
@@ -30,7 +35,8 @@ const ShopGoodsDetailsCard: FC<{
       <div className="goods-num">
         <h3>数量</h3>
         <Stepper
-          min={0}
+          min={minNum}
+          max={maxNum}
           value={goodsNum}
           onChange={(value) => {
             setGoodsNum(value);
@@ -38,30 +44,18 @@ const ShopGoodsDetailsCard: FC<{
         />
       </div>
       <div>
-        <h3>口味</h3>
-        <Selector
-          className="goods-taste"
-          options={[
-            {
-              label: '香辣',
-              value: '1',
-            },
-            {
-              label: '麻辣',
-              value: '2',
-            },
-            {
-              label: '不辣',
-              value: '3',
-            },
-          ]}
-          value={[tasteVal]}
-          onChange={(v) => {
-            if (v.length) {
-              setTasteVal(v[0]);
-            }
-          }}
-        />
+        {details?.map((item) => (
+          <>
+            <h3>{item.name}</h3>
+            <Selector
+              className="goods-select"
+              options={item.params.map((ele) => ({ label: ele, value: ele }))}
+              onChange={(v) => {
+                console.log(v);
+              }}
+            />
+          </>
+        ))}
       </div>
       <Button
         type="submit"
@@ -69,6 +63,7 @@ const ShopGoodsDetailsCard: FC<{
         color="primary"
         shape="rounded"
         style={{ position: 'fixed', bottom: '1rem', width: '94%' }}
+        onClick={onClose}
       >
         选好了
       </Button>
