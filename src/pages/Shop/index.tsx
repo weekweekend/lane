@@ -17,6 +17,7 @@ import { Action } from 'antd-mobile/es/components/popover';
 import { RiShoppingCart2Line } from 'react-icons/ri';
 import ShopEvaluateCard from 'components/ShopEvaluateCard';
 import request from 'utils/request';
+import ShopShoppingCar from 'components/ShopShoppingCar';
 
 const tabItems = [
   { key: 'order', title: '点餐' },
@@ -66,6 +67,12 @@ const Shop = () => {
   };
 
   const onMore = () => setIsShowMore(!isShowMore);
+  const [shopShoppingCar, setShopShoppingCar] = useState<any>({});
+  const onSetShopShoppingCar = async () =>
+    await request('mock/getShopShoppingCar.json', 'GET', { id: shopId }).then((data) => {
+      console.log('拉取购物车信息<<<服务器');
+      setShopShoppingCar(data.data);
+    });
 
   return (
     <>
@@ -110,7 +117,7 @@ const Shop = () => {
                 </div>
               </div>
               <div className="order-content">
-                <GoodsContent id={shopId || ''} />
+                <GoodsContent id={shopId || ''} onSetShopShoppingCar={onSetShopShoppingCar} />
               </div>
             </Swiper.Item>
             <Swiper.Item className="shop-main-evaluate">
@@ -304,6 +311,7 @@ const Shop = () => {
           </div>
         </div>
       </div>
+      <ShopShoppingCar onSetShopShoppingCar={onSetShopShoppingCar} shopShoppingCar={shopShoppingCar} />
     </>
   );
 };

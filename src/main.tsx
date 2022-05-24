@@ -10,7 +10,6 @@ import SignIn from 'pages/SignIn';
 import Mine from 'pages/Mine';
 import Order from 'pages/Order';
 import ChangePassword from 'pages/SignIn/ChangePassword';
-import ShopDetailsLayout from 'layouts/ShopDetails';
 import Shop from 'pages/Shop';
 import Recommended from 'pages/Shop/Recommended';
 import ShoppingCar from 'pages/ShoppingCar';
@@ -37,12 +36,11 @@ root.render(
         <Route path="mine" element={<Mine />} />
         <Route path="*" element={<Page404 />} />
       </Route>
-      <Route path="/" element={<ShopDetailsLayout />}>
-        <Route path="shop" element={<Shop />}></Route>
-        <Route path="shop/recommended" element={<Recommended />}></Route>
-        <Route path="shop/shopSearch" element={<ShopSearch />}></Route>
-        <Route path="shop/goodsDetails" element={<GoodsDetails />}></Route>
-      </Route>
+
+      <Route path="shop" element={<Shop />}></Route>
+      <Route path="shop/recommended" element={<Recommended />}></Route>
+      <Route path="shop/shopSearch" element={<ShopSearch />}></Route>
+      <Route path="shop/goodsDetails" element={<GoodsDetails />}></Route>
 
       <Route path="signIn" element={<SignIn />} />
       <Route path="signIn/changePassword" element={<ChangePassword />} />

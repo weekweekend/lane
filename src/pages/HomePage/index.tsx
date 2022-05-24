@@ -1,7 +1,7 @@
 import ShopCard from 'components/ShopCard';
 import React, { memo, FC, useState, useEffect } from 'react';
 import './index.less';
-import { SearchBar, Swiper, Grid } from 'antd-mobile';
+import { SearchBar, Swiper, Grid, Divider } from 'antd-mobile';
 import { SearchOutline, SmileFill } from 'antd-mobile-icons';
 import { Link } from 'react-router-dom';
 import { useSetState } from 'ahooks';
@@ -129,7 +129,7 @@ const HomePage: FC<{}> = () => {
         </span>
       </Link>
       <div className="home-content">
-        {/* <Swiper className="home-service">
+        <Swiper className="home-service">
           {tmp.map((item, index) => (
             <Swiper.Item key={index}>
               <div>
@@ -144,12 +144,12 @@ const HomePage: FC<{}> = () => {
               </div>
             </Swiper.Item>
           ))}
-        </Swiper> */}
+        </Swiper>
 
         {homeShopList.map((item) => (
           <ShopCard key={item.id} {...item} />
         ))}
-        <p>附近暂无更多店铺</p>
+        <Divider>附近暂无更多店铺</Divider>
       </div>
     </div>
   );

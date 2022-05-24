@@ -7,7 +7,8 @@ import request from 'utils/request';
 
 const GoodsContent: FC<{
   id: string;
-}> = ({ id }) => {
+  onSetShopShoppingCar: () => void;
+}> = ({ id, onSetShopShoppingCar }) => {
   const [activeKey, setActiveKey] = useState('1');
   const [titlePositionType, setTitlePositionType] = useState('');
   const [shopGoods, setShopGoods] = useState<any>([]);
@@ -19,12 +20,14 @@ const GoodsContent: FC<{
         const element = document.getElementById(`anchor-${item.key}`);
         if (!element) continue;
         const rect = element.getBoundingClientRect();
-        if (rect.top <= 0) {
+        // console.log(rect.top, item.key);
+        if (rect.top <= 95) {
           currentKey = item.key;
         } else {
           break;
         }
       }
+
       setActiveKey(currentKey);
     },
     {
@@ -64,7 +67,7 @@ const GoodsContent: FC<{
       </div>
       <div className="main" ref={mainElementRef}>
         {shopGoods.map((item: any) => (
-          <div key={'main' && item.key}>
+          <div key={item.key}>
             <div className="main-title">
               <div>
                 <h2 id={`anchor-${item.key}`}>{item.type}</h2>
@@ -74,7 +77,7 @@ const GoodsContent: FC<{
             <div className="main-content">
               {item.goods.map((ele: any) => (
                 <div key={ele.id}>
-                  <ShopGoodsCard {...ele} />
+                  <ShopGoodsCard {...ele} onSetShopShoppingCar={onSetShopShoppingCar} />
                 </div>
               ))}
             </div>

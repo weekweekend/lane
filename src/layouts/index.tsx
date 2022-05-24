@@ -6,14 +6,16 @@ import { RiHome5Line, RiEmotion2Line, RiFileList2Line, RiShoppingCartLine, RiArr
 import './index.less';
 import request from 'utils/request';
 const Layout: FC<{}> = () => {
-  const [homeCurPage, setHomeCurPage] = useState('home');
+  const [homeCurPage, setHomeCurPage] = useState('');
   const [homeCurAddress, setHomeCurAddress] = useState('');
+  const searchCurPage = window.location.hash.split('/')[1] || 'home';
   useEffect(() => {
+    setHomeCurPage(searchCurPage);
     request('mock/getAddress.json', 'GET').then((data) => {
       const idx = data.data.findIndex((item: { cur: boolean }) => item.cur);
       setHomeCurAddress(data.data[idx].address + data.data[idx].addrDetail);
     });
-  }, []);
+  }, [searchCurPage]);
   return (
     <div className="layout">
       <header>

@@ -4,6 +4,7 @@ import { CloseOutline, DownOutline } from 'antd-mobile-icons';
 import './index.less';
 import { BiMedal } from 'react-icons/bi';
 import ShopGoodsDetailsCard from './ShopGoodsDetailsCard';
+import request from 'utils/request';
 
 const ShopGoodsCard: FC<{
   id: number;
@@ -21,10 +22,21 @@ const ShopGoodsCard: FC<{
     name: string;
     params: Array<string>;
   }>;
-}> = ({ id, image, title, tag, raw, monthSale, price, likeRate, minNum, maxNum, details }) => {
+  onSetShopShoppingCar: () => void;
+}> = ({ id, image, title, tag, raw, monthSale, price, likeRate, minNum, maxNum, details, onSetShopShoppingCar }) => {
   const [isShowGoodsChoose, setIsShowGoodsChoose] = useState(false);
+  const [curNum, setCurNum] = useState<any>({});
 
   const target = `#/shop/goodsDetails?goodsId=${encodeURIComponent(id)}`;
+  const onGoodNumChange = (val: number) => {
+    const params = { goodsId: id, goodsNum: val };
+    setCurNum(params);
+    request('mock/test.json', 'PUT', params).then((data) => {
+      console.log('修改数量>>>服务器', data.data.msg);
+      // data.data.msg === 'ok' && onSetNewList();
+    });
+    onSetShopShoppingCar();
+  };
 
   return (
     <div className="goods-card" onClick={() => (window.location.href = target)}>
@@ -70,7 +82,15 @@ const ShopGoodsCard: FC<{
             </Button>
           ) : (
             <div onClick={(e) => e.stopPropagation()}>
-              <Stepper min={minNum || 0} max={maxNum} />
+              <Stepper
+                min={minNum || 0}
+                max={maxNum}
+                onChange={onGoodNumChange}
+                className={curNum.goodsNum > 0 ? '' : 'stepper-activate'}
+              />
+              {/* <div className="circle" onClick={() => console.log('123')}>
+                +
+              </div> */}
             </div>
           )}
           <Popup
@@ -93,6 +113,7 @@ const ShopGoodsCard: FC<{
               price={price}
               minNum={minNum}
               maxNum={maxNum}
+              onSetShopShoppingCar={onSetShopShoppingCar}
             />
           </Popup>
         </div>

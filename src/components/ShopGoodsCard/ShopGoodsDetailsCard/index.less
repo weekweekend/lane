@@ -28,23 +28,36 @@
     }
   }
 }
-.goods-num {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.goods-select {
-  width: 100%;
-  margin-bottom: 1rem;
 
-  .adm-space-horizontal {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-top: 0.6rem;
-    .adm-space-item {
-      font-size: 0.8rem;
+.goods-details {
+  padding: 0;
+  .adm-list-body,
+  .adm-list-item-content {
+    border: none;
+    .adm-form-item-label {
+      color: #333;
+      font-size: 0.85rem;
+    }
+  }
+
+  .goods-details-num {
+    .adm-list-item-content {
+      justify-content: space-between;
+      gap: 6.5rem;
+    }
+  }
+  .goods-details-select {
+    width: 100%;
+    margin-bottom: 1rem;
+
+    .adm-space-horizontal {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 0.6rem;
+      .adm-space-item {
+        font-size: 0.8rem;
+      }
     }
   }
 }

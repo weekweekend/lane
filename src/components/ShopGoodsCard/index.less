@@ -31,6 +31,7 @@
       gap: 0.5rem;
     }
     .goods-card-right-price {
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -45,22 +46,52 @@
       .adm-stepper {
         --height: 1rem;
         --input-width: 2rem;
-        --input-background-color: #fff;
+        --input-background-color: rgba(0, 0, 0, 0);
         --input-font-size: 0.6rem;
         .adm-button-shape-rectangular {
           border-radius: 50%;
         }
         .adm-stepper-plus {
           background-color: #209ffa;
+          position: relative;
           color: #fff;
         }
         .adm-stepper-minus {
           background-color: #fff;
           border: 1.5px solid #209ffa;
           padding: 0.1rem 0.45rem !important;
+          transition: transform 0.4s;
           color: #209ffa;
         }
+        .adm-stepper-middle {
+          transition: transform 0.4s;
+        }
       }
+      .stepper-activate {
+        .adm-stepper-minus {
+          transition: transform 0.4s;
+          transform: translateX(3rem) rotate(180deg);
+        }
+        .adm-stepper-middle {
+          transform: translateX(1.3rem) rotate(180deg);
+          transition: transform 0.4s;
+        }
+      }
+      // .circle {
+      //   position: absolute;
+      //   top: 0.1rem;
+      //   left: 7rem;
+      //   height: 0.85rem;
+      //   width: 0.85rem;
+      //   border-radius: 50%;
+      //   background-color: #111;
+      //   text-align: center;
+      //   line-height: 0.9rem;
+      //   font-weight: normal;
+      //   color: #fff;
+      //   z-index: 0;
+      //   opacity: 0;
+      // }
     }
   }
 }

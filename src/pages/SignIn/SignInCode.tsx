@@ -17,11 +17,15 @@ const SignInCode = () => {
   const onFinish = ({ ...values }) => {
     const searchParams = {
       phone: values.phone,
-      code: values.code,
+      emailCode: values.code,
     };
     if (phoneReg.test(values.phone) && codeReg.test(values.code) && values.agree)
-      request('mock/test.json', 'POST', searchParams).then((data) => {
-        if (data.data.msg === 'ok') window.location.href = '#/mine';
+      request('/user/loginByCode', 'POST', searchParams, { 'Content-Type': 'application/json' })?.then((data) => {
+        if (data.msg === 'success') {
+          console.log(data);
+          localStorage.setItem('token', data.data);
+          window.location.href = '#/mine';
+        }
       });
 
     if (!phoneReg.test(values.phone)) {
@@ -55,8 +59,11 @@ const SignInCode = () => {
             primary: true,
             onClick: () => {
               form.setFieldsValue({ agree: true });
-              request('mock/test.json', 'POST', searchParams).then((data) => {
-                if (data.data.msg === 'ok') window.location.href = '#/mine';
+              request('user/loginByCode', 'POST', searchParams)?.then((data) => {
+                if (data.msg === 'success') {
+                  localStorage.setItem('token', data.data);
+                  window.location.href = '#/mine';
+                }
               });
             },
           },
@@ -76,9 +83,17 @@ const SignInCode = () => {
   const getCode = () => {
     const val = form.getFieldValue('phone');
     console.log(val);
-    request('http://10.1.115.171:8080/email/sendMail', 'POST', { phone: val }).then((data) => console.log(data));
-    setIsShowCountdown(true);
-    setCanGetCode(false);
+    request('email/sendMail', 'GET', { phone: val })?.then((data) => {
+      console.log(data);
+      if (data.msg === 'success') {
+        setIsShowCountdown(true);
+        setCanGetCode(false);
+      } else {
+        Toast.show({
+          content: '发送失败',
+        });
+      }
+    });
   };
 
   return (

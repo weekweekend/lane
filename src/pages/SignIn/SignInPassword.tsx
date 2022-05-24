@@ -15,7 +15,7 @@ const SignInPassword = () => {
       password: values.password,
     };
     if (values.username && values.password && values.agree)
-      request('mock/test.json', 'POST', searchParams).then((data) => {
+      request('/user/loginByPassword', 'POST', searchParams)?.then((data) => {
         if (data.data.msg === 'ok') window.location.href = '#/mine';
       });
     if (!values.username) {
@@ -46,7 +46,7 @@ const SignInPassword = () => {
             primary: true,
             onClick: () => {
               form.setFieldsValue({ agree: true });
-              request('mock/test.json', 'POST', searchParams).then((data) => {
+              request('mock/test.json', 'POST', searchParams)?.then((data) => {
                 if (data.data.msg === 'ok') window.location.href = '#/mine';
               });
             },
