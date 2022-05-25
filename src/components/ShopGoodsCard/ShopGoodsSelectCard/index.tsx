@@ -5,7 +5,7 @@ import './index.less';
 import { BiMedal } from 'react-icons/bi';
 import request from 'utils/request';
 
-const ShopGoodsDetailsCard: FC<{
+const ShopGoodsSelectCard: FC<{
   onClose: () => void;
   image: string;
   title: string;
@@ -17,14 +17,17 @@ const ShopGoodsDetailsCard: FC<{
     name: string;
     params: Array<string>;
   }>;
-  onSetShopShoppingCar: () => void;
-}> = ({ onClose, image, title, price, minNum, maxNum, details, onSetShopShoppingCar }) => {
+  setCurNum: (val: number) => void;
+  onSetShopShoppingCartData: () => void;
+}> = ({ onClose, image, title, price, minNum, maxNum, details, onSetShopShoppingCartData, setCurNum }) => {
   const [goodsNum, setGoodsNum] = useState(0);
   const [tasteVal, setTasteVal] = useState();
+  const [shoppingCart, setShoppingCart] = useState<any>({});
   const onFinish = (values: any) => {
     request('mock/test.json', 'PUT').then((data) => {
       console.log('提交选择>>>服务器');
-      onSetShopShoppingCar();
+      onSetShopShoppingCartData();
+      setCurNum(values.goodsNum);
     });
 
     onClose();
@@ -48,8 +51,8 @@ const ShopGoodsDetailsCard: FC<{
           <div className="goods-des-price">￥{price}</div>
         </div>
       </div>
-      <Form className="goods-details" onFinish={onFinish} form={form}>
-        <Form.Item layout="horizontal" className="goods-details-num" name="goodsNum" label="数量">
+      <Form className="goods-select" onFinish={onFinish} form={form}>
+        <Form.Item layout="horizontal" className="goods-select-num" name="goodsNum" label="数量">
           <Stepper min={minNum || 1} max={maxNum} />
         </Form.Item>
         {details?.map((item) => (
@@ -60,7 +63,7 @@ const ShopGoodsDetailsCard: FC<{
             rules={[{ required: true, message: `请选择${item.name}` }]}
           >
             <Selector
-              className="goods-details-select"
+              className="goods-select-select"
               options={item.params.map((ele) => ({ label: ele, value: ele }))}
             />
           </Form.Item>
@@ -80,4 +83,4 @@ const ShopGoodsDetailsCard: FC<{
     </>
   );
 };
-export default ShopGoodsDetailsCard;
+export default ShopGoodsSelectCard;

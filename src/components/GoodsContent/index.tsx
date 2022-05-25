@@ -7,8 +7,9 @@ import request from 'utils/request';
 
 const GoodsContent: FC<{
   id: string;
-  onSetShopShoppingCar: () => void;
-}> = ({ id, onSetShopShoppingCar }) => {
+  goodsShoppingCartData: any;
+  onSetShopShoppingCartData: () => void;
+}> = ({ id, goodsShoppingCartData, onSetShopShoppingCartData }) => {
   const [activeKey, setActiveKey] = useState('1');
   const [titlePositionType, setTitlePositionType] = useState('');
   const [shopGoods, setShopGoods] = useState<any>([]);
@@ -77,7 +78,11 @@ const GoodsContent: FC<{
             <div className="main-content">
               {item.goods.map((ele: any) => (
                 <div key={ele.id}>
-                  <ShopGoodsCard {...ele} onSetShopShoppingCar={onSetShopShoppingCar} />
+                  <ShopGoodsCard
+                    {...ele}
+                    goodsShoppingCartData={goodsShoppingCartData}
+                    onSetShopShoppingCartData={onSetShopShoppingCartData}
+                  />
                 </div>
               ))}
             </div>

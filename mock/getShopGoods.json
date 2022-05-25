@@ -18,7 +18,7 @@
                     "monthSale": 1233,
                     "likeRate": 98,
                     "price": 17.5,
-                    "minNum": 1,
+                    "minNum": 0,
                     "maxNum": 99,
                     "details": [
                         {
@@ -90,7 +90,7 @@
                     "monthSale": 1233,
                     "likeRate": 98,
                     "price": 17.5,
-                    "minNum": 1,
+                    "minNum": 0,
                     "maxNum": 99
                 }
             ]

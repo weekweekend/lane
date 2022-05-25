@@ -1,5 +1,6 @@
 import { createRoot } from 'react-dom/client';
 import { HashRouter, Route, Routes } from 'react-router-dom';
+import React from 'react';
 import Layout from 'layouts/index';
 import Welcome from 'pages/Welcome';
 import List from 'pages/List';
@@ -14,7 +15,6 @@ import Shop from 'pages/Shop';
 import Recommended from 'pages/Shop/Recommended';
 import ShoppingCar from 'pages/ShoppingCar';
 import ShopSearch from 'pages/Shop/ShopSearch';
-import GoodsDetails from 'pages/Shop/GoodsDetails';
 import Address from 'pages/Address';
 import Profile from 'pages/Profile';
 import Search from 'pages/Search';
@@ -23,6 +23,8 @@ import SelectAddress from 'pages/Address/AddressEdit/SelectAddress/SelectAddress
 import SearchResult from 'pages/Search/SearchResult';
 
 const root = createRoot(document.getElementById('app')!);
+const GoodDetailsContext = React.createContext<any>({});
+
 root.render(
   <HashRouter>
     <Routes>
@@ -40,7 +42,6 @@ root.render(
       <Route path="shop" element={<Shop />}></Route>
       <Route path="shop/recommended" element={<Recommended />}></Route>
       <Route path="shop/shopSearch" element={<ShopSearch />}></Route>
-      <Route path="shop/goodsDetails" element={<GoodsDetails />}></Route>
 
       <Route path="signIn" element={<SignIn />} />
       <Route path="signIn/changePassword" element={<ChangePassword />} />

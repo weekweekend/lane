@@ -9,7 +9,7 @@ import {
   PhoneFill,
   EnvironmentOutline,
 } from 'antd-mobile-icons';
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './index.less';
 import { SwiperRef } from 'antd-mobile/es/components/swiper';
 import GoodsContent from 'components/GoodsContent';
@@ -27,6 +27,8 @@ const tabItems = [
 
 const actions: Action[] = [{ key: 'shopCar', icon: <RiShoppingCart2Line />, text: '购物车' }];
 
+export const ShoppingCartContext = React.createContext<any>({});
+
 const Shop = () => {
   const [shopName, setShopName] = useState('');
   const swiperRef = useRef<SwiperRef>(null);
@@ -37,6 +39,7 @@ const Shop = () => {
   const [evaluateCurTag, setEvaluateCurTag] = useState('1');
   const [shopEvaluateList, setShopEvaluateList] = useState<Array<any>>([]);
   const [shopIntro, setShopIntro] = useState<any>({});
+  const [goodsShoppingCartData, setGoodsShoppingCartData] = useState<any>({});
 
   const shopId = new URLSearchParams(window.location.hash.split('?')[1]).get('shopId');
 
@@ -48,6 +51,10 @@ const Shop = () => {
     });
     request('mock/getEvaluate.json', 'GET', { shopId: shopId }).then((data) => setShopEvaluateList(data.data));
     request('mock/getShopIntro.json', 'GET', { shopId: shopId }).then((data) => setShopIntro(data.data));
+    request('mock/getShopShoppingCar.json', 'GET', { id: shopId }).then((data) => {
+      console.log('拉取购物车信息 ');
+      setGoodsShoppingCartData(data.data);
+    });
     return removeEventListener('scroll', (e) => {
       setShopScroll(window.scrollY);
     });
@@ -67,15 +74,16 @@ const Shop = () => {
   };
 
   const onMore = () => setIsShowMore(!isShowMore);
-  const [shopShoppingCar, setShopShoppingCar] = useState<any>({});
-  const onSetShopShoppingCar = async () =>
-    await request('mock/getShopShoppingCar.json', 'GET', { id: shopId }).then((data) => {
+  // const [shopShoppingCar, setShopShoppingCar] = useState<any>({});
+  const onSetShopShoppingCartData = () =>
+    request('mock/getShopShoppingCar.json', 'GET', { id: shopId }).then((data) => {
       console.log('拉取购物车信息<<<服务器');
-      setShopShoppingCar(data.data);
+      setGoodsShoppingCartData(data.data);
     });
 
   return (
     <>
+      {/* <ShoppingCartContext.Provider value={{ goodsShoppingCartData, onSetShopShoppingCartData }}> */}
       <div className="shop-bgi" />
       <div className="shop-main">
         <div className="shop-main-nav">
@@ -117,7 +125,11 @@ const Shop = () => {
                 </div>
               </div>
               <div className="order-content">
-                <GoodsContent id={shopId || ''} onSetShopShoppingCar={onSetShopShoppingCar} />
+                <GoodsContent
+                  id={shopId || ''}
+                  goodsShoppingCartData={goodsShoppingCartData}
+                  onSetShopShoppingCartData={onSetShopShoppingCartData}
+                />
               </div>
             </Swiper.Item>
             <Swiper.Item className="shop-main-evaluate">
@@ -311,7 +323,11 @@ const Shop = () => {
           </div>
         </div>
       </div>
-      <ShopShoppingCar onSetShopShoppingCar={onSetShopShoppingCar} shopShoppingCar={shopShoppingCar} />
+      <ShopShoppingCar
+        goodsShoppingCartData={goodsShoppingCartData}
+        onSetShopShoppingCartData={onSetShopShoppingCartData}
+      />
+      {/* </ShoppingCartContext.Provider> */}
     </>
   );
 };

@@ -8,11 +8,11 @@
             "sex": "女",
             "phone": "13333333333",
             "tag": "学校",
-            "cur": false
+            "cur": true
         },
         {
             "id": 2,
-            "address": "阿实践活动法兰克福哈卡就很烦",
+            "address": "杭州路杭州街道杭州小区",
             "addrDetail": "345",
             "name": "zxc",
             "sex": "女",
@@ -22,7 +22,7 @@
         },
         {
             "id": 3,
-            "address": "拉卡德饭卡里的说法",
+            "address": "宁波路宁波街道宁波小区",
             "addrDetail": "654",
             "name": "s",
             "sex": "男",
@@ -32,19 +32,19 @@
         },
         {
             "id": 4,
-            "address": "卡萨丁和空间",
+            "address": "温州路温州街道温州小区",
             "addrDetail": "213",
             "name": "森岛帆高",
             "sex": "女",
             "phone": "13333333333",
             "tag": "家",
-            "cur": true
+            "cur": false
         },
         {
             "id": 5,
-            "address": "奥斯卡兑换积分空间啊哈",
+            "address": "金华路金华街道金华小区",
             "addrDetail": "2345",
-            "name": "喵喵喵",
+            "name": "汪汪汪",
             "sex": "男",
             "phone": "13333333333",
             "tag": "学校",
