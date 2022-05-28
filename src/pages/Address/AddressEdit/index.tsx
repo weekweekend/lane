@@ -30,11 +30,11 @@ const AddressEdit = () => {
     paramsId
       ? request('mock/test.json', 'PUT', { id: paramsId, ...values }).then((data) => {
           console.log('编辑了》》》', data);
-          if (data.data.msg === 'ok') window.location.href = '#/address';
+          if (data.data.msg === 'ok') window.history.go(-1);
         })
       : request('mock/test.json', 'POST', values).then((data) => {
           console.log('新增了》》》', data);
-          if (data.data.msg === 'ok') window.location.href = '#/address';
+          if (data.data.msg === 'ok') window.history.go(-1);
         });
   };
 

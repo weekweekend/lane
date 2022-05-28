@@ -1,4 +1,4 @@
-import React, { memo, FC, useState, useEffect, useContext } from 'react';
+import React, { memo, FC, useState, useEffect, useImperativeHandle, forwardRef } from 'react';
 import { Button, Badge, Popup } from 'antd-mobile';
 import { DeleteOutline } from 'antd-mobile-icons';
 import { Outlet, Link } from 'react-router-dom';
@@ -14,22 +14,7 @@ const ShopShoppingCar: FC<{
 }> = ({ goodsShoppingCartData, onSetShopShoppingCartData }) => {
   const [isShowShoppingCar, setIsShowShoppingCar] = useState(false);
   const [height, setHeight] = useState('0');
-  // const { goodsShoppingCartData, onSetShopShoppingCartData } = useContext(ShoppingCartContext);
-  // useEffect(() => {
-  //   request('mock/getShopShoppingCar.json', 'GET', { ShopId: shopId }).then((data) => {
-  //     setSetShopShoppingCartData(data.data);
-  //     console.log('购物车更新了 <<< 服务器');
-  //   });
-  //   // setSetShopShoppingCartData(shoppingCartData);
-  // }, []);
-  // useEffect(() => {
-  //   onSetShopShoppingCartData().then((data: any) => {
-  //     setSetShopShoppingCartData(data);
-  //     console.log(data);
-  //   });
-  //   console.log(goodsShoppingCartData);
-  // }, []);
-
+  const shopId = new URLSearchParams(window.location.hash.split('?')[1]).get('shopId');
   return (
     <div className="Shop-Shopping-Car">
       <Popup
@@ -123,6 +108,7 @@ const ShopShoppingCar: FC<{
           className="checkout"
           shape="rounded"
           disabled={!goodsShoppingCartData.list?.length}
+          onClick={() => (window.location.href = `#/shop/settlement?shopId=${encodeURIComponent(shopId || '')}`)}
           style={
             !goodsShoppingCartData.list?.length || goodsShoppingCartData.before < goodsShoppingCartData.minPrice
               ? { backgroundColor: '#999' }

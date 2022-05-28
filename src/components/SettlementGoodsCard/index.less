@@ -1,0 +1,38 @@
+.settlement-goods-card {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  .settlement-goods-card-left {
+    display: flex;
+    gap: 0.5rem;
+    width: 87%;
+    .adm-image {
+      height: 3rem;
+      width: 3rem;
+      flex-shrink: 0;
+      border-radius: 0.3rem;
+    }
+    > div {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      .name {
+        padding-top: 0.1rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+      }
+      .number {
+        color: #999;
+      }
+    }
+  }
+  .settlement-goods-card-right {
+    width: 4rem;
+    text-align: right;
+    font-weight: 600;
+    font-size: 0.9rem;
+    i {
+      font-size: 0.7rem;
+    }
+  }
+}

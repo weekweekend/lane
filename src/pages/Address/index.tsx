@@ -12,7 +12,7 @@ const Address = () => {
     request('mock/getAddress.json', 'GET').then((data) => {
       setAddressList(data.data);
       const curIdx = data.data.findIndex((item: { cur: boolean }) => item.cur);
-      if (curIdx) setCurAddress(data.data[curIdx]);
+      if (curIdx >= 0) setCurAddress(data.data[curIdx]);
       console.log(curIdx);
     });
   }, []);
@@ -21,7 +21,7 @@ const Address = () => {
       <NavBar className="address-nav" right={<Link to="edit">新增地址</Link>} onBack={() => window.history.go(-1)}>
         收货地址
       </NavBar>
-      <List className="address-list address-cur" header="当前地址">
+      <List className="address-list address-cur" header="常用地址">
         <List.Item>
           <AddressCard {...curAddress} />
         </List.Item>

@@ -77,21 +77,19 @@
           transition: transform 0.4s;
         }
       }
-      // .circle {
-      //   position: absolute;
-      //   top: 0.1rem;
-      //   left: 7rem;
-      //   height: 0.85rem;
-      //   width: 0.85rem;
-      //   border-radius: 50%;
-      //   background-color: #111;
-      //   text-align: center;
-      //   line-height: 0.9rem;
-      //   font-weight: normal;
-      //   color: #fff;
-      //   z-index: 0;
-      //   opacity: 0;
-      // }
+      .details-stepper {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        font-size: 1.3rem;
+        margin-right: -0.1rem;
+        font-weight: normal;
+
+        span {
+          font-size: 0.6rem;
+          color: #333;
+        }
+      }
     }
   }
 }
@@ -104,8 +102,4 @@
     box-sizing: border-box;
     padding: 0.6rem;
   }
-}
-.adm-popup-body-position-right {
-  width: 100vw !important;
-  overflow-y: scroll;
 }

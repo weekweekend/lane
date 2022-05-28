@@ -1,9 +1,10 @@
-import { FC, useEffect, useState } from 'react';
-import { Image, Button, Popup, Stepper } from 'antd-mobile';
+import { FC, useEffect, useState, useRef } from 'react';
+import { Image, Button, Popup, Stepper, Skeleton } from 'antd-mobile';
 import { CloseOutline, DownOutline } from 'antd-mobile-icons';
 import './index.less';
 import { BiMedal } from 'react-icons/bi';
 import ShopGoodsSelectCard from './ShopGoodsSelectCard';
+import { IoIosAddCircle, IoIosRemoveCircleOutline } from 'react-icons/io';
 import GoodsDetails from './GoodsDetails';
 import request from 'utils/request';
 
@@ -11,11 +12,12 @@ const ShopGoodsCard: FC<{
   id: number;
   image: string;
   title: string;
+  price: number;
   tag?: string;
   raw: Array<string>;
   monthSale: number;
   likeRate: number;
-  price: number;
+
   minNum?: number;
   maxNum?: number;
   details?: Array<{
@@ -50,7 +52,7 @@ const ShopGoodsCard: FC<{
   useEffect(() => {
     const idx = goodsShoppingCartData.list?.findIndex((item: any) => item.id == id);
     if (idx >= 0) setCurNum(goodsShoppingCartData.list[idx].number);
-  }, []);
+  }, [goodsShoppingCartData.minPrice]);
 
   const onGoodNumChange = (val: number) => {
     const params = { goodsId: id, goodsNum: val };
@@ -93,7 +95,7 @@ const ShopGoodsCard: FC<{
           </div>
           <div className="goods-card-right-price">
             <span>￥{price}</span>
-            {details && curNum === 0 ? (
+            {details && curNum === 0 && (
               <Button
                 color="primary"
                 shape="rounded"
@@ -105,7 +107,30 @@ const ShopGoodsCard: FC<{
               >
                 选规格
               </Button>
-            ) : (
+            )}
+
+            {details && curNum > 0 && (
+              <div className="details-stepper activate-details-stepper">
+                <IoIosRemoveCircleOutline
+                  color="#209FFA"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    // setIsShowGoodsChoose(true);
+                    setCurNum(curNum - 1);
+                  }}
+                />
+
+                <span>{curNum}</span>
+                <IoIosAddCircle
+                  color="#209FFA"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsShowGoodsChoose(true);
+                  }}
+                />
+              </div>
+            )}
+            {!details && (
               <div onClick={(e) => e.stopPropagation()}>
                 <Stepper
                   min={minNum || 0}
@@ -114,11 +139,9 @@ const ShopGoodsCard: FC<{
                   onChange={onGoodNumChange}
                   className={curNum > 0 ? '' : 'stepper-activate'}
                 />
-                {/* <div className="circle" onClick={() => console.log('123')}>
-                +
-              </div> */}
               </div>
             )}
+
             <Popup
               className="goods-choose-popup"
               visible={isShowGoodsChoose}
@@ -141,6 +164,7 @@ const ShopGoodsCard: FC<{
                 maxNum={maxNum}
                 onSetShopShoppingCartData={onSetShopShoppingCartData}
                 setCurNum={(val: number) => setCurNum(val)}
+                curNum={curNum}
               />
             </Popup>
           </div>
@@ -152,14 +176,25 @@ const ShopGoodsCard: FC<{
           setIsShowDetails(false);
         }}
         position="right"
-        bodyStyle={{ width: '60vw' }}
+        bodyStyle={{ width: '100vw' }}
       >
-        <GoodsDetails
-          goodsId={id}
-          onCloseDetails={() => setIsShowDetails(false)}
-          goodsShoppingCartData={goodsShoppingCartData}
-          onSetShopShoppingCartData={onSetShopShoppingCartData}
-        />
+        <div style={{ height: '100vh', overflowY: 'scroll' }}>
+          <GoodsDetails
+            goodsId={id}
+            minNum={minNum}
+            maxNum={maxNum}
+            curNum={curNum}
+            setCurNum={(val) => setCurNum(val)}
+            onCloseDetails={() => setIsShowDetails(false)}
+            goodsShoppingCartData={goodsShoppingCartData}
+            onSetShopShoppingCartData={onSetShopShoppingCartData}
+            onGoodNumChange={onGoodNumChange}
+            details={details}
+            image={image}
+            title={title}
+            price={price}
+          />
+        </div>
       </Popup>
     </>
   );

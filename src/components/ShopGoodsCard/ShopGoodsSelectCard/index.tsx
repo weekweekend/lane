@@ -4,6 +4,7 @@ import { CloseOutline, DownOutline } from 'antd-mobile-icons';
 import './index.less';
 import { BiMedal } from 'react-icons/bi';
 import request from 'utils/request';
+import Item from 'antd-mobile/es/components/dropdown/item';
 
 const ShopGoodsSelectCard: FC<{
   onClose: () => void;
@@ -17,9 +18,10 @@ const ShopGoodsSelectCard: FC<{
     name: string;
     params: Array<string>;
   }>;
+  curNum: number;
   setCurNum: (val: number) => void;
   onSetShopShoppingCartData: () => void;
-}> = ({ onClose, image, title, price, minNum, maxNum, details, onSetShopShoppingCartData, setCurNum }) => {
+}> = ({ onClose, image, title, price, minNum, maxNum, details, onSetShopShoppingCartData, curNum, setCurNum }) => {
   const [goodsNum, setGoodsNum] = useState(0);
   const [tasteVal, setTasteVal] = useState();
   const [shoppingCart, setShoppingCart] = useState<any>({});
@@ -27,17 +29,23 @@ const ShopGoodsSelectCard: FC<{
     request('mock/test.json', 'PUT').then((data) => {
       console.log('提交选择>>>服务器');
       onSetShopShoppingCartData();
-      setCurNum(values.goodsNum);
+      setCurNum(curNum + values.goodsNum);
     });
 
     onClose();
   };
   const [form] = Form.useForm();
   useEffect(() => {
-    form.setFieldsValue({
-      goodsNum: minNum || 1,
-    });
-  }, []);
+    const init = details?.map((item) => ({ [item.name]: [item.params[0]] })) || [];
+    form.setFieldsValue(
+      Object.assign(
+        {
+          goodsNum: minNum || 1,
+        },
+        ...init,
+      ),
+    );
+  });
   return (
     <>
       <div className="goods-des">
@@ -53,7 +61,13 @@ const ShopGoodsSelectCard: FC<{
       </div>
       <Form className="goods-select" onFinish={onFinish} form={form}>
         <Form.Item layout="horizontal" className="goods-select-num" name="goodsNum" label="数量">
-          <Stepper min={minNum || 1} max={maxNum} />
+          <Stepper
+            min={minNum || 1}
+            max={maxNum}
+            onChange={(val) => {
+              console.log(val);
+            }}
+          />
         </Form.Item>
         {details?.map((item) => (
           <Form.Item

@@ -36,9 +36,9 @@ const AddressCard: FC<{
           <span>{phone}</span>
         </div>
       </div>
-      <Link to={`edit?id=${encodeURIComponent(id)}`} onClick={(e) => e.stopPropagation()}>
+      <a href={`#/address/edit?id=${encodeURIComponent(id)}`} onClick={(e) => e.stopPropagation()}>
         <EditSOutline color="#ccc" />
-      </Link>
+      </a>
     </div>
   );
 };

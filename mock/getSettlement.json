@@ -47,17 +47,12 @@
                 "number": 1
             }
         ],
-        "ShopId": 11223,
+        "shopId": 11223,
+        "shopName": "发的规划的东方体育",
         "packing": 1.5,
-        "before": 70,
-        "after": 65,
-        "predict": 60,
         "delivery": 1.5,
-        "minPrice": 20
-    },
-    "datae": {
-        "list": [],
-        "delivery": 1.5,
-        "minPrice": 20
+        "discount": 5,
+        "totalPrice": 38,
+        "totalDiscount": 6
     }
 }
