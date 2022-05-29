@@ -23,6 +23,7 @@ import SelectAddress from 'pages/Address/AddressEdit/SelectAddress/SelectAddress
 import SearchResult from 'pages/Search/SearchResult';
 import Settlement from 'pages/Shop/Settlement';
 import NicknameEdit from 'pages/Mine/NicknameEdit';
+import Intro from 'pages/Mine/Intro';
 
 const root = createRoot(document.getElementById('app')!);
 const GoodDetailsContext = React.createContext<any>({});
@@ -41,6 +42,7 @@ root.render(
         <Route path="*" element={<Page404 />} />
       </Route>
       <Route path="mine/nicknameEdit" element={<NicknameEdit />} />
+      <Route path="mine/intro" element={<Intro />} />
 
       <Route path="shop" element={<Shop />}></Route>
       <Route path="shop/recommended" element={<Recommended />}></Route>

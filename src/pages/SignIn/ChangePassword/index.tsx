@@ -23,9 +23,7 @@ const ChangePassword = () => {
     <>
       <div className="nav">
         <div>
-          <a href="#/signIn">
-            <LeftOutline />
-          </a>
+          <LeftOutline onClick={() => window.history.go(-1)} />
           <h2>
             {curPage === 'provideNumber' && '找回密码'}
             {curPage === 'verifyNumber' && '身份验证'}
