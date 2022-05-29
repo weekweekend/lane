@@ -5,6 +5,7 @@ import { Outlet, Link } from 'react-router-dom';
 import { RiHome5Line, RiEmotion2Line, RiFileList2Line, RiShoppingCartLine, RiArrowDownSFill } from 'react-icons/ri';
 import './index.less';
 import request from 'utils/request';
+
 const Layout: FC<{}> = () => {
   const [homeCurPage, setHomeCurPage] = useState('');
   const [homeCurAddress, setHomeCurAddress] = useState('');
@@ -21,7 +22,7 @@ const Layout: FC<{}> = () => {
       <header>
         {homeCurPage === 'home' && (
           <div className="header-nav">
-            <div>
+            <div style={{ width: '55%' }}>
               <Link to="address">{homeCurAddress} &nbsp;</Link>
               <RiArrowDownSFill />
             </div>
@@ -31,10 +32,16 @@ const Layout: FC<{}> = () => {
           </div>
         )}
         {homeCurPage === 'order' && (
-          <Tabs className="header-nav" activeLineMode="fixed">
-            <Tabs.Tab title="水果" key="fruits" />
-            <Tabs.Tab title="蔬菜" key="vegetables" />
-            <Tabs.Tab title="动物" key="animals" />
+          <Tabs
+            className="header-nav"
+            activeLineMode="fixed"
+            onChange={(val) => {
+              window.location.href = `#/${val}`;
+            }}
+          >
+            <Tabs.Tab title="全部订单" key="order" />
+            <Tabs.Tab title="待评价" key="notEvaluate" />
+            <Tabs.Tab title="已评价" key="evaluated" />
           </Tabs>
         )}
         {homeCurPage === 'mine' && (

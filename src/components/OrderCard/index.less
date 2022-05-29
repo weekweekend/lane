@@ -1,0 +1,27 @@
+.order-card {
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  .order-card-title {
+    display: flex;
+    justify-content: space-between;
+    > div {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      h3 {
+        font-size: 0.8rem;
+        max-width: 13rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+      .adm-image {
+        height: 1.3rem;
+        width: 1.3rem;
+        border-radius: 0.2rem;
+      }
+    }
+  }
+}

@@ -9,7 +9,6 @@ import Page404 from 'pages/404';
 import HomePage from 'pages/HomePage';
 import SignIn from 'pages/SignIn';
 import Mine from 'pages/Mine';
-import Order from 'pages/Order';
 import ChangePassword from 'pages/SignIn/ChangePassword';
 import Shop from 'pages/Shop';
 import Recommended from 'pages/Shop/Recommended';
@@ -24,6 +23,9 @@ import SearchResult from 'pages/Search/SearchResult';
 import Settlement from 'pages/Shop/Settlement';
 import NicknameEdit from 'pages/Mine/NicknameEdit';
 import Intro from 'pages/Mine/Intro';
+import Order from 'pages/Order';
+import NotEvaluate from 'pages/Order/NotEvaluate';
+import Evaluated from 'pages/Order/Evaluated';
 
 const root = createRoot(document.getElementById('app')!);
 const GoodDetailsContext = React.createContext<any>({});
@@ -38,6 +40,8 @@ root.render(
         <Route path="item/:id" element={<Item />} />
         <Route path="item/:id" element={<Item />} />
         <Route path="order" element={<Order />} />
+        <Route path="notEvaluate" element={<NotEvaluate />} />
+        <Route path="evaluated" element={<Evaluated />} />
         <Route path="mine" element={<Mine />} />
         <Route path="*" element={<Page404 />} />
       </Route>
