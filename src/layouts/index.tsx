@@ -19,7 +19,13 @@ const Layout: FC<{}> = () => {
   }, [searchCurPage]);
   return (
     <div className="layout">
-      <header>
+      <header
+        style={
+          homeCurPage === 'home'
+            ? { backgroundColor: '#fff' }
+            : { backgroundColor: '#fafafa', position: 'fixed', zIndex: '99' }
+        }
+      >
         {homeCurPage === 'home' && (
           <div className="header-nav">
             <div style={{ width: '55%' }}>
@@ -39,7 +45,7 @@ const Layout: FC<{}> = () => {
               window.location.href = `#/${val}`;
             }}
           >
-            <Tabs.Tab title="全部订单" key="order" />
+            <Tabs.Tab title="全部" key="order" />
             <Tabs.Tab title="待评价" key="notEvaluate" />
             <Tabs.Tab title="已评价" key="evaluated" />
           </Tabs>

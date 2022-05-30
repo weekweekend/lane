@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import React, { RefObject } from 'react';
 import { Form, Input, Button, Dialog, TextArea, DatePicker, Selector, Slider, Stepper, Switch } from 'antd-mobile';
 import dayjs from 'dayjs';
-import type { DatePickerRef } from 'antd-mobile/es/components/date-picker';
 import request from 'utils/request';
 import Item from 'pages/Item';
 
@@ -16,7 +15,7 @@ const OrderCard: FC<{
   image: string;
   shopName: string;
   state: string;
-  discount?: Array<string>;
+  tag?: Array<string>;
   goods: Array<{
     image: string;
     name: string;
@@ -24,19 +23,58 @@ const OrderCard: FC<{
   totalPrice: number;
   number: number;
   evaluate: boolean;
-}> = ({ orderId, shopId, image, shopName, state, discount, goods, totalPrice, number, evaluate }) => {
+}> = ({ orderId, shopId, image, shopName, state, tag, goods, totalPrice, number, evaluate }) => {
   return (
     <div className="order-card">
       <div className="order-card-title">
         <div>
           <Image src={image} />
           <h3>{shopName}</h3>
-          <RightOutline />
+          <RightOutline color="#999" />
         </div>
-        <div>{state}</div>
+        <div className="order-state">{state}</div>
       </div>
-      <div></div>
-      <div></div>
+      <div className="order-card-tag">
+        {tag &&
+          tag.map((item, idx) => (
+            <Tag key={idx} color="orangered">
+              {item}
+            </Tag>
+          ))}
+      </div>
+
+      <div className="order-card-goods">
+        <div className="goods-left">
+          {goods.length > 1 && goods.map((item, idx) => <Image src={item.image} />)}
+          {goods.length === 1 && (
+            <>
+              <Image src={goods[0].image} /> <span>{goods[0].name}</span>
+            </>
+          )}
+        </div>
+        <div className="goods-right">
+          <div>
+            <i>￥</i>
+            <span>{totalPrice}</span>
+          </div>
+          <div>共{number}件</div>
+        </div>
+      </div>
+      <div className="order-card-operation">
+        {evaluate && (
+          <Button color="primary" fill="outline" shape="rounded">
+            再来一单
+          </Button>
+        )}
+        {!evaluate && (
+          <>
+            <Button shape="rounded">去评价</Button>
+            <Button color="primary" fill="outline" shape="rounded">
+              再来一单
+            </Button>
+          </>
+        )}
+      </div>
     </div>
   );
 };

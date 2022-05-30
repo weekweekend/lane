@@ -11,11 +11,11 @@ const Order = () => {
     request('mock/getOrders.json', 'GET').then((data) => setOrderList(data.data));
   }, []);
   return (
-    <>
+    <div className="order">
       {orderList.map((item: any) => (
         <OrderCard {...item} key={item.orderId} />
       ))}
-    </>
+    </div>
   );
 };
 export default Order;

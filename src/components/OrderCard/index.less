@@ -2,12 +2,15 @@
   padding: 0.5rem;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.7rem;
+  background-color: #fff;
+  border-radius: 0.5rem;
   .order-card-title {
     display: flex;
     justify-content: space-between;
     > div {
       display: flex;
+      white-space: nowrap;
       align-items: center;
       gap: 0.3rem;
       h3 {
@@ -22,6 +25,58 @@
         width: 1.3rem;
         border-radius: 0.2rem;
       }
+    }
+    .order-state {
+      font-size: 0.7rem;
+      color: #999;
+    }
+  }
+  .order-card-tag {
+    display: flex;
+    gap: 0.3rem;
+
+    .adm-tag {
+      border-radius: 0.2rem;
+      font-size: 0.6rem;
+    }
+  }
+  .order-card-goods {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    .goods-left {
+      display: flex;
+      align-items: center;
+      width: 80%;
+      gap: 0.5rem;
+      overflow-x: scroll;
+      .adm-image {
+        flex-shrink: 0;
+        height: 4rem;
+        width: 4rem;
+        border-radius: 0.3rem;
+      }
+    }
+    .goods-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      font-size: 0.7rem;
+      span {
+        font-size: 0.9rem;
+      }
+    }
+  }
+  .order-card-operation {
+    display: flex;
+    justify-content: end;
+    gap: 0.3rem;
+    button {
+      font-size: 0.7rem;
+      padding: 0.4rem 0.8rem;
+      line-height: 1;
     }
   }
 }
