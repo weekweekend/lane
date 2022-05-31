@@ -8,7 +8,7 @@ import { SwiperRef } from 'antd-mobile/es/components/swiper';
 import GoodsContent from 'components/GoodsContent';
 import { Action } from 'antd-mobile/es/components/popover';
 import { RiMedalFill } from 'react-icons/ri';
-import ShopEvaluateCard from 'components/ShopEvaluateCard';
+import ShopEvaluationCard from 'components/ShopEvaluationCard';
 import request from 'utils/request';
 import ShopShoppingCar from 'components/ShopShoppingCar';
 import ShopGoodsSelectCard from '../ShopGoodsSelectCard';

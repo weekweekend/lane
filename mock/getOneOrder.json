@@ -1,0 +1,17 @@
+{
+  "data": {
+    "orderId": 222,
+    "shopId": 22222,
+    "image": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
+    "shopName": "的风格的话他",
+    "state": "已送达",
+    "goods": [
+      {
+        "image": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
+        "name": "啥都电饭锅好说"
+      }
+    ],
+    "totalPrice": 34.5,
+    "number": 1
+  }
+}

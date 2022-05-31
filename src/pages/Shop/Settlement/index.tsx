@@ -11,11 +11,8 @@ import {
 } from 'antd-mobile-icons';
 import React, { useState, useEffect, useRef } from 'react';
 import './index.less';
-import { SwiperRef } from 'antd-mobile/es/components/swiper';
-import GoodsContent from 'components/GoodsContent';
-import { Action } from 'antd-mobile/es/components/popover';
 import { RiRedPacketFill } from 'react-icons/ri';
-import ShopEvaluateCard from 'components/ShopEvaluateCard';
+import ShopEvaluationCard from 'components/ShopEvaluationCard';
 import SettlementGoodsCard from 'components/SettlementGoodsCard';
 import request from 'utils/request';
 import AddressCard from 'components/AddressCard';
@@ -78,7 +75,13 @@ const Settlement = () => {
                   </Radio>
                 ))}
               </Radio.Group>
-              <Button color="primary" shape="rounded" onClick={() => (window.location.href = '#/address/edit')}>
+              <Button
+                color="primary"
+                shape="rounded"
+                onClick={() => {
+                  window.location.href = '#/address/edit';
+                }}
+              >
                 新增收货地址
               </Button>
             </div>

@@ -15,13 +15,13 @@ import { SwiperRef } from 'antd-mobile/es/components/swiper';
 import GoodsContent from 'components/GoodsContent';
 import { Action } from 'antd-mobile/es/components/popover';
 import { RiShoppingCart2Line } from 'react-icons/ri';
-import ShopEvaluateCard from 'components/ShopEvaluateCard';
+import ShopEvaluationCard from 'components/ShopEvaluationCard';
 import request from 'utils/request';
 import ShopShoppingCar from 'components/ShopShoppingCar';
 
 const tabItems = [
   { key: 'order', title: '点餐' },
-  { key: 'evaluate', title: '评价' },
+  { key: 'evaluation', title: '评价' },
   { key: 'shop', title: '商家' },
 ];
 
@@ -36,8 +36,8 @@ const Shop = () => {
   const [isFocus, setIsFocus] = useState(false);
   const [isShowMore, setIsShowMore] = useState(false);
   const [shopScroll, setShopScroll] = useState(0);
-  const [evaluateCurTag, setEvaluateCurTag] = useState('1');
-  const [shopEvaluateList, setShopEvaluateList] = useState<Array<any>>([]);
+  const [evaluationCurTag, setEvaluationCurTag] = useState('1');
+  const [shopEvaluationList, setShopEvaluationList] = useState<Array<any>>([]);
   const [shopIntro, setShopIntro] = useState<any>({});
   const [goodsShoppingCartData, setGoodsShoppingCartData] = useState<any>({});
 
@@ -49,7 +49,7 @@ const Shop = () => {
     window.addEventListener('scroll', (e) => {
       setShopScroll(window.scrollY);
     });
-    request('mock/getEvaluate.json', 'GET', { shopId: shopId }).then((data) => setShopEvaluateList(data.data));
+    request('mock/getEvaluation.json', 'GET', { shopId: shopId }).then((data) => setShopEvaluationList(data.data));
     request('mock/getShopIntro.json', 'GET', { shopId: shopId }).then((data) => setShopIntro(data.data));
     request('mock/getShopShoppingCar.json', 'GET', { id: shopId }).then((data) => {
       console.log('拉取购物车信息 ');
@@ -132,9 +132,9 @@ const Shop = () => {
                 />
               </div>
             </Swiper.Item>
-            <Swiper.Item className="shop-main-evaluate">
-              <div className="evaluate-summary">
-                <div className="evaluate-score">
+            <Swiper.Item className="shop-main-evaluation">
+              <div className="evaluation-summary">
+                <div className="evaluation-score">
                   <div>
                     <h1>4.9</h1>
                     <span>
@@ -155,7 +155,7 @@ const Shop = () => {
                   </div>
                 </div>
                 <Selector
-                  className="evaluate-tags"
+                  className="evaluation-tags"
                   showCheckMark={false}
                   options={[
                     {
@@ -179,17 +179,17 @@ const Shop = () => {
                       value: '5',
                     },
                   ]}
-                  value={[evaluateCurTag]}
+                  value={[evaluationCurTag]}
                   onChange={(v) => {
                     if (v.length) {
-                      setEvaluateCurTag(v[0]);
+                      setEvaluationCurTag(v[0]);
                     }
                   }}
                 />
               </div>
-              <div className="evaluate-content">
-                {shopEvaluateList.map((item) => (
-                  <ShopEvaluateCard key={item.id} {...item} />
+              <div className="evaluation-content">
+                {shopEvaluationList.map((item) => (
+                  <ShopEvaluationCard key={item.id} {...item} />
                 ))}
                 <Divider>暂无更多评价</Divider>
               </div>

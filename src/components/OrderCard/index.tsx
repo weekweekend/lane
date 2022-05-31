@@ -22,8 +22,9 @@ const OrderCard: FC<{
   }>;
   totalPrice: number;
   number: number;
-  evaluate: boolean;
-}> = ({ orderId, shopId, image, shopName, state, tag, goods, totalPrice, number, evaluate }) => {
+  evaluation?: string;
+  inEvaluated?: boolean;
+}> = ({ orderId, shopId, image, shopName, state, tag, goods, totalPrice, number, evaluation, inEvaluated }) => {
   return (
     <div className="order-card">
       <div className="order-card-title">
@@ -45,7 +46,7 @@ const OrderCard: FC<{
 
       <div className="order-card-goods">
         <div className="goods-left">
-          {goods.length > 1 && goods.map((item, idx) => <Image src={item.image} />)}
+          {goods.length > 1 && goods.map((item, idx) => <Image key={idx} src={item.image} />)}
           {goods.length === 1 && (
             <>
               <Image src={goods[0].image} /> <span>{goods[0].name}</span>
@@ -61,14 +62,24 @@ const OrderCard: FC<{
         </div>
       </div>
       <div className="order-card-operation">
-        {evaluate && (
+        {evaluation && !inEvaluated && (
           <Button color="primary" fill="outline" shape="rounded">
             再来一单
           </Button>
         )}
-        {!evaluate && (
+        {evaluation && inEvaluated && (
+          <div>
+            <p>{evaluation}</p>
+            <Button color="primary" fill="outline" shape="rounded">
+              再来一单
+            </Button>
+          </div>
+        )}
+        {!evaluation && !inEvaluated && (
           <>
-            <Button shape="rounded">去评价</Button>
+            <a href={`#/order/addEvaluation?orderId=${encodeURIComponent(orderId)}`}>
+              <Button shape="rounded">去评价</Button>
+            </a>
             <Button color="primary" fill="outline" shape="rounded">
               再来一单
             </Button>

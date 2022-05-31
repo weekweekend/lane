@@ -5,14 +5,14 @@ import { MoreOutline } from 'antd-mobile-icons';
 import { AiOutlineLike, AiTwotoneLike } from 'react-icons/ai';
 import request from 'utils/request';
 
-const ShopEvaluateCard: FC<{
+const ShopEvaluationCard: FC<{
   id: number;
   avatar: string;
   name: string;
   anonymous: boolean;
   label?: string;
   time: string;
-  evaluate: {
+  evaluation: {
     score: number;
     taste: number;
     packaging: number;
@@ -23,11 +23,11 @@ const ShopEvaluateCard: FC<{
   reply?: string;
   recommend?: string;
   like: boolean;
-}> = ({ id, avatar, name, anonymous, label, time, evaluate, content, image, reply, recommend, like }) => {
+}> = ({ id, avatar, name, anonymous, label, time, evaluation, content, image, reply, recommend, like }) => {
   const [isLike, setIsLike] = useState(like);
   return (
-    <div className="shop-evaluate-card">
-      <div className="evaluate-card-nav">
+    <div className="shop-evaluation-card">
+      <div className="evaluation-card-nav">
         <div className="valuate-card-nav-left">
           <Avatar src={anonymous ? '' : avatar} />
           <div>
@@ -45,15 +45,15 @@ const ShopEvaluateCard: FC<{
         </div>
         {/* <MoreOutline color={'#ccc'} fontSize={'1rem'} /> */}
       </div>
-      <div className="evaluate-card-score">
+      <div className="evaluation-card-score">
         <div>
-          满意度 <Rate readOnly value={evaluate.score} />
+          满意度 <Rate readOnly value={evaluation.score} />
         </div>
-        <div>味道{evaluate.taste}星</div>
-        <div>包装{evaluate.packaging}星</div>
-        <div>骑士{evaluate.delivery}星</div>
+        <div>味道{evaluation.taste}星</div>
+        <div>包装{evaluation.packaging}星</div>
+        <div>骑士{evaluation.delivery}星</div>
       </div>
-      <div className="evaluate-card-content">
+      <div className="evaluation-card-content">
         #<i style={{ color: '#66ccff' }}>{recommend}</i>#，{content}
         <span>
           {image?.map((item, idx) => (
@@ -62,13 +62,13 @@ const ShopEvaluateCard: FC<{
         </span>
       </div>
       {reply && (
-        <div className="evaluate-card-reply">
+        <div className="evaluation-card-reply">
           <p>商家回复</p>
           {reply}
         </div>
       )}
 
-      <div className="evaluate-card-like">
+      <div className="evaluation-card-like">
         {recommend && (
           <div>
             TA的推荐：
@@ -82,7 +82,7 @@ const ShopEvaluateCard: FC<{
           <span
             onClick={() => {
               setIsLike(!isLike);
-              request('mock/test.json', 'PUT', { evaluateId: id, evaluateLike: !isLike + '' }).then((data) =>
+              request('mock/test.json', 'PUT', { evaluationId: id, evaluationLike: !isLike + '' }).then((data) =>
                 console.log(data),
               );
             }}
@@ -95,7 +95,7 @@ const ShopEvaluateCard: FC<{
           <span
             onClick={() => {
               setIsLike(!isLike);
-              request('mock/test.json', 'PUT', { evaluateId: id, evaluateLike: !isLike + '' }).then((data) =>
+              request('mock/test.json', 'PUT', { evaluationId: id, evaluationLike: !isLike + '' }).then((data) =>
                 console.log(data),
               );
             }}
@@ -109,4 +109,4 @@ const ShopEvaluateCard: FC<{
   );
 };
 
-export default ShopEvaluateCard;
+export default ShopEvaluationCard;

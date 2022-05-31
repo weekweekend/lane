@@ -26,6 +26,7 @@ import Intro from 'pages/Mine/Intro';
 import Order from 'pages/Order';
 import NotEvaluate from 'pages/Order/NotEvaluate';
 import Evaluated from 'pages/Order/Evaluated';
+import AddEvaluation from 'pages/Order/AddEvaluation';
 
 const root = createRoot(document.getElementById('app')!);
 const GoodDetailsContext = React.createContext<any>({});
@@ -47,6 +48,7 @@ root.render(
       </Route>
       <Route path="mine/nicknameEdit" element={<NicknameEdit />} />
       <Route path="mine/intro" element={<Intro />} />
+      <Route path="order/addEvaluation" element={<AddEvaluation />} />
 
       <Route path="shop" element={<Shop />}></Route>
       <Route path="shop/recommended" element={<Recommended />}></Route>
