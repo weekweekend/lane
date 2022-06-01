@@ -24,7 +24,7 @@ function request(
     return fetch(oUrl.toString(), {
       credentials: 'include',
       mode: 'cors',
-      headers: clearObject(Object.assign({ Authorization: token }, headers)),
+      // headers: clearObject(Object.assign({ Authorization: token }, headers)),
     }).then((res) => res.json());
   }
   return fetch(oUrl.toString(), {
