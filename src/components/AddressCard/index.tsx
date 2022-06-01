@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import React, { RefObject } from 'react';
 import { Form, Input, Button, Dialog, TextArea, DatePicker, Selector, Slider, Stepper, Switch } from 'antd-mobile';
 import dayjs from 'dayjs';
-import type { DatePickerRef } from 'antd-mobile/es/components/date-picker';
 
 const AddressCard: FC<{
   id: number;
@@ -22,7 +21,7 @@ const AddressCard: FC<{
     <div className="address-card">
       <div className="address-card-content">
         <div>
-          <Tag>{tag}</Tag>
+          {tag && <Tag>{tag}</Tag>}
           <h2>
             {address}
             {addrDetail}

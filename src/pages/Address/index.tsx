@@ -9,7 +9,7 @@ const Address = () => {
   const [addressList, setAddressList] = useState<Array<any>>([]);
   const [curAddress, setCurAddress] = useState<any>({});
   useEffect(() => {
-    request('mock/getAddress.json', 'GET').then((data) => {
+    request('address', 'GET').then((data) => {
       setAddressList(data.data);
       const curIdx = data.data.findIndex((item: { cur: boolean }) => item.cur);
       if (curIdx >= 0) setCurAddress(data.data[curIdx]);
@@ -33,7 +33,7 @@ const Address = () => {
             onClick={(e) => {
               console.log(e.target);
               setCurAddress(addressList[idx]);
-              request('mock/test.json', 'PUT').then((data) => console.log('换地址>>>', data.data.msg, item));
+              request('test', 'PUT').then((data) => console.log('换地址>>>', data.data.msg, item));
             }}
           >
             <AddressCard {...item} />

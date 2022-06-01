@@ -13,9 +13,9 @@ function request(
   //   return;
   // }
   let oUrl: any;
-  url.includes('mock')
-    ? (oUrl = new URL(url, window.location.href))
-    : (oUrl = new URL(url, 'http://192.168.2.36:8080/'));
+  window.location.href.includes('lane')
+    ? (oUrl = new URL(url, 'https://mock.apifox.cn/m1/1066506-0-default/'))
+    : (oUrl = new URL(url, 'http://127.0.0.1:4523/m1/1066506-0-default/'));
 
   if (method === 'GET') {
     Object.entries(clearObject(params)).forEach(([key, value]) => {

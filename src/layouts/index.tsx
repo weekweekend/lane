@@ -12,7 +12,7 @@ const Layout: FC<{}> = () => {
   const searchCurPage = window.location.hash.split('/')[1] || 'home';
   useEffect(() => {
     setHomeCurPage(searchCurPage);
-    request('mock/getAddress.json', 'GET').then((data) => {
+    request('address', 'GET').then((data) => {
       const idx = data.data.findIndex((item: { cur: boolean }) => item.cur);
       setHomeCurAddress(data.data[idx].address + data.data[idx].addrDetail);
     });
