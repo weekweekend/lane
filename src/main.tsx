@@ -11,9 +11,7 @@ import SignIn from 'pages/SignIn';
 import Mine from 'pages/Mine';
 import ChangePassword from 'pages/SignIn/ChangePassword';
 import Shop from 'pages/Shop';
-import Recommended from 'pages/Shop/Recommended';
 import ShoppingCar from 'pages/ShoppingCar';
-import ShopSearch from 'pages/Shop/ShopSearch';
 import Address from 'pages/Address';
 import Profile from 'pages/Profile';
 import Search from 'pages/Search';
@@ -51,8 +49,6 @@ root.render(
       <Route path="order/addEvaluation" element={<AddEvaluation />} />
 
       <Route path="shop" element={<Shop />}></Route>
-      <Route path="shop/recommended" element={<Recommended />}></Route>
-      <Route path="shop/shopSearch" element={<ShopSearch />}></Route>
       <Route path="shop/settlement" element={<Settlement />}></Route>
 
       <Route path="signIn" element={<SignIn />} />

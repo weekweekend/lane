@@ -74,7 +74,6 @@ const Shop = () => {
   };
 
   const onMore = () => setIsShowMore(!isShowMore);
-  // const [shopShoppingCar, setShopShoppingCar] = useState<any>({});
   const onSetShopShoppingCartData = () =>
     request('mock/getShopShoppingCar.json', 'GET', { id: shopId }).then((data) => {
       console.log('拉取购物车信息<<<服务器');
@@ -83,7 +82,6 @@ const Shop = () => {
 
   return (
     <>
-      {/* <ShoppingCartContext.Provider value={{ goodsShoppingCartData, onSetShopShoppingCartData }}> */}
       <div className="shop-bgi" />
       <div className="shop-main">
         <div className="shop-main-nav">
@@ -110,21 +108,7 @@ const Shop = () => {
             }}
           >
             <Swiper.Item className="shop-main-content">
-              <a href="#/shop/recommended">
-                <div className="ad-image"></div>
-              </a>
-              <div>
-                <a href="#/shop/recommended" className="ad-recommended">
-                  <span>商家推荐</span>
-                  <RightOutline />
-                </a>
-                <div className="ad-goods">
-                  <div>推荐1</div>
-                  <div>推荐2</div>
-                  <div>推荐3</div>
-                </div>
-              </div>
-              <div className="order-content">
+              <div className="shop-goods-content">
                 <GoodsContent
                   id={shopId || ''}
                   goodsShoppingCartData={goodsShoppingCartData}
@@ -327,7 +311,6 @@ const Shop = () => {
         goodsShoppingCartData={goodsShoppingCartData}
         onSetShopShoppingCartData={onSetShopShoppingCartData}
       />
-      {/* </ShoppingCartContext.Provider> */}
     </>
   );
 };

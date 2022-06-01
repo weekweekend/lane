@@ -2,14 +2,13 @@
   background-color: #fafafa;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
   min-height: 100vh;
   .add-evaluation-nav {
-    padding: 0.6rem 0;
+    padding: 0.2rem 0;
     font-size: 1rem;
-    button {
-      font-size: 0.7rem;
-    }
+    background-color: #fff;
+    position: fixed;
+    width: 100%;
   }
   .add-evaluation-content {
     background-color: #fff;
@@ -17,14 +16,76 @@
     box-sizing: border-box;
     margin: 0.6rem;
     border-radius: 0.5rem;
+    margin-top: 3.5rem;
     .title {
       display: flex;
       align-items: center;
       gap: 0.5rem;
+      h3 {
+        font-size: 0.8rem;
+      }
       .adm-image {
         height: 2.2rem;
         width: 2.2rem;
         border-radius: 0.2rem;
+      }
+    }
+    .adm-form {
+      padding: 0.5rem 0;
+      .adm-list-card {
+        margin: 0.5rem;
+      }
+      .last-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.3rem 0;
+      }
+      button {
+        font-size: 0.7rem;
+        padding: 0.15rem 0.5rem;
+      }
+      .score-des {
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: #dd4e1b;
+      }
+      textarea {
+        min-height: 5rem;
+        font-size: 0.8rem;
+      }
+      .adm-space-item {
+        --cell-size: 4rem;
+        margin-bottom: 0.5rem;
+      }
+      .adm-space-item {
+        margin-bottom: 0;
+        .adm-selector-item {
+          padding: 0.25rem 0.7rem;
+          font-size: 0.7rem;
+        }
+      }
+      .adm-radio {
+        --icon-size: 0.8rem;
+        --font-size: 0.7rem;
+      }
+    }
+    .adm-list-item-content {
+      border: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      .adm-list-item-content-prefix {
+        width: 2.5rem;
+        text-align: right;
+        padding: 0.2rem 0;
+        font-size: 0.7rem;
+      }
+      .adm-list-item-content-main {
+        padding: 0.2rem 0;
+        .adm-rate {
+          gap: 0.3rem;
+        }
       }
     }
   }
