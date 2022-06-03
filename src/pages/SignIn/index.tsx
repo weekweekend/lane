@@ -17,7 +17,7 @@ const SignIn = () => {
   return (
     <>
       <div className="switch">
-        <CloseOutline onClick={() => window.history.go(-1)} />
+        <CloseOutline onClick={() => history.back()} />
         <Button fill="none" onClick={onClick}>
           {loginType === 'code' ? '密码登录' : '手机号登录'}
         </Button>

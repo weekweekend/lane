@@ -14,7 +14,7 @@ const SearchResult = () => {
 
   useEffect(() => {
     if (keyVal) console.log('搜索了');
-    request('searchResult', 'GET', { keyVal: keyVal }).then((data) => setSearchResultList(data.data));
+    request('searchResult', 'GET', { keyVal: keyVal }).then((data) => setSearchResultList(data.data.rows));
   }, [keyVal]);
   return (
     <>

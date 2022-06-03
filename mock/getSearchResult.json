@@ -1,180 +1,156 @@
 {
-    "data": [
-        {
-            "id": 34534,
-            "image": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
-            "imageTag": "",
-            "title": "是符合贵司提货",
-            "score": 4.9,
-            "monthSale": 3125,
-            "time": 34,
-            "distance": 832,
-            "flagFall": 20,
-            "deliveryCost": 4,
-            "deliveryDiscount": true,
-            "tags": [
-                "信息",
-                "掌柜热情",
-                "好吃"
-            ],
-            "discount": [
-                {
-                    "name": "活动",
-                    "tag": [
-                        "28减8",
-                        "48减9"
-                    ]
-                }
-            ],
-            "goods": [
-                {
-                    "img": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
-                    "name": "第三代",
-                    "price": 15
-                },
-                {
-                    "img": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
-                    "name": "虽是三个是大法官然",
-                    "price": 22
-                },
-                {
-                    "img": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
-                    "name": "同富裕",
-                    "price": 23
-                }
-            ]
-        },
-        {
-            "id": 653,
-            "image": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
-            "imageTag": "品牌",
-            "title": "闪闪发光双方各",
-            "score": 4.9,
-            "monthSale": 3125,
-            "time": 34,
-            "distance": 832,
-            "flagFall": 20,
-            "deliveryCost": 4,
-            "deliveryDiscount": true,
-            "tags": [
-                "信息",
-                "掌柜热情",
-                "好吃"
-            ],
-            "discount": [
-                {
-                    "name": "活动",
-                    "tag": [
-                        "28减8",
-                        "48减9"
-                    ]
-                }
-            ],
-            "goods": [
-                {
-                    "img": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
-                    "name": "第三代",
-                    "price": 15
-                },
-                {
-                    "img": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
-                    "name": "虽然",
-                    "price": 22
-                },
-                {
-                    "img": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
-                    "name": "同富裕",
-                    "price": 23
-                }
-            ]
-        },
-        {
-            "id": 34545,
-            "image": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
-            "imageTag": "",
-            "title": "幸福感和豆腐干",
-            "score": 4.9,
-            "monthSale": 3125,
-            "time": 34,
-            "distance": 832,
-            "flagFall": 20,
-            "deliveryCost": 4,
-            "deliveryDiscount": true,
-            "tags": [
-                "信息",
-                "掌柜热情",
-                "好吃"
-            ],
-            "discount": [
-                {
-                    "name": "活动",
-                    "tag": [
-                        "28减8",
-                        "48减9"
-                    ]
-                }
-            ],
-            "goods": [
-                {
-                    "img": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
-                    "name": "第三代",
-                    "price": 15
-                },
-                {
-                    "img": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
-                    "name": "虽然",
-                    "price": 22
-                },
-                {
-                    "img": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
-                    "name": "同富裕",
-                    "price": 23
-                }
-            ]
-        },
-        {
-            "id": 456767,
-            "image": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
-            "imageTag": "",
-            "title": "打断他还记得",
-            "score": 4.9,
-            "monthSale": 3125,
-            "time": 34,
-            "distance": 832,
-            "flagFall": 20,
-            "deliveryCost": 4,
-            "deliveryDiscount": true,
-            "tags": [
-                "信息",
-                "掌柜热情",
-                "好吃"
-            ],
-            "discount": [
-                {
-                    "name": "活动",
-                    "tag": [
-                        "28减8",
-                        "48减9"
-                    ]
-                }
-            ],
-            "goods": [
-                {
-                    "img": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
-                    "name": "第三代",
-                    "price": 15
-                },
-                {
-                    "img": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
-                    "name": "虽然",
-                    "price": 22
-                },
-                {
-                    "img": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
-                    "name": "同富裕",
-                    "price": 23
-                }
-            ]
-        }
+  "data": {
+    "rows": [
+      {
+        "id": 34534,
+        "image": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
+        "imageTag": "",
+        "title": "是符合贵司提货",
+        "score": 4.9,
+        "monthSale": 3125,
+        "time": 34,
+        "distance": 832,
+        "flagFall": 20,
+        "deliveryCost": 4,
+        "deliveryDiscount": true,
+        "tags": ["信息", "掌柜热情", "好吃"],
+        "discount": [
+          {
+            "name": "活动",
+            "tag": ["28减8", "48减9"]
+          }
+        ],
+        "goods": [
+          {
+            "img": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
+            "name": "第三代",
+            "price": 15
+          },
+          {
+            "img": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
+            "name": "虽是三个是大法官然",
+            "price": 22
+          },
+          {
+            "img": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
+            "name": "同富裕",
+            "price": 23
+          }
+        ]
+      },
+      {
+        "id": 653,
+        "image": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
+        "imageTag": "品牌",
+        "title": "闪闪发光双方各",
+        "score": 4.9,
+        "monthSale": 3125,
+        "time": 34,
+        "distance": 832,
+        "flagFall": 20,
+        "deliveryCost": 4,
+        "deliveryDiscount": true,
+        "tags": ["信息", "掌柜热情", "好吃"],
+        "discount": [
+          {
+            "name": "活动",
+            "tag": ["28减8", "48减9"]
+          }
+        ],
+        "goods": [
+          {
+            "img": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
+            "name": "第三代",
+            "price": 15
+          },
+          {
+            "img": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
+            "name": "虽然",
+            "price": 22
+          },
+          {
+            "img": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
+            "name": "同富裕",
+            "price": 23
+          }
+        ]
+      },
+      {
+        "id": 34545,
+        "image": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
+        "imageTag": "",
+        "title": "幸福感和豆腐干",
+        "score": 4.9,
+        "monthSale": 3125,
+        "time": 34,
+        "distance": 832,
+        "flagFall": 20,
+        "deliveryCost": 4,
+        "deliveryDiscount": true,
+        "tags": ["信息", "掌柜热情", "好吃"],
+        "discount": [
+          {
+            "name": "活动",
+            "tag": ["28减8", "48减9"]
+          }
+        ],
+        "goods": [
+          {
+            "img": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
+            "name": "第三代",
+            "price": 15
+          },
+          {
+            "img": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
+            "name": "虽然",
+            "price": 22
+          },
+          {
+            "img": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
+            "name": "同富裕",
+            "price": 23
+          }
+        ]
+      },
+      {
+        "id": 456767,
+        "image": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
+        "imageTag": "",
+        "title": "打断他还记得",
+        "score": 4.9,
+        "monthSale": 3125,
+        "time": 34,
+        "distance": 832,
+        "flagFall": 20,
+        "deliveryCost": 4,
+        "deliveryDiscount": true,
+        "tags": ["信息", "掌柜热情", "好吃"],
+        "discount": [
+          {
+            "name": "活动",
+            "tag": ["28减8", "48减9"]
+          }
+        ],
+        "goods": [
+          {
+            "img": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
+            "name": "第三代",
+            "price": 15
+          },
+          {
+            "img": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
+            "name": "虽然",
+            "price": 22
+          },
+          {
+            "img": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
+            "name": "同富裕",
+            "price": 23
+          }
+        ]
+      }
     ]
+  },
+  "success": true,
+  "message": ""
 }

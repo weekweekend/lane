@@ -276,7 +276,7 @@ const Shop = () => {
         }}
       >
         <div className="shop-nav-left">
-          <LeftOutline onClick={() => window.history.go(-1)} />
+          <LeftOutline onClick={() => history.back()} />
         </div>
         <div className="shop-nav-right">
           <div>

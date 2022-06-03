@@ -36,7 +36,7 @@
       }
     }
     .adm-image-tip {
-      min-height: 5rem;
+      min-height: 4rem;
     }
   }
   .shop-card-content {
@@ -110,11 +110,18 @@
     .shop-card-content-search {
       display: flex;
       gap: 0.5rem;
+      overflow-x: scroll;
+      width: 15.5rem;
+      &::-webkit-scrollbar {
+        opacity: 0;
+      }
       > div {
         display: flex;
         flex-direction: column;
         gap: 0.3rem;
         .adm-image {
+          height: 4rem;
+          width: 4rem;
           border-radius: 0.2rem;
         }
         font-size: 0.6rem;

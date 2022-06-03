@@ -1,27 +1,27 @@
-import TuWei from 'components/TuWei';
-import { memo, FC, useState, useEffect } from 'react';
-import { Input, List, Tag, Tabs, Avatar } from 'antd-mobile';
-import { Outlet, Link } from 'react-router-dom';
+import { FC, useState, useEffect } from 'react';
+import { Input, List, Tag } from 'antd-mobile';
 import { LeftOutline, SearchOutline } from 'antd-mobile-icons';
 import './index.less';
 import request from 'utils/request';
 
-const SearchNav: FC<{ onShowB: (bl: boolean) => void }> = ({ onShowB }) => {
+const SearchNav: FC<{
+  onShowB: (bl: boolean) => void;
+}> = ({ onShowB }) => {
   const [keyValue, setKeyValue] = useState('');
   const [searchAssociation, setSearchAssociation] = useState([]);
   const [isShowSA, setIsShowSA] = useState(false);
   const searchKeyVal = new URLSearchParams(window.location.hash.split('?')[1]).get('keyVal');
 
   const onSearchValChange = (val: string) => {
-    request('mock/getSearchAssociation.json', 'GET', { keyVal: val }).then((data) => setSearchAssociation(data.data));
+    request('searchAssociation', 'GET', { keyVal: val }).then((data) => setSearchAssociation(data.data.rows));
     setKeyValue(val);
     onShowB(!val);
   };
 
   useEffect(() => {
     if (searchKeyVal) {
-      request('mock/getSearchAssociation.json', 'GET', { keyVal: searchKeyVal }).then((data) =>
-        setSearchAssociation(data.data),
+      request('searchAssociation', 'GET', { keyVal: searchKeyVal }).then((data) =>
+        setSearchAssociation(data.data.rows),
       );
       setKeyValue(searchKeyVal);
     }
@@ -29,7 +29,7 @@ const SearchNav: FC<{ onShowB: (bl: boolean) => void }> = ({ onShowB }) => {
   return (
     <div className="search-layout">
       <div className="search-nav">
-        <a href={window.location.hash === '#/search' ? '/' : '#/search'}>
+        <a href={window.location.hash === '#/search' ? '#/' : '#/search'}>
           <LeftOutline fontSize={'1.1rem'} />
         </a>
 
@@ -52,6 +52,10 @@ const SearchNav: FC<{ onShowB: (bl: boolean) => void }> = ({ onShowB }) => {
           <a
             href={`#/search/searchResult?keyVal=${encodeURIComponent(keyValue)}`}
             onClick={() => {
+              localStorage.setItem(
+                'history',
+                JSON.stringify(Array.from(new Set([keyValue, ...JSON.parse(localStorage.getItem('history') || '')]))),
+              );
               console.log('添加历史记录', keyValue);
             }}
           >
@@ -61,7 +65,6 @@ const SearchNav: FC<{ onShowB: (bl: boolean) => void }> = ({ onShowB }) => {
           '搜索'
         )}
       </div>
-
       {keyValue && isShowSA ? (
         <List className="search-association">
           {searchAssociation.map((item: any) => (
@@ -69,6 +72,12 @@ const SearchNav: FC<{ onShowB: (bl: boolean) => void }> = ({ onShowB }) => {
               <List.Item
                 onClick={() => {
                   setKeyValue(item.name);
+                  localStorage.setItem(
+                    'history',
+                    JSON.stringify(
+                      Array.from(new Set([item.name, ...JSON.parse(localStorage.getItem('history') || '')])),
+                    ),
+                  );
                   console.log('更新历史记录', item.name);
                 }}
               >

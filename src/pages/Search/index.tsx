@@ -1,30 +1,28 @@
 import { Button, Input, Tag, Selector, Image } from 'antd-mobile';
-import { LeftOutline, SearchOutline } from 'antd-mobile-icons';
 import { useState, useEffect, useRef } from 'react';
 import './index.less';
 import request from 'utils/request';
 import { Link } from 'react-router-dom';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import SearchNav from 'components/SearchNav';
+import { useLocalStorageState } from 'ahooks';
 
 const Search = () => {
-  const [historyList, setHistoryList] = useState([]);
+  const [historyList, setHistoryList] = useLocalStorageState('history', { defaultValue: ['搜索'] });
   const [similarList, setSimilarList] = useState([]);
   const [isShowTags, setIsShowTags] = useState(true);
 
   useEffect(() => {
     request('searchKey', 'GET').then((data) => {
-      setHistoryList(data.data.history);
-      setSimilarList(data.data.similar);
+      setSimilarList(data.data.rows);
     });
   }, []);
 
   return (
     <div className="search-body">
       <SearchNav onShowB={(bl: boolean) => setIsShowTags(bl)} />
-
       <div className="search-content" style={isShowTags ? { display: 'block' } : { display: 'none' }}>
-        {historyList.length > 0 ? (
+        {historyList?.length > 0 ? (
           <div className="search-title">
             <div>
               <h3>历史搜索</h3>
@@ -38,11 +36,12 @@ const Search = () => {
               />
             </div>
             <div className="search-title-content">
-              {historyList?.map((item, idx) => (
+              {historyList?.map((item: string) => (
                 <Link
-                  key={idx}
+                  key={item}
                   to={`searchResult?keyVal=${encodeURIComponent(item)}`}
                   onClick={() => {
+                    setHistoryList(Array.from(new Set([item, ...historyList])));
                     console.log('添加历史记录', item);
                   }}
                 >
@@ -65,6 +64,7 @@ const Search = () => {
                 key={idx}
                 to={`searchResult?keyVal=${encodeURIComponent(item)}`}
                 onClick={() => {
+                  setHistoryList(Array.from(new Set([item, ...historyList])));
                   console.log('添加历史记录', item);
                 }}
               >

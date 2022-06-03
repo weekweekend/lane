@@ -125,7 +125,7 @@ const HomePage: FC<{}> = () => {
             <SearchOutline />
             <i>{homeHotSearch?.[0]}</i>
           </div>
-          <span>搜索</span>
+          <span>搜 索</span>
         </span>
       </Link>
       <div className="home-content">

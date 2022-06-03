@@ -18,7 +18,7 @@ const Address = () => {
   }, []);
   return (
     <div className="address-edit">
-      <NavBar className="address-nav" right={<Link to="edit">新增地址</Link>} onBack={() => window.history.go(-1)}>
+      <NavBar className="address-nav" right={<Link to="edit">新增地址</Link>} onBack={() => history.back()}>
         收货地址
       </NavBar>
       <List className="address-list address-cur" header="常用地址">

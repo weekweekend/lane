@@ -39,6 +39,9 @@ html {
   font-size: 0.8rem;
   height: 3rem;
   box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  z-index: 99;
   .adm-input {
     width: 80%;
     background-color: #fff;
@@ -52,9 +55,10 @@ html {
   }
 }
 
-.search-layout > main {
+.search-layout {
   background-color: #f5f5f5;
   .search-association {
+    padding-top: 3rem;
     background-color: #fff;
     height: calc(100vh - 3rem);
     .adm-list-body {
@@ -69,5 +73,8 @@ html {
       overflow: hidden;
       flex-wrap: wrap;
     }
+  }
+  + div {
+    padding-top: 3.5rem;
   }
 }

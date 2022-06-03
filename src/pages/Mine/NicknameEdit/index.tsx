@@ -12,7 +12,7 @@ const NicknameEdit = () => {
             保存
           </Button>
         }
-        onBack={() => window.history.go(-1)}
+        onBack={() => history.back()}
       >
         修改昵称
       </NavBar>

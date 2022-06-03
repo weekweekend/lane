@@ -30,11 +30,11 @@ const AddressEdit = () => {
     paramsId
       ? request('put', 'PUT', { id: paramsId, ...values }).then((data) => {
           console.log('编辑了》》》', data);
-          if (data.success) window.history.go(-1);
+          if (data.success) history.back();
         })
       : request('post', 'POST', values).then((data) => {
           console.log('新增了》》》', data);
-          if (data.success) window.history.go(-1);
+          if (data.success) history.back();
         });
   };
 
@@ -44,7 +44,7 @@ const AddressEdit = () => {
     <div className="address-edit">
       <NavBar
         className="address-nav"
-        onBack={() => window.history.go(-1)}
+        onBack={() => history.back()}
         right={
           paramsId && (
             <DeleteOutline
@@ -53,7 +53,7 @@ const AddressEdit = () => {
                 request('delete', 'DELETE', { id: paramsId }).then((data) => {
                   if (data.success) {
                     console.log('删除了地址>>>', paramsId);
-                    window.history.go(-1);
+                    history.back();
                   }
                 })
               }

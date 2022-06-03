@@ -35,7 +35,7 @@ const Settlement = () => {
 
   return (
     <div className="settlement">
-      <NavBar onBack={() => window.history.go(-1)} className="settlement-nav">
+      <NavBar onBack={() => history.back()} className="settlement-nav">
         确认订单
       </NavBar>
       <div className="settlement-client">

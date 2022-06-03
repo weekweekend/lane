@@ -1,11 +1,7 @@
-import { Button, NavBar, Form, Input, TextArea, Radio, Rate, Space, ImageUploader, Selector, Image } from 'antd-mobile';
-import React, { useState, useEffect, useRef } from 'react';
+import { Button, NavBar, Form, TextArea, Radio, Rate, Space, ImageUploader, Selector, Image } from 'antd-mobile';
+import { useState, useEffect } from 'react';
 import './index.less';
-import { LeftOutline } from 'antd-mobile-icons';
-import { MdPhoneAndroid } from 'react-icons/md';
-import OrderCard from 'components/OrderCard';
 import request from 'utils/request';
-import Item from 'pages/Item';
 
 const AddEvaluation = () => {
   const [orderMess, setOrderMess] = useState<any>({});
@@ -58,7 +54,7 @@ const AddEvaluation = () => {
   return (
     <div className="add-evaluation">
       <div className="add-evaluation-nav">
-        <NavBar onBack={() => window.history.go(-1)}>订单评价</NavBar>
+        <NavBar onBack={() => history.back()}>订单评价</NavBar>
       </div>
       <div className="add-evaluation-content">
         <div className="title">
