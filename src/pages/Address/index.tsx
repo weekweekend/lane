@@ -10,9 +10,9 @@ const Address = () => {
   const [curAddress, setCurAddress] = useState<any>({});
   useEffect(() => {
     request('address', 'GET').then((data) => {
-      setAddressList(data.data);
-      const curIdx = data.data.findIndex((item: { cur: boolean }) => item.cur);
-      if (curIdx >= 0) setCurAddress(data.data[curIdx]);
+      setAddressList(data.data.rows);
+      const curIdx = data.data.rows.findIndex((item: { cur: boolean }) => item.cur);
+      if (curIdx >= 0) setCurAddress(data.data.rows[curIdx]);
       console.log(curIdx);
     });
   }, []);
@@ -33,7 +33,7 @@ const Address = () => {
             onClick={(e) => {
               console.log(e.target);
               setCurAddress(addressList[idx]);
-              request('test', 'PUT').then((data) => console.log('换地址>>>', data.data.msg, item));
+              request('put', 'PUT').then((data) => console.log('换地址>>>', data.data.msg, item));
             }}
           >
             <AddressCard {...item} />

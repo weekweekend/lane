@@ -13,8 +13,8 @@ const Layout: FC<{}> = () => {
   useEffect(() => {
     setHomeCurPage(searchCurPage);
     request('address', 'GET').then((data) => {
-      const idx = data.data.findIndex((item: { cur: boolean }) => item.cur);
-      setHomeCurAddress(data.data[idx].address + data.data[idx].addrDetail);
+      const idx = data.data.rows.findIndex((item: { cur: boolean }) => item.cur);
+      setHomeCurAddress(data.data.rows[idx].address + data.data.rows[idx].addrDetail);
     });
   }, [searchCurPage]);
   return (
@@ -27,14 +27,11 @@ const Layout: FC<{}> = () => {
         }
       >
         {homeCurPage === 'home' && (
-          <div className="header-nav">
-            <div style={{ width: '55%' }}>
+          <div className="header-nav" style={{ width: '75%' }}>
+            <div>
               <Link to="address">{homeCurAddress} &nbsp;</Link>
               <RiArrowDownSFill />
             </div>
-            <Link to="shoppingCar">
-              <RiShoppingCartLine size="1.3rem" />
-            </Link>
           </div>
         )}
         {homeCurPage === 'order' && (

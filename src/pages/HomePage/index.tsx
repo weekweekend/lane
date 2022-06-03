@@ -109,9 +109,8 @@ const HomePage: FC<{}> = () => {
   const [homeShopList, setHomeShopList] = useState<Array<any>>([]);
 
   useEffect(() => {
-    request('hotSearch', 'GET').then((data) => setHomeHotSearch(data.data));
-    request('shop', 'GET').then((data) => setHomeShopList(data.data));
-    request('test', 'GET').then((data) => console.log('云端get测试', data.message));
+    request('hotSearch', 'GET').then((data) => setHomeHotSearch(data.data.rows));
+    request('shop', 'GET').then((data) => setHomeShopList(data.data.rows));
   }, []);
 
   window.addEventListener('scroll', (e) => {

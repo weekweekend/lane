@@ -13,9 +13,9 @@ const Search = () => {
   const [isShowTags, setIsShowTags] = useState(true);
 
   useEffect(() => {
-    request('mock/getSearchKey.json', 'GET').then((data) => {
-      setHistoryList(data.history);
-      setSimilarList(data.similar);
+    request('searchKey', 'GET').then((data) => {
+      setHistoryList(data.data.history);
+      setSimilarList(data.data.similar);
     });
   }, []);
 
@@ -33,7 +33,7 @@ const Search = () => {
                 fontSize={'.8rem'}
                 onClick={() => {
                   setHistoryList([]);
-                  request('mock/test.json', 'PUT');
+                  request('delete', 'DELETE');
                 }}
               />
             </div>

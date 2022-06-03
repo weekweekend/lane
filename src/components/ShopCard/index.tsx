@@ -6,22 +6,22 @@ import { Link } from 'react-router-dom';
 
 const ShopCard: FC<{
   id: number;
-  image?: string;
+  image: string;
   imageTag?: string;
   title: string;
-  score?: number;
+  score: number;
   monthSale?: number;
   /** 单位分钟 */
   time: number;
   /** 单位米 */
   distance: number;
-  flagFall?: number;
-  deliveryCost?: number;
+  flagFall: number;
+  deliveryCost: number;
   deliveryDiscount?: boolean;
-  tags?: Array<string>; // string[]
-  discount?: Array<{
-    name?: '活动' | '红包' | '服务';
-    tag?: Array<string>;
+  tags: Array<string>; // string[]
+  discount: Array<{
+    name: '活动' | '红包' | '服务';
+    tag: Array<string>;
   }>;
   goods?: Array<{
     name: string;
@@ -49,9 +49,10 @@ const ShopCard: FC<{
   const target = `#/shop?shopId=${encodeURIComponent(id)}`;
   return (
     <a href={target} className="shop-card" style={isShowShopCard ? { display: 'flex' } : { display: 'none' }}>
+      {/* 搜索时候的卡片展示商品 */}
       <div className="shop-card-image" style={goods ? { flex: 1 } : { flex: 2 }}>
         <Image src={image} alt="店铺图片" />
-        {imageTag && (
+        {imageTag && /[\u4e00-\u9fa5]{2}/.test(imageTag) && (
           <span className="img-tag">
             {imageTag}
             <span></span>
@@ -76,7 +77,7 @@ const ShopCard: FC<{
         <div className="shop-card-content-info  text-desc">
           <div>
             <span className="score">
-              <strong>{score}</strong>
+              <strong>{score.toFixed(1)}</strong>
               分&nbsp;&nbsp;
             </span>
             <span>月售{monthSale}</span>
@@ -103,20 +104,23 @@ const ShopCard: FC<{
           </div>
         )}
         <div className="shop-card-content-discount">
-          <span>
-            {discount
-              ?.find((e) => e.name === '活动')
-              ?.tag?.map((item, idx) => {
-                if (idx && idx < 2)
-                  return (
-                    <i key={'hd' && id && idx}>
-                      <Divider direction="vertical" />
-                      {item}
-                    </i>
-                  );
-                else if (idx < 2) return item;
-              })}
-          </span>
+          {discount?.find((e) => e.name === '活动') && (
+            <span>
+              {discount
+                ?.find((e) => e.name === '活动')
+                ?.tag?.map((item, idx) => {
+                  if (idx && idx < 2)
+                    return (
+                      <i key={'hd' && id && idx}>
+                        <Divider direction="vertical" />
+                        {item}
+                      </i>
+                    );
+                  else if (idx < 2) return item;
+                })}
+            </span>
+          )}
+
           {discount
             ?.find((e) => e.name === '红包')
             ?.tag?.map((item, idx) => {

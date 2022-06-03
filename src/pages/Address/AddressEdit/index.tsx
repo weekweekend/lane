@@ -28,13 +28,13 @@ const AddressEdit = () => {
     if (!values.AddressTag || !values.AddressTag.length) delete values.AddressTag;
     console.log('提交的数据》》》', values);
     paramsId
-      ? request('test', 'PUT', { id: paramsId, ...values }).then((data) => {
+      ? request('put', 'PUT', { id: paramsId, ...values }).then((data) => {
           console.log('编辑了》》》', data);
-          if (data.data.msg === 'ok') window.history.go(-1);
+          if (data.success) window.history.go(-1);
         })
-      : request('test', 'POST', values).then((data) => {
+      : request('post', 'POST', values).then((data) => {
           console.log('新增了》》》', data);
-          if (data.data.msg === 'ok') window.history.go(-1);
+          if (data.success) window.history.go(-1);
         });
   };
 
@@ -50,8 +50,8 @@ const AddressEdit = () => {
             <DeleteOutline
               fontSize={'1rem'}
               onClick={() =>
-                request('test', 'DELETE', { id: paramsId }).then((data) => {
-                  if (data.data.msg === 'ok') {
+                request('delete', 'DELETE', { id: paramsId }).then((data) => {
+                  if (data.success) {
                     console.log('删除了地址>>>', paramsId);
                     window.history.go(-1);
                   }
