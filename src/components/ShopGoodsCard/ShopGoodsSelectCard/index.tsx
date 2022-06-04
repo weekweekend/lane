@@ -6,7 +6,7 @@ import { BiMedal } from 'react-icons/bi';
 import request from 'utils/request';
 import Item from 'antd-mobile/es/components/dropdown/item';
 
-const ShopGoodsSelectCard: FC<{
+export interface IShopXXXProps {
   onClose: () => void;
   image: string;
   title: string;
@@ -21,20 +21,38 @@ const ShopGoodsSelectCard: FC<{
   curNum: number;
   setCurNum: (val: number) => void;
   onSetShopShoppingCartData: () => void;
-}> = ({ onClose, image, title, price, minNum, maxNum, details, onSetShopShoppingCartData, curNum, setCurNum }) => {
+}
+
+const ShopGoodsSelectCard: FC<IShopXXXProps> = ({
+  onClose,
+  image,
+  title,
+  price,
+  minNum,
+  maxNum,
+  details,
+  onSetShopShoppingCartData,
+  curNum,
+  setCurNum,
+}) => {
   const [goodsNum, setGoodsNum] = useState(0);
   const [tasteVal, setTasteVal] = useState();
   const [shoppingCart, setShoppingCart] = useState<any>({});
-  const onFinish = (values: any) => {
-    request('mock/test.json', 'PUT').then((data) => {
-      console.log('提交选择>>>服务器');
-      onSetShopShoppingCartData();
-      setCurNum(curNum + values.goodsNum);
+
+  const onFinish = ({ ...values }) => {
+    request('put', 'PUT', values).then((data) => {
+      if (data.success) {
+        console.log('提交选择>>>服务器');
+        onSetShopShoppingCartData();
+        setCurNum(curNum + values.goodsNum);
+      }
     });
 
     onClose();
   };
+
   const [form] = Form.useForm();
+
   useEffect(() => {
     const init = details?.map((item) => ({ [item.name]: [item.params[0]] })) || [];
     form.setFieldsValue(
@@ -55,8 +73,7 @@ const ShopGoodsSelectCard: FC<{
             {title}
             <CloseOutline onClick={onClose} />
           </div>
-          <div className="goods-des-chosen">已选：麻辣</div>
-          <div className="goods-des-price">￥{price}</div>
+          <div className="goods-des-price">￥{price.toFixed(2)}</div>
         </div>
       </div>
       <Form className="goods-select" onFinish={onFinish} form={form}>

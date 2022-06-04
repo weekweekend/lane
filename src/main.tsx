@@ -4,7 +4,6 @@ import React from 'react';
 import Layout from 'layouts/index';
 import Welcome from 'pages/Welcome';
 import List from 'pages/List';
-import Item from 'pages/Item';
 import Page404 from 'pages/404';
 import HomePage from 'pages/HomePage';
 import SignIn from 'pages/SignIn';
@@ -27,7 +26,6 @@ import Evaluated from 'pages/Order/Evaluated';
 import AddEvaluation from 'pages/Order/AddEvaluation';
 
 const root = createRoot(document.getElementById('app')!);
-const GoodDetailsContext = React.createContext<any>({});
 
 root.render(
   <HashRouter>
@@ -36,8 +34,6 @@ root.render(
         {/* <Route index element={<Welcome />} /> */}
         <Route index element={<HomePage />} />
         <Route path="list" element={<List />} />
-        <Route path="item/:id" element={<Item />} />
-        <Route path="item/:id" element={<Item />} />
         <Route path="order" element={<Order />} />
         <Route path="notEvaluate" element={<NotEvaluate />} />
         <Route path="evaluated" element={<Evaluated />} />

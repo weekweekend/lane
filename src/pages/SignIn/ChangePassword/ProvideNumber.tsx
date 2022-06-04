@@ -9,6 +9,7 @@ const ProvideNumber: FC<{
 }> = ({ onProvideNumber }) => {
   const [curArea, setCurArea] = useState('中国大陆+86');
   const [areaList, setAreaList] = useState([]);
+  const [curPhone, setCurphone] = useState('');
 
   const [form] = Form.useForm();
 
@@ -16,11 +17,11 @@ const ProvideNumber: FC<{
     form.setFieldsValue({
       curArea: curArea,
     });
-    request('mock/getArea.json', 'GET').then((data) => setAreaList(data.data));
+    request('area', 'GET').then((data) => setAreaList(data.data.rows));
   }, []);
 
   const onFinish = ({ ...values }) => {
-    request('mock/isNumberExist.json', 'GET').then((data) => {
+    request('isAccount', 'GET', { phone: values.phone }).then((data) => {
       if (data.data) {
         onProvideNumber(values.phone);
       } else {
@@ -49,7 +50,13 @@ const ProvideNumber: FC<{
 
   return (
     <>
-      <Form layout="horizontal" mode="card" form={form} onFinish={onFinish}>
+      <Form
+        layout="horizontal"
+        mode="card"
+        form={form}
+        onFinish={onFinish}
+        onValuesChange={(changed, all) => setCurphone(all.phone)}
+      >
         <Form.Header>请输入手机号码</Form.Header>
         <Form.Item name="curArea" className="border-none">
           <Button block color="primary" size="large" fill="none" className="choose" onClick={onClick}>
@@ -61,7 +68,14 @@ const ProvideNumber: FC<{
           <Input placeholder="手机号码" clearable />
         </Form.Item>
         <Form.Item>
-          <Button block color="primary" shape="rounded" size="large" type="submit">
+          <Button
+            block
+            color="primary"
+            shape="rounded"
+            size="large"
+            type="submit"
+            disabled={!/^1[3-9]\d{9}$/.test(curPhone)}
+          >
             确 认
           </Button>
         </Form.Item>

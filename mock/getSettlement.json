@@ -1,58 +1,58 @@
 {
-    "data": {
-        "list": [
-            {
-                "id": 111222,
-                "image": "https://cube.elemecdn.com/2/5b/ba2f7d05eb4e84d1e0bc929f66c24jpg.jpg",
-                "name": "四U奥运会奥斯卡",
-                "price": 15,
-                "number": 2,
-                "maxNum": 10,
-                "details": [
-                    "麻辣"
-                ]
-            },
-            {
-                "id": 111333,
-                "image": "https://cube.elemecdn.com/2/5b/ba2f7d05eb4e84d1e0bc929f66c24jpg.jpg",
-                "name": "大家都会感觉到爱哭的警告iuGIF岁的法国复分解反应的交流空间",
-                "price": 11,
-                "number": 1,
-                "maxNum": 10,
-                "details": [
-                    "不辣",
-                    "不要香菜",
-                    "不要香菜",
-                    "不要香菜",
-                    "不要香菜",
-                    "不要香菜",
-                    "不要香菜",
-                    "不要香菜",
-                    "不要香菜",
-                    "不要香菜"
-                ]
-            },
-            {
-                "id": 8673654,
-                "image": "https://cube.elemecdn.com/2/5b/ba2f7d05eb4e84d1e0bc929f66c24jpg.jpg",
-                "name": "岁的法国",
-                "price": 18.7,
-                "number": 1
-            },
-            {
-                "id": 247687,
-                "image": "https://cube.elemecdn.com/2/5b/ba2f7d05eb4e84d1e0bc929f66c24jpg.jpg",
-                "name": "归还借款",
-                "price": 18.7,
-                "number": 1
-            }
-        ],
-        "shopId": 11223,
-        "shopName": "发的规划的东方体育",
-        "packing": 1.5,
-        "delivery": 1.5,
-        "discount": 5,
-        "totalPrice": 38,
-        "totalDiscount": 6
-    }
+  "data": {
+    "rows": [
+      {
+        "id": 111222,
+        "image": "https://cube.elemecdn.com/2/5b/ba2f7d05eb4e84d1e0bc929f66c24jpg.jpg",
+        "name": "四U奥运会奥斯卡",
+        "price": 15,
+        "number": 2,
+        "maxNum": 10,
+        "details": ["麻辣"]
+      },
+      {
+        "id": 111333,
+        "image": "https://cube.elemecdn.com/2/5b/ba2f7d05eb4e84d1e0bc929f66c24jpg.jpg",
+        "name": "大家都会感觉到爱哭的警告iuGIF岁的法国复分解反应的交流空间",
+        "price": 11,
+        "number": 1,
+        "maxNum": 10,
+        "details": [
+          "不辣",
+          "不要香菜",
+          "不要香菜",
+          "不要香菜",
+          "不要香菜",
+          "不要香菜",
+          "不要香菜",
+          "不要香菜",
+          "不要香菜",
+          "不要香菜"
+        ]
+      },
+      {
+        "id": 8673654,
+        "image": "https://cube.elemecdn.com/2/5b/ba2f7d05eb4e84d1e0bc929f66c24jpg.jpg",
+        "name": "岁的法国",
+        "price": 18.7,
+        "number": 1
+      },
+      {
+        "id": 247687,
+        "image": "https://cube.elemecdn.com/2/5b/ba2f7d05eb4e84d1e0bc929f66c24jpg.jpg",
+        "name": "归还借款",
+        "price": 18.7,
+        "number": 1
+      }
+    ],
+    "shopId": 11223,
+    "shopName": "发的规划的东方体育",
+    "packing": 1.5,
+    "delivery": 1.5,
+    "discount": 5,
+    "totalPrice": 38,
+    "totalDiscount": 6
+  },
+  "success": true,
+  "message": ""
 }

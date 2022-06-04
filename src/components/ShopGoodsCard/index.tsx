@@ -17,7 +17,7 @@ const ShopGoodsCard: FC<{
   raw: Array<string>;
   monthSale: number;
   likeRate: number;
-
+  hasDetails: boolean;
   minNum?: number;
   maxNum?: number;
   details?: Array<{
@@ -39,6 +39,7 @@ const ShopGoodsCard: FC<{
   minNum,
   maxNum,
   details,
+  hasDetails,
   goodsShoppingCartData,
   onSetShopShoppingCartData,
 }) => {
@@ -50,17 +51,16 @@ const ShopGoodsCard: FC<{
   const target = `#/shop/goodsDetails?goodsId=${encodeURIComponent(id)}`;
 
   useEffect(() => {
-    const idx = goodsShoppingCartData.list?.findIndex((item: any) => item.id == id);
-    if (idx >= 0) setCurNum(goodsShoppingCartData.list[idx].number);
+    const idx = goodsShoppingCartData.rows?.findIndex((item: any) => item.id % 3 === 0 && id % 3 === 0);
+    if (idx >= 0) setCurNum(goodsShoppingCartData.rows[idx].number);
   }, [goodsShoppingCartData.minPrice]);
 
   const onGoodNumChange = (val: number) => {
     const params = { goodsId: id, goodsNum: val };
     setCurNum(val);
-    request('mock/test.json', 'PUT', params).then((data) => {
-      console.log('修改数量>>>服务器', data.data.msg);
+    request('put', 'PUT', params).then((data) => {
+      console.log('修改数量>>>服务器');
       onSetShopShoppingCartData();
-      // data.data.msg === 'ok' && onSetNewList();
     });
   };
 
@@ -72,7 +72,7 @@ const ShopGoodsCard: FC<{
         </div>
         <div className="goods-card-right">
           <div className="goods-card-right-title">{title}</div>
-          {tag ? (
+          {tag && tag !== ' ' ? (
             <div className="goods-card-right-tag">
               <BiMedal color="#e67e29" />
               {tag}
@@ -94,8 +94,8 @@ const ShopGoodsCard: FC<{
             <div>好评率 {likeRate}%</div>
           </div>
           <div className="goods-card-right-price">
-            <span>￥{price}</span>
-            {details && curNum === 0 && (
+            <span>￥{price.toFixed(2)}</span>
+            {hasDetails && curNum === 0 && (
               <Button
                 color="primary"
                 shape="rounded"
@@ -109,13 +109,12 @@ const ShopGoodsCard: FC<{
               </Button>
             )}
 
-            {details && curNum > 0 && (
+            {hasDetails && curNum > 0 && (
               <div className="details-stepper activate-details-stepper">
                 <IoIosRemoveCircleOutline
                   color="#209FFA"
                   onClick={(e) => {
                     e.stopPropagation();
-                    // setIsShowGoodsChoose(true);
                     setCurNum(curNum - 1);
                   }}
                 />
@@ -130,7 +129,7 @@ const ShopGoodsCard: FC<{
                 />
               </div>
             )}
-            {!details && (
+            {!hasDetails && (
               <div onClick={(e) => e.stopPropagation()}>
                 <Stepper
                   min={minNum || 0}
@@ -151,21 +150,23 @@ const ShopGoodsCard: FC<{
               bodyStyle={{
                 borderTopLeftRadius: '.5rem',
                 borderTopRightRadius: '.5rem',
-                minHeight: '80vh',
+                height: '80vh',
               }}
             >
-              <ShopGoodsSelectCard
-                onClose={() => setIsShowGoodsChoose(false)}
-                details={details}
-                title={title}
-                image={image}
-                price={price}
-                minNum={minNum}
-                maxNum={maxNum}
-                onSetShopShoppingCartData={onSetShopShoppingCartData}
-                setCurNum={(val: number) => setCurNum(val)}
-                curNum={curNum}
-              />
+              <div className="goods-choose-popup-content">
+                <ShopGoodsSelectCard
+                  onClose={() => setIsShowGoodsChoose(false)}
+                  details={details}
+                  title={title}
+                  image={image}
+                  price={price}
+                  minNum={minNum}
+                  maxNum={maxNum}
+                  onSetShopShoppingCartData={onSetShopShoppingCartData}
+                  setCurNum={(val: number) => setCurNum(val)}
+                  curNum={curNum}
+                />
+              </div>
             </Popup>
           </div>
         </div>
@@ -190,6 +191,7 @@ const ShopGoodsCard: FC<{
             onSetShopShoppingCartData={onSetShopShoppingCartData}
             onGoodNumChange={onGoodNumChange}
             details={details}
+            hasDetails={hasDetails}
             image={image}
             title={title}
             price={price}

@@ -1,4 +1,3 @@
-import TuWei from 'components/TuWei';
 import { memo, FC, useState, useEffect } from 'react';
 import { Button, ActionSheet, Popup, Tabs, Avatar } from 'antd-mobile';
 import { Outlet, Link } from 'react-router-dom';
@@ -9,13 +8,17 @@ import request from 'utils/request';
 const Layout: FC<{}> = () => {
   const [homeCurPage, setHomeCurPage] = useState('');
   const [homeCurAddress, setHomeCurAddress] = useState('');
+  const [account, setAccount] = useState<any>({});
   const searchCurPage = window.location.hash.split('/')[1] || 'home';
+
   useEffect(() => {
     setHomeCurPage(searchCurPage);
-    request('address', 'GET').then((data) => {
-      const idx = data.data.rows.findIndex((item: { cur: boolean }) => item.cur);
-      setHomeCurAddress(data.data.rows[idx].address + data.data.rows[idx].addrDetail);
-    });
+    searchCurPage === 'home' &&
+      request('address', 'GET').then((data) => {
+        const idx = data.data.rows.findIndex((item: { cur: boolean }) => item.cur);
+        setHomeCurAddress(data.data.rows[idx].address + data.data.rows[idx].addrDetail);
+      });
+    request('account', 'GET').then((data) => setAccount(data.data));
   }, [searchCurPage]);
   return (
     <div className="layout">
@@ -48,10 +51,12 @@ const Layout: FC<{}> = () => {
           </Tabs>
         )}
         {homeCurPage === 'mine' && (
-          <div className="header-nav">
+          <div className="header-nav" style={{ height: '4rem' }}>
             <Link to="profile">
-              <Avatar src="" />
-              <h2>133****5555</h2>
+              <Avatar src={account.avatar} />
+              <h2>
+                {/^\d{3}/.exec(account.account)}****{/\d{4}$/.exec(account.account)}
+              </h2>
             </Link>
           </div>
         )}

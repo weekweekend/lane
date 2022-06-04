@@ -1,237 +1,186 @@
 {
-    "data": [
-        {
-            "key": "1",
-            "id": 111,
-            "type": "类型一",
-            "description": "大家喜欢吃，才是真的好吃大家喜欢吃，才是真的好吃",
-            "goods": [
-                {
-                    "id": 111222,
-                    "image": "https://cube.elemecdn.com/2/5b/ba2f7d05eb4e84d1e0bc929f66c24jpg.jpg",
-                    "title": "砂锅砂锅砂锅",
-                    "tag": "销量第一",
-                    "raw": [
-                        "鸡肉",
-                        "猪肉"
-                    ],
-                    "monthSale": 1233,
-                    "likeRate": 98,
-                    "price": 17.5,
-                    "minNum": 0,
-                    "maxNum": 99,
-                    "details": [
-                        {
-                            "id": 111222333,
-                            "name": "口味",
-                            "params": [
-                                "香辣",
-                                "麻辣"
-                            ]
-                        },
-                        {
-                            "id": 11124522333,
-                            "name": "饮料",
-                            "params": [
-                                "啤酒",
-                                "可乐",
-                                "雪碧"
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "id": 111333,
-                    "image": "https://cube.elemecdn.com/2/5b/ba2f7d05eb4e84d1e0bc929f66c24jpg.jpg",
-                    "title": "森岛帆高合适的",
-                    "tag": "好评",
-                    "raw": [
-                        "鸡肉",
-                        "猪肉"
-                    ],
-                    "monthSale": 1233,
-                    "likeRate": 98,
-                    "price": 17.5,
-                    "minNum": 0
-                },
-                {
-                    "id": 111444,
-                    "image": "https://cube.elemecdn.com/2/5b/ba2f7d05eb4e84d1e0bc929f66c24jpg.jpg",
-                    "title": "见到过和双方各",
-                    "raw": [
-                        "鸡肉",
-                        "猪肉",
-                        "水果"
-                    ],
-                    "monthSale": 123,
-                    "likeRate": 90,
-                    "price": 19.5,
-                    "minNum": 0,
-                    "maxNum": 9,
-                    "details": [
-                        {
-                            "id": 11334444435,
-                            "name": "口味",
-                            "params": [
-                                "香辣",
-                                "麻辣"
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "id": 568467,
-                    "image": "https://cube.elemecdn.com/2/5b/ba2f7d05eb4e84d1e0bc929f66c24jpg.jpg",
-                    "title": "闪闪发光和双个",
-                    "raw": [
-                        "鸡肉",
-                        "猪肉"
-                    ],
-                    "monthSale": 1233,
-                    "likeRate": 98,
-                    "price": 17.5,
-                    "minNum": 0,
-                    "maxNum": 99
-                }
+  "data": {
+    "rows": [
+      {
+        "key": "1",
+        "id": 111,
+        "type": "类型一",
+        "description": "大家喜欢吃，才是真的好吃大家喜欢吃，才是真的好吃",
+        "goods": [
+          {
+            "id": 111222,
+            "image": "https://cube.elemecdn.com/2/5b/ba2f7d05eb4e84d1e0bc929f66c24jpg.jpg",
+            "title": "砂锅砂锅砂锅",
+            "tag": "销量第一",
+            "raw": ["鸡肉", "猪肉"],
+            "monthSale": 1233,
+            "likeRate": 98,
+            "price": 17.5,
+            "minNum": 0,
+            "maxNum": 99,
+            "details": [
+              {
+                "id": 111222333,
+                "name": "口味",
+                "params": ["香辣", "麻辣"]
+              },
+              {
+                "id": 11124522333,
+                "name": "饮料",
+                "params": ["啤酒", "可乐", "雪碧"]
+              }
             ]
-        },
-        {
-            "key": "2",
-            "id": 222,
-            "type": "类型二",
-            "description": "大家喜欢吃吃",
-            "goods": [
-                {
-                    "id": 1111,
-                    "image": "https://cube.elemecdn.com/2/5b/ba2f7d05eb4e84d1e0bc929f66c24jpg.jpg",
-                    "title": "东莞市史蒂芬还是",
-                    "raw": [
-                        "鸡肉",
-                        "猪肉"
-                    ],
-                    "monthSale": 1233,
-                    "likeRate": 98,
-                    "price": 17.5,
-                    "details": [
-                        {
-                            "id": 11111,
-                            "name": "口味",
-                            "params": [
-                                "香辣",
-                                "麻辣"
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "id": 8673654,
-                    "image": "https://cube.elemecdn.com/2/5b/ba2f7d05eb4e84d1e0bc929f66c24jpg.jpg",
-                    "title": "看师傅的老客户",
-                    "tag": "销量第二",
-                    "raw": [
-                        "鸡肉",
-                        "猪肉",
-                        "辣椒"
-                    ],
-                    "monthSale": 123,
-                    "likeRate": 99,
-                    "price": 17.5,
-                    "minNum": 0,
-                    "details": [
-                        {
-                            "id": 22222,
-                            "name": "口味",
-                            "params": [
-                                "香辣",
-                                "麻辣"
-                            ]
-                        },
-                        {
-                            "id": 2222222,
-                            "name": "饮料",
-                            "params": [
-                                "可乐",
-                                "雪碧",
-                                "奶茶"
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "id": 247687,
-                    "image": "https://cube.elemecdn.com/2/5b/ba2f7d05eb4e84d1e0bc929f66c24jpg.jpg",
-                    "title": "砂按当天锅砂锅",
-                    "raw": [
-                        "鸡肉",
-                        "猪肉"
-                    ],
-                    "monthSale": 1233,
-                    "likeRate": 98,
-                    "price": 17.5,
-                    "minNum": 0,
-                    "maxNum": 2
-                }
+          },
+          {
+            "id": 111333,
+            "image": "https://cube.elemecdn.com/2/5b/ba2f7d05eb4e84d1e0bc929f66c24jpg.jpg",
+            "title": "森岛帆高合适的",
+            "tag": "好评",
+            "raw": ["鸡肉", "猪肉"],
+            "monthSale": 1233,
+            "likeRate": 98,
+            "price": 17.5,
+            "minNum": 0
+          },
+          {
+            "id": 111444,
+            "image": "https://cube.elemecdn.com/2/5b/ba2f7d05eb4e84d1e0bc929f66c24jpg.jpg",
+            "title": "见到过和双方各",
+            "raw": ["鸡肉", "猪肉", "水果"],
+            "monthSale": 123,
+            "likeRate": 90,
+            "price": 19.5,
+            "minNum": 0,
+            "maxNum": 9,
+            "details": [
+              {
+                "id": 11334444435,
+                "name": "口味",
+                "params": ["香辣", "麻辣"]
+              }
             ]
-        },
-        {
-            "key": "3",
-            "id": 23345465,
-            "type": "类型三",
-            "description": "真的好吃",
-            "goods": [
-                {
-                    "id": 9873645,
-                    "image": "https://cube.elemecdn.com/2/5b/ba2f7d05eb4e84d1e0bc929f66c24jpg.jpg",
-                    "title": "打瞌睡热乎空间",
-                    "raw": [
-                        "鸡肉",
-                        "猪肉"
-                    ],
-                    "monthSale": 1233,
-                    "likeRate": 98,
-                    "price": 17.5,
-                    "minNum": 0
-                },
-                {
-                    "id": 768675,
-                    "image": "https://cube.elemecdn.com/2/5b/ba2f7d05eb4e84d1e0bc929f66c24jpg.jpg",
-                    "title": "打瞌睡热乎空间",
-                    "raw": [
-                        "鸡肉",
-                        "猪肉"
-                    ],
-                    "monthSale": 1233,
-                    "likeRate": 98,
-                    "price": 17.5,
-                    "minNum": 0
-                },
-                {
-                    "id": 2395,
-                    "image": "https://cube.elemecdn.com/2/5b/ba2f7d05eb4e84d1e0bc929f66c24jpg.jpg",
-                    "title": "打瞌睡热乎空间",
-                    "raw": [
-                        "鸡肉",
-                        "猪肉"
-                    ],
-                    "monthSale": 1233,
-                    "likeRate": 98,
-                    "price": 17.5,
-                    "minNum": 0
-                },
-                {
-                    "id": 2590674,
-                    "image": "https://cube.elemecdn.com/2/5b/ba2f7d05eb4e84d1e0bc929f66c24jpg.jpg",
-                    "title": "打瞌睡热乎空间",
-                    "raw": [
-                        "鸡肉",
-                        "猪肉"
-                    ],
-                    "monthSale": 1233,
-                    "likeRate": 98,
-                    "price": 17.5,
-                    "minNum": 0
-                }
+          },
+          {
+            "id": 568467,
+            "image": "https://cube.elemecdn.com/2/5b/ba2f7d05eb4e84d1e0bc929f66c24jpg.jpg",
+            "title": "闪闪发光和双个",
+            "raw": ["鸡肉", "猪肉"],
+            "monthSale": 1233,
+            "likeRate": 98,
+            "price": 17.5,
+            "minNum": 0,
+            "maxNum": 99
+          }
+        ]
+      },
+      {
+        "key": "2",
+        "id": 222,
+        "type": "类型二",
+        "description": "大家喜欢吃吃",
+        "goods": [
+          {
+            "id": 1111,
+            "image": "https://cube.elemecdn.com/2/5b/ba2f7d05eb4e84d1e0bc929f66c24jpg.jpg",
+            "title": "东莞市史蒂芬还是",
+            "raw": ["鸡肉", "猪肉"],
+            "monthSale": 1233,
+            "likeRate": 98,
+            "price": 17.5,
+            "details": [
+              {
+                "id": 11111,
+                "name": "口味",
+                "params": ["香辣", "麻辣"]
+              }
             ]
-        }
+          },
+          {
+            "id": 8673654,
+            "image": "https://cube.elemecdn.com/2/5b/ba2f7d05eb4e84d1e0bc929f66c24jpg.jpg",
+            "title": "看师傅的老客户",
+            "tag": "销量第二",
+            "raw": ["鸡肉", "猪肉", "辣椒"],
+            "monthSale": 123,
+            "likeRate": 99,
+            "price": 17.5,
+            "minNum": 0,
+            "details": [
+              {
+                "id": 22222,
+                "name": "口味",
+                "params": ["香辣", "麻辣"]
+              },
+              {
+                "id": 2222222,
+                "name": "饮料",
+                "params": ["可乐", "雪碧", "奶茶"]
+              }
+            ]
+          },
+          {
+            "id": 247687,
+            "image": "https://cube.elemecdn.com/2/5b/ba2f7d05eb4e84d1e0bc929f66c24jpg.jpg",
+            "title": "砂按当天锅砂锅",
+            "raw": ["鸡肉", "猪肉"],
+            "monthSale": 1233,
+            "likeRate": 98,
+            "price": 17.5,
+            "minNum": 0,
+            "maxNum": 2
+          }
+        ]
+      },
+      {
+        "key": "3",
+        "id": 23345465,
+        "type": "类型三",
+        "description": "真的好吃",
+        "goods": [
+          {
+            "id": 9873645,
+            "image": "https://cube.elemecdn.com/2/5b/ba2f7d05eb4e84d1e0bc929f66c24jpg.jpg",
+            "title": "打瞌睡热乎空间",
+            "raw": ["鸡肉", "猪肉"],
+            "monthSale": 1233,
+            "likeRate": 98,
+            "price": 17.5,
+            "minNum": 0
+          },
+          {
+            "id": 768675,
+            "image": "https://cube.elemecdn.com/2/5b/ba2f7d05eb4e84d1e0bc929f66c24jpg.jpg",
+            "title": "打瞌睡热乎空间",
+            "raw": ["鸡肉", "猪肉"],
+            "monthSale": 1233,
+            "likeRate": 98,
+            "price": 17.5,
+            "minNum": 0
+          },
+          {
+            "id": 2395,
+            "image": "https://cube.elemecdn.com/2/5b/ba2f7d05eb4e84d1e0bc929f66c24jpg.jpg",
+            "title": "打瞌睡热乎空间",
+            "raw": ["鸡肉", "猪肉"],
+            "monthSale": 1233,
+            "likeRate": 98,
+            "price": 17.5,
+            "minNum": 0
+          },
+          {
+            "id": 2590674,
+            "image": "https://cube.elemecdn.com/2/5b/ba2f7d05eb4e84d1e0bc929f66c24jpg.jpg",
+            "title": "打瞌睡热乎空间",
+            "raw": ["鸡肉", "猪肉"],
+            "monthSale": 1233,
+            "likeRate": 98,
+            "price": 17.5,
+            "minNum": 0
+          }
+        ]
+      }
     ]
+  },
+  "success": true,
+  "message": ""
 }

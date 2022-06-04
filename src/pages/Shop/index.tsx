@@ -17,6 +17,7 @@ import { Action } from 'antd-mobile/es/components/popover';
 import { RiShoppingCart2Line } from 'react-icons/ri';
 import ShopEvaluationCard from 'components/ShopEvaluationCard';
 import request from 'utils/request';
+import { Outlet, Link, useLocation } from 'react-router-dom';
 import ShopShoppingCar from 'components/ShopShoppingCar';
 
 const tabItems = [
@@ -26,8 +27,6 @@ const tabItems = [
 ];
 
 const actions: Action[] = [{ key: 'shopCar', icon: <RiShoppingCart2Line />, text: '购物车' }];
-
-export const ShoppingCartContext = React.createContext<any>({});
 
 const Shop = () => {
   const [shopName, setShopName] = useState('');
@@ -41,22 +40,19 @@ const Shop = () => {
   const [shopIntro, setShopIntro] = useState<any>({});
   const [goodsShoppingCartData, setGoodsShoppingCartData] = useState<any>({});
 
-  const shopId = new URLSearchParams(window.location.hash.split('?')[1]).get('shopId');
-
+  const shopId = new URLSearchParams(useLocation().search).get('shopId');
   useEffect(() => {
-    const name: string = new URLSearchParams(window.location.hash.split('?')[1])?.get('shopName') || '';
-    setShopName(name);
-    window.addEventListener('scroll', (e) => {
-      setShopScroll(window.scrollY);
+    document.querySelector('#app')?.addEventListener('scroll', () => {
+      setShopScroll(document.querySelector('#app')?.scrollTop || 0);
     });
-    request('mock/getEvaluation.json', 'GET', { shopId: shopId }).then((data) => setShopEvaluationList(data.data));
-    request('mock/getShopIntro.json', 'GET', { shopId: shopId }).then((data) => setShopIntro(data.data));
-    request('mock/getShopShoppingCar.json', 'GET', { id: shopId }).then((data) => {
+    request('shopEvaluation', 'GET', { shopId: shopId }).then((data) => setShopEvaluationList(data.data.rows));
+    request('shopIntro', 'GET', { shopId: shopId }).then((data) => setShopIntro(data.data));
+    request('shopShoppingCar', 'GET', { shopId: shopId }).then((data) => {
       console.log('拉取购物车信息 ');
       setGoodsShoppingCartData(data.data);
     });
     return removeEventListener('scroll', (e) => {
-      setShopScroll(window.scrollY);
+      setShopScroll(document.querySelector('#app')?.scrollTop || 0);
     });
   }, [shopId]);
 
@@ -74,14 +70,19 @@ const Shop = () => {
   };
 
   const onMore = () => setIsShowMore(!isShowMore);
-  const onSetShopShoppingCartData = () =>
-    request('mock/getShopShoppingCar.json', 'GET', { id: shopId }).then((data) => {
-      console.log('拉取购物车信息<<<服务器');
-      setGoodsShoppingCartData(data.data);
+  const onSetShopShoppingCartData = (del?: Boolean) =>
+    request('shopShoppingCar', 'GET', { id: shopId }).then((data) => {
+      if (del) {
+        setGoodsShoppingCartData({ rows: [], delivery: data.data.delivery, minPrice: data.data.minPrice });
+        console.log('清空购物车');
+      } else {
+        console.log('拉取购物车信息<<<服务器');
+        setGoodsShoppingCartData(data.data);
+      }
     });
 
   return (
-    <>
+    <div style={{ position: 'relative' }}>
       <div className="shop-bgi" />
       <div className="shop-main">
         <div className="shop-main-nav">
@@ -311,7 +312,7 @@ const Shop = () => {
         goodsShoppingCartData={goodsShoppingCartData}
         onSetShopShoppingCartData={onSetShopShoppingCartData}
       />
-    </>
+    </div>
   );
 };
 export default Shop;

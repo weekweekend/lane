@@ -7,7 +7,6 @@ import React, { RefObject } from 'react';
 import { Form, Input, Button, Dialog, TextArea, DatePicker, Selector, Slider, Stepper, Switch } from 'antd-mobile';
 import dayjs from 'dayjs';
 import request from 'utils/request';
-import Item from 'pages/Item';
 
 const OrderCard: FC<{
   orderId: number;
@@ -21,10 +20,10 @@ const OrderCard: FC<{
     name: string;
   }>;
   totalPrice: number;
-  number: number;
   evaluation?: string;
+  isEvaluated: boolean;
   inEvaluated?: boolean;
-}> = ({ orderId, shopId, image, shopName, state, tag, goods, totalPrice, number, evaluation, inEvaluated }) => {
+}> = ({ orderId, shopId, image, shopName, state, tag, goods, totalPrice, evaluation, inEvaluated, isEvaluated }) => {
   return (
     <div className="order-card">
       <div className="order-card-title">
@@ -56,18 +55,18 @@ const OrderCard: FC<{
         <div className="goods-right">
           <div>
             <i>￥</i>
-            <span>{totalPrice}</span>
+            <span>{totalPrice.toFixed(2)}</span>
           </div>
-          <div>共{number}件</div>
+          <div>共{goods.length}件</div>
         </div>
       </div>
       <div className="order-card-operation">
-        {evaluation && !inEvaluated && (
+        {isEvaluated && !inEvaluated && (
           <Button color="primary" fill="outline" shape="rounded">
             再来一单
           </Button>
         )}
-        {evaluation && inEvaluated && (
+        {isEvaluated && inEvaluated && (
           <div>
             <p>{evaluation}</p>
             <Button color="primary" fill="outline" shape="rounded">
@@ -75,7 +74,7 @@ const OrderCard: FC<{
             </Button>
           </div>
         )}
-        {!evaluation && !inEvaluated && (
+        {!isEvaluated && (
           <>
             <a href={`#/order/addEvaluation?orderId=${encodeURIComponent(orderId)}`}>
               <Button shape="rounded">去评价</Button>

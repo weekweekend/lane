@@ -11,16 +11,17 @@ const ShoppingCarCard: FC<{
   name: string;
   price: number;
   details?: Array<string>;
+  hasDetails: boolean;
   number: number;
   maxNum?: number;
   onSetNewList: () => void;
-}> = ({ id, image, name, price, details, number, maxNum, onSetNewList }) => {
+}> = ({ id, image, name, price, details, hasDetails, number, maxNum, onSetNewList }) => {
   return (
     <div className="shop-shoppingCar-card">
       <Image src={image} fit="fill" />
       <div>
         <div className="shop-shoppingCar-card-name">{name}</div>
-        {Boolean(details) && (
+        {hasDetails && (
           <div className="shop-shoppingCar-card-details">
             +
             {details?.map((item, idx) => (

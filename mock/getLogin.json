@@ -1,7 +1,9 @@
 {
-    "data": {
-        "account": 13355557658,
-        "avatar": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
-        "nickname": "面对疾风"
-    }
+  "data": {
+    "account": 13355557658,
+    "avatar": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
+    "nickname": "面对疾风"
+  },
+  "success": true,
+  "message": ""
 }

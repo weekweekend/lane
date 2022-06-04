@@ -1,13 +1,14 @@
-import { Button, NavBar, Form, TextArea, Radio, Rate, Space, ImageUploader, Selector, Image } from 'antd-mobile';
+import { Button, NavBar, Form, TextArea, Radio, Rate, Space, ImageUploader, Selector, Image, Toast } from 'antd-mobile';
 import { useState, useEffect } from 'react';
 import './index.less';
+import { Outlet, Link, useLocation } from 'react-router-dom';
 import request from 'utils/request';
 
 const AddEvaluation = () => {
   const [orderMess, setOrderMess] = useState<any>({});
   const [change, setChange] = useState(0);
   const [option, setOption] = useState([]);
-  const OrderId = new URLSearchParams(window.location.hash.split('?')[1]).get('orderId');
+  const OrderId = new URLSearchParams(useLocation().search).get('orderId');
 
   const [form] = Form.useForm();
 
@@ -22,7 +23,7 @@ const AddEvaluation = () => {
   );
 
   useEffect(() => {
-    request('mock/getOneOrder.json', 'GET', { OrderId: OrderId }).then((data) => {
+    request('oneOrder', 'GET', { OrderId: OrderId }).then((data) => {
       setOrderMess(data.data);
       setOption(data.data.goods.map((item: any) => ({ label: item.name, value: item.name })));
     });
@@ -34,7 +35,16 @@ const AddEvaluation = () => {
   const onEvaluate = ({ ...values }) => {
     values.evaluationImage = values.evaluationImage?.map((item: any) => item.url);
     console.log(values);
-    request('mock/test.json', 'POST', values).then((data) => console.log('提交评价 >>> 服务器', data.data.msg));
+    request('post', 'POST', values).then((data) => {
+      if (data.success) {
+        Toast.show({
+          content: '提交成功',
+          duration: 500,
+        });
+        console.log('提交评价 >>> 服务器');
+        history.back();
+      }
+    });
   };
 
   async function mockUpload(file: File) {

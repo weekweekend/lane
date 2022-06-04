@@ -1,12 +1,14 @@
 {
-    "data": {
-        "id": 5,
-        "address": "当前地址当前地址当前地址",
-        "addrDetail": "2345",
-        "name": "喵喵喵",
-        "sex": "男",
-        "phone": "13333333333",
-        "tag": "学校",
-        "cur": false
-    }
+  "data": {
+    "id": 5,
+    "address": "当前地址当前地址当前地址",
+    "addrDetail": "2345",
+    "name": "喵喵喵",
+    "sex": "男",
+    "phone": "13333333333",
+    "tag": "学校",
+    "cur": false
+  },
+  "success": true,
+  "message": ""
 }

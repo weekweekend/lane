@@ -1,6 +1,10 @@
 .goods-des {
   display: flex;
   gap: 0.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  background-color: #fff;
   .adm-image {
     flex: 2;
   }
@@ -17,9 +21,7 @@
       font-size: 0.9rem;
       font-weight: 600;
     }
-    .goods-des-chosen {
-      font-size: 0.7rem;
-    }
+
     .goods-des-price {
       margin-top: 0.5rem;
       font-size: 1.1rem;
@@ -39,8 +41,14 @@
       font-size: 0.85rem;
     }
   }
-
+  .adm-list-body-inner {
+    margin-top: 3rem;
+  }
   .goods-select-num {
+    position: fixed;
+    top: 6.7rem;
+    z-index: 99;
+    padding: 0.5rem 0;
     .adm-list-item-content {
       justify-content: space-between;
       gap: 6.5rem;

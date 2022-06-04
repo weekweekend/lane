@@ -22,7 +22,7 @@ const GoodsContent: FC<{
         if (!element) continue;
         const rect = element.getBoundingClientRect();
         // console.log(rect.top, item.key);
-        if (rect.top <= 95) {
+        if (rect.top <= 105) {
           currentKey = item.key;
         } else {
           break;
@@ -44,8 +44,8 @@ const GoodsContent: FC<{
     const mainElement = mainElementRef.current;
     if (!mainElement) return;
     mainElement.addEventListener('scroll', handleScroll);
-    request('mock/getShopGoods.json', 'GET', { shopId: id }).then((data) => {
-      setShopGoods(data.data);
+    request('shopGoods', 'GET', { shopId: id }).then((data) => {
+      setShopGoods(data.data.rows);
     });
     return () => {
       mainElement.removeEventListener('scroll', handleScroll);

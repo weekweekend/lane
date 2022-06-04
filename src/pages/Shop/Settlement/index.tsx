@@ -16,20 +16,22 @@ import ShopEvaluationCard from 'components/ShopEvaluationCard';
 import SettlementGoodsCard from 'components/SettlementGoodsCard';
 import request from 'utils/request';
 import AddressCard from 'components/AddressCard';
+import { useLocation } from 'react-router-dom';
+
 const Settlement = () => {
-  const shopId = new URLSearchParams(window.location.hash.split('?')[1]).get('shopId');
+  const shopId = new URLSearchParams(useLocation().search).get('shopId');
   const [addrList, setAddrList] = useState([]);
   const [curAddr, setCurAddr] = useState<any>({});
   const [shopPurchases, setShopPurchases] = useState<any>({});
   const [isShowAddrSelect, setIsShowAddrSelect] = useState(false);
 
   useEffect(() => {
-    request('mock/getAddress.json', 'GET').then((data) => {
-      setAddrList(data.data);
-      const curIdx = data.data.findIndex((item: any) => item.cur);
-      setCurAddr(data.data[curIdx]);
+    request('address', 'GET').then((data) => {
+      setAddrList(data.data.rows);
+      const curIdx = data.data.rows.findIndex((item: any) => item.cur);
+      setCurAddr(data.data.rows[curIdx]);
     });
-    request('mock/getSettlement.json', 'GET', { shopId: shopId }).then((data) => setShopPurchases(data.data));
+    request('settlement', 'GET', { shopId: shopId }).then((data) => setShopPurchases(data.data));
     // addrList[0].address;
   }, []);
 
@@ -66,9 +68,7 @@ const Settlement = () => {
                     onChange={() => {
                       setCurAddr(item);
                       setIsShowAddrSelect(false);
-                      request('mock/test.json', 'PUT', { id: item.id }).then((data) =>
-                        console.log('设置当前地址 >>> 服务器'),
-                      );
+                      request('put', 'PUT', { id: item.id }).then((data) => console.log('设置当前地址 >>> 服务器'));
                     }}
                   >
                     <AddressCard {...item} />
@@ -109,7 +109,7 @@ const Settlement = () => {
       <div className="settlement-goods">
         <div style={{ fontSize: '.8rem', color: '#999', padding: '.3rem 0' }}>{shopPurchases.shopName}</div>
         <div>
-          {shopPurchases.list?.map((item: any) => (
+          {shopPurchases.rows?.map((item: any) => (
             <SettlementGoodsCard
               key={item.id}
               image={item.image}

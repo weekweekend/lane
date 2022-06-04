@@ -1,29 +1,28 @@
 {
-    "data": {
-        "name": "啥开发计划奥科吉施工放空挡",
-        "position": "十个天后宫卡读后感卡机是就肯定是个",
-        "phone": 13355656765,
-        "image": [
-            "https://img.alicdn.com/imgextra/i2/2209448391393/O1CN01AtKE031MA2MFx2F8n_!!2209448391393-0-koubei.jpg_400x400Q85s50.jpg",
-            "https://img.alicdn.com/imgextra/i2/2209448391393/O1CN01AtKE031MA2MFx2F8n_!!2209448391393-0-koubei.jpg_400x400Q85s50.jpg",
-            "https://img.alicdn.com/imgextra/i2/2209448391393/O1CN01AtKE031MA2MFx2F8n_!!2209448391393-0-koubei.jpg_400x400Q85s50.jpg",
-            "https://img.alicdn.com/imgextra/i2/2209448391393/O1CN01AtKE031MA2MFx2F8n_!!2209448391393-0-koubei.jpg_400x400Q85s50.jpg",
-            "https://img.alicdn.com/imgextra/i2/2209448391393/O1CN01AtKE031MA2MFx2F8n_!!2209448391393-0-koubei.jpg_400x400Q85s50.jpg"
-        ],
-        "type": "煲仔饭",
-        "time": [
-            "10:00-14:00",
-            "15:30-19:30"
-        ],
-        "service": [
-            {
-                "name": "食安险",
-                "content": "卡机李开复国家的时刻就给她"
-            },
-            {
-                "name": "热情掌柜",
-                "content": "拉拉独守空房讲述了他竟然垃圾管理快递费"
-            }
-        ]
-    }
+  "data": {
+    "name": "啥开发计划奥科吉施工放空挡",
+    "position": "十个天后宫卡读后感卡机是就肯定是个",
+    "phone": 13355656765,
+    "image": [
+      "https://img.alicdn.com/imgextra/i2/2209448391393/O1CN01AtKE031MA2MFx2F8n_!!2209448391393-0-koubei.jpg_400x400Q85s50.jpg",
+      "https://img.alicdn.com/imgextra/i2/2209448391393/O1CN01AtKE031MA2MFx2F8n_!!2209448391393-0-koubei.jpg_400x400Q85s50.jpg",
+      "https://img.alicdn.com/imgextra/i2/2209448391393/O1CN01AtKE031MA2MFx2F8n_!!2209448391393-0-koubei.jpg_400x400Q85s50.jpg",
+      "https://img.alicdn.com/imgextra/i2/2209448391393/O1CN01AtKE031MA2MFx2F8n_!!2209448391393-0-koubei.jpg_400x400Q85s50.jpg",
+      "https://img.alicdn.com/imgextra/i2/2209448391393/O1CN01AtKE031MA2MFx2F8n_!!2209448391393-0-koubei.jpg_400x400Q85s50.jpg"
+    ],
+    "type": "煲仔饭",
+    "time": ["10:00-14:00", "15:30-19:30"],
+    "service": [
+      {
+        "name": "食安险",
+        "content": "卡机李开复国家的时刻就给她"
+      },
+      {
+        "name": "热情掌柜",
+        "content": "拉拉独守空房讲述了他竟然垃圾管理快递费"
+      }
+    ]
+  },
+  "success": true,
+  "message": ""
 }

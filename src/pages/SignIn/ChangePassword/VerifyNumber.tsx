@@ -19,7 +19,7 @@ const VerifyNumber: FC<{ phone: string; onVerifyNumber: () => void }> = ({ phone
       phone: phone,
       code: values.code,
     };
-    request('mock/isNumberExist.json', 'POST', searchParams).then((data) => {
+    request('isAccount', 'GET', searchParams).then((data) => {
       if (data.data) onVerifyNumber();
       else
         Toast.show({
@@ -29,9 +29,12 @@ const VerifyNumber: FC<{ phone: string; onVerifyNumber: () => void }> = ({ phone
   };
 
   const getCode = () => {
-    request('mock/getCode.json', 'GET', { phone: phone }).then((data) => console.log(data));
-    setIsShowCountdown(true);
-    setCanGetCode(false);
+    request('code', 'GET', { phone: phone }).then((data) => {
+      if (data.success) {
+        setIsShowCountdown(true);
+        setCanGetCode(false);
+      }
+    });
   };
 
   const onValuesChange = (changed: { code: string }) => {

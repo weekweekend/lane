@@ -5,25 +5,22 @@ import { MdPhoneAndroid } from 'react-icons/md';
 import request from 'utils/request';
 
 const Mine = () => {
-  const [loginMessage, setLoginMessage] = useState<any>({});
+  const [accountMessage, setAccountMessage] = useState<any>({});
   useEffect(() => {
-    request('mock/getLogin.json', 'GET').then((data) => setLoginMessage(data.data));
+    request('account', 'GET').then((data) => setAccountMessage(data.data));
   }, []);
 
   return (
     <div className="mine">
       <List header="基础信息">
-        <List.Item extra={<Avatar src={loginMessage.avatar} />} clickable>
-          头像
-        </List.Item>
-        <List.Item extra={loginMessage.nickname} onClick={() => (window.location.href = '#/mine/NicknameEdit')}>
+        <List.Item extra={accountMessage.nickname} onClick={() => (window.location.href = '#/mine/NicknameEdit')}>
           昵称
         </List.Item>
         <List.Item onClick={() => (window.location.href = '#/mine/intro')}>简介</List.Item>
         <List.Item onClick={() => (window.location.href = '#/address')}>收货地址</List.Item>
       </List>
       <List header="账号绑定">
-        <List.Item prefix={<MdPhoneAndroid color="#ccc" />} extra={loginMessage.account} clickable>
+        <List.Item prefix={<MdPhoneAndroid color="#ccc" />} extra={accountMessage.account} clickable>
           手机
         </List.Item>
       </List>

@@ -3,6 +3,7 @@ import { Input, List, Tag } from 'antd-mobile';
 import { LeftOutline, SearchOutline } from 'antd-mobile-icons';
 import './index.less';
 import request from 'utils/request';
+import { useParams, useLocation, Routes } from 'react-router-dom';
 
 const SearchNav: FC<{
   onShowB: (bl: boolean) => void;
@@ -10,12 +11,12 @@ const SearchNav: FC<{
   const [keyValue, setKeyValue] = useState('');
   const [searchAssociation, setSearchAssociation] = useState([]);
   const [isShowSA, setIsShowSA] = useState(false);
-  const searchKeyVal = new URLSearchParams(window.location.hash.split('?')[1]).get('keyVal');
+  const searchKeyVal = new URLSearchParams(useLocation().search).get('keyVal');
 
   const onSearchValChange = (val: string) => {
-    request('searchAssociation', 'GET', { keyVal: val }).then((data) => setSearchAssociation(data.data.rows));
     setKeyValue(val);
     onShowB(!val);
+    request('searchAssociation', 'GET', { keyVal: val }).then((data) => setSearchAssociation(data.data.rows));
   };
 
   useEffect(() => {
@@ -26,6 +27,7 @@ const SearchNav: FC<{
       setKeyValue(searchKeyVal);
     }
   }, [searchKeyVal]);
+
   return (
     <div className="search-layout">
       <div className="search-nav">

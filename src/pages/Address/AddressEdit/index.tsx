@@ -6,7 +6,7 @@ import request from 'utils/request';
 
 const AddressEdit = () => {
   const [addrSexValue, setAddrSexValue] = useState<string>();
-  const paramsId = new URLSearchParams(window.location.hash.split('?')[1]).get('id');
+  const paramsId = new URLSearchParams(useLocation().search).get('id');
 
   useEffect(() => {
     if (paramsId) {

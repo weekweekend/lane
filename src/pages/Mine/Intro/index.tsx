@@ -1,4 +1,4 @@
-import { NavBar, TextArea, Button } from 'antd-mobile';
+import { NavBar, TextArea, Button, Toast } from 'antd-mobile';
 import { useState } from 'react';
 import './index.less';
 import request from 'utils/request';
@@ -8,7 +8,19 @@ const Intro = () => {
     <div className="intro-edit">
       <NavBar
         right={
-          <Button onClick={() => request('mock/test.json', 'PUT', { intro }).then((data) => console.log(data))}>
+          <Button
+            onClick={() =>
+              request('put', 'PUT', { intro }).then((data) => {
+                if (data.success) {
+                  Toast.show({
+                    content: '修改成功',
+                    duration: 500,
+                  });
+                  history.back();
+                }
+              })
+            }
+          >
             保存
           </Button>
         }

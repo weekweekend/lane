@@ -1,20 +1,19 @@
 import React, { memo, FC, useState, useEffect, useImperativeHandle, forwardRef } from 'react';
 import { Button, Badge, Popup } from 'antd-mobile';
 import { DeleteOutline } from 'antd-mobile-icons';
-import { Outlet, Link } from 'react-router-dom';
+import { Outlet, Link, useLocation } from 'react-router-dom';
 import { RiShoppingBag3Fill } from 'react-icons/ri';
 import './index.less';
 import ShoppingCarCard from 'components/ShoppingCarCard';
 import request from 'utils/request';
-// import { ShoppingCartContext } from '../../pages/Shop';
 
 const ShopShoppingCar: FC<{
   goodsShoppingCartData: any;
-  onSetShopShoppingCartData: () => void;
+  onSetShopShoppingCartData: (del?: boolean) => void;
 }> = ({ goodsShoppingCartData, onSetShopShoppingCartData }) => {
   const [isShowShoppingCar, setIsShowShoppingCar] = useState(false);
   const [height, setHeight] = useState('0');
-  const shopId = new URLSearchParams(window.location.hash.split('?')[1]).get('shopId');
+  const shopId = new URLSearchParams(useLocation().search).get('shopId');
   return (
     <div className="Shop-Shopping-Car">
       <Popup
@@ -36,9 +35,9 @@ const ShopShoppingCar: FC<{
           <div
             className="nav-right"
             onClick={() =>
-              request('mock/test.json', 'GET').then((data) => {
+              request('get', 'GET').then((data) => {
                 console.log('清空购物车 >>> 服务器');
-                onSetShopShoppingCartData();
+                onSetShopShoppingCartData(true);
                 setHeight(`0`);
                 setIsShowShoppingCar(false);
               })
@@ -48,16 +47,14 @@ const ShopShoppingCar: FC<{
             &nbsp;清空
           </div>
         </div>
-        {goodsShoppingCartData.list?.length > 0 &&
-          goodsShoppingCartData.list.map((item: any) => (
+        {goodsShoppingCartData.rows?.length > 0 &&
+          goodsShoppingCartData.rows.map((item: any) => (
             <ShoppingCarCard
               key={item.id}
               {...item}
               onSetNewList={() => {
                 onSetShopShoppingCartData();
-                request('mock/getShopShoppingCar.json', 'GET').then((data) =>
-                  setHeight(`${data.data.list?.length * 6}rem`),
-                );
+                request('shopShoppingCar', 'GET').then((data) => setHeight(`${data.data.rows?.length * 6}rem`));
               }}
             />
           ))}
@@ -66,20 +63,20 @@ const ShopShoppingCar: FC<{
       <footer>
         <Button
           className="shopping-car"
-          disabled={!goodsShoppingCartData.list?.length}
+          disabled={!goodsShoppingCartData.rows?.length}
           onClick={() => {
             setIsShowShoppingCar(!isShowShoppingCar);
-            setHeight(height === '0' ? `${goodsShoppingCartData.list?.length * 6}rem` : '0');
+            setHeight(height === '0' ? `${goodsShoppingCartData.rows?.length * 6}rem` : '0');
           }}
         >
           <Badge
-            content={goodsShoppingCartData.list?.length}
-            style={!goodsShoppingCartData.list?.length ? { display: 'none' } : {}}
+            content={goodsShoppingCartData.rows?.length}
+            style={!goodsShoppingCartData.rows?.length ? { display: 'none' } : {}}
           >
             <RiShoppingBag3Fill
               size={'1.3rem'}
               color={'#fff'}
-              style={!goodsShoppingCartData.list?.length ? { backgroundColor: '#999' } : { backgroundColor: '#209FFA' }}
+              style={!goodsShoppingCartData.rows?.length ? { backgroundColor: '#999' } : { backgroundColor: '#209FFA' }}
             />
           </Badge>
 
@@ -107,15 +104,17 @@ const ShopShoppingCar: FC<{
         <Button
           className="checkout"
           shape="rounded"
-          disabled={!goodsShoppingCartData.list?.length}
-          onClick={() => (window.location.href = `#/shop/settlement?shopId=${encodeURIComponent(shopId || '')}`)}
+          disabled={!goodsShoppingCartData.rows?.length}
+          onClick={() => {
+            window.location.href = `#/shop/settlement?shopId=${encodeURIComponent(shopId || '')}`;
+          }}
           style={
-            !goodsShoppingCartData.list?.length || goodsShoppingCartData.before < goodsShoppingCartData.minPrice
+            !goodsShoppingCartData.rows?.length || goodsShoppingCartData.before < goodsShoppingCartData.minPrice
               ? { backgroundColor: '#999' }
               : { backgroundColor: '#209FFA' }
           }
         >
-          {!goodsShoppingCartData.list?.length && '￥' + goodsShoppingCartData.minPrice + ' 起送'}
+          {!goodsShoppingCartData.rows?.length && '￥' + goodsShoppingCartData.minPrice + ' 起送'}
           {goodsShoppingCartData.before < goodsShoppingCartData.minPrice &&
             '差￥' + (goodsShoppingCartData.minPrice - goodsShoppingCartData.before) + ' 起送'}
           {goodsShoppingCartData.before >= goodsShoppingCartData.minPrice && '去结算'}

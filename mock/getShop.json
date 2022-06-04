@@ -1,234 +1,173 @@
 {
-    "data": [
-        {
-            "id": 1111,
-            "image": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
-            "imageTag": "新店",
-            "title": "事件过后就开始",
-            "score": 4.8,
-            "monthSale": 325,
-            "time": 65,
-            "distance": 1232,
-            "flagFall": 15,
-            "deliveryCost": 4,
-            "deliveryDiscount": false,
-            "tags": [
-                "今日657人下单",
-                "掌柜热情",
-                "好吃"
-            ],
-            "discount": [
-                {
-                    "name": "活动",
-                    "tag": [
-                        "28减8",
-                        "48减9"
-                    ]
-                }
-            ]
-        },
-        {
-            "id": 2222,
-            "image": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
-            "imageTag": "",
-            "title": "是符合贵司提货",
-            "score": 4.9,
-            "monthSale": 3125,
-            "time": 34,
-            "distance": 832,
-            "flagFall": 20,
-            "deliveryCost": 4,
-            "deliveryDiscount": true,
-            "tags": [
-                "信息",
-                "掌柜热情",
-                "好吃"
-            ],
-            "discount": [
-                {
-                    "name": "活动",
-                    "tag": [
-                        "28减8",
-                        "48减9"
-                    ]
-                }
-            ]
-        },
-        {
-            "id": 3333,
-            "image": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
-            "imageTag": "",
-            "title": "的研究研究啊果然土豪和",
-            "score": 4.8,
-            "monthSale": 325,
-            "time": 65,
-            "distance": 1232,
-            "flagFall": 15,
-            "deliveryCost": 4,
-            "deliveryDiscount": true,
-            "tags": [
-                "今日657人下单",
-                "掌柜热情",
-                "好吃"
-            ],
-            "discount": [
-                {
-                    "name": "活动",
-                    "tag": [
-                        "28减8",
-                        "48减9"
-                    ]
-                },
-                {
-                    "name": "红包",
-                    "tag": [
-                        "8元无门槛",
-                        "满10减4"
-                    ]
-                }
-            ]
-        },
-        {
-            "id": 4444,
-            "image": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
-            "imageTag": "品牌",
-            "title": "阿尔法尔尕哈供货商",
-            "score": 4.8,
-            "monthSale": 325,
-            "time": 65,
-            "distance": 1232,
-            "flagFall": 15,
-            "deliveryCost": 2.5,
-            "deliveryDiscount": false,
-            "tags": [
-                "今日657人下单",
-                "掌柜热情",
-                "好吃"
-            ],
-            "discount": [
-                {
-                    "name": "活动",
-                    "tag": [
-                        "28减8",
-                        "48减9"
-                    ]
-                },
-                {
-                    "name": "红包",
-                    "tag": [
-                        "8元无门槛",
-                        "满10减4"
-                    ]
-                }
-            ]
-        },
-        {
-            "id": 5555,
-            "image": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
-            "imageTag": "",
-            "title": "爱上隔热一样",
-            "score": 4.8,
-            "monthSale": 325,
-            "time": 65,
-            "distance": 1232,
-            "flagFall": 15,
-            "deliveryCost": 4,
-            "deliveryDiscount": true,
-            "tags": [
-                "今日657人下单",
-                "掌柜热情",
-                "好吃"
-            ],
-            "discount": [
-                {
-                    "name": "活动",
-                    "tag": [
-                        "28减8",
-                        "48减9"
-                    ]
-                },
-                {
-                    "name": "红包",
-                    "tag": [
-                        "8元无门槛",
-                        "满10减4"
-                    ]
-                }
-            ]
-        },
-        {
-            "id": 6,
-            "image": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
-            "imageTag": "",
-            "title": "啊果然土豪与iSF安德天皇",
-            "score": 4.8,
-            "monthSale": 325,
-            "time": 65,
-            "distance": 1232,
-            "flagFall": 15,
-            "deliveryCost": 4,
-            "deliveryDiscount": true,
-            "tags": [
-                "今日657人下单",
-                "掌柜热情",
-                "好吃"
-            ],
-            "discount": [
-                {
-                    "name": "活动",
-                    "tag": [
-                        "28减8",
-                        "48减9"
-                    ]
-                },
-                {
-                    "name": "红包",
-                    "tag": [
-                        "8元无门槛",
-                        "满10减4"
-                    ]
-                }
-            ]
-        },
-        {
-            "id": 7,
-            "image": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
-            "imageTag": "",
-            "title": "事件过后就开始",
-            "score": 4.8,
-            "monthSale": 325,
-            "time": 65,
-            "distance": 1232,
-            "flagFall": 15,
-            "deliveryCost": 4,
-            "deliveryDiscount": true,
-            "tags": [
-                "今日657人下单",
-                "掌柜热情",
-                "好吃"
-            ],
-            "discount": [
-                {
-                    "name": "活动",
-                    "tag": [
-                        "28减8"
-                    ]
-                },
-                {
-                    "name": "红包",
-                    "tag": [
-                        "8元无门槛"
-                    ]
-                },
-                {
-                    "name": "服务",
-                    "tag": [
-                        "食安险",
-                        "支持自取"
-                    ]
-                }
-            ]
-        }
+  "data": {
+    "rows": [
+      {
+        "id": 1111,
+        "image": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
+        "imageTag": "新店",
+        "title": "事件过后就开始",
+        "score": 4.8,
+        "monthSale": 325,
+        "time": 65,
+        "distance": 1232,
+        "flagFall": 15,
+        "deliveryCost": 4,
+        "deliveryDiscount": false,
+        "tags": ["今日657人下单", "掌柜热情", "好吃"],
+        "discount": [
+          {
+            "name": "活动",
+            "tag": ["28减8", "48减9"]
+          }
+        ]
+      },
+      {
+        "id": 2222,
+        "image": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
+        "imageTag": "",
+        "title": "是符合贵司提货",
+        "score": 4.9,
+        "monthSale": 3125,
+        "time": 34,
+        "distance": 832,
+        "flagFall": 20,
+        "deliveryCost": 4,
+        "deliveryDiscount": true,
+        "tags": ["信息", "掌柜热情", "好吃"],
+        "discount": [
+          {
+            "name": "活动",
+            "tag": ["28减8", "48减9"]
+          }
+        ]
+      },
+      {
+        "id": 3333,
+        "image": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
+        "imageTag": "",
+        "title": "的研究研究啊果然土豪和",
+        "score": 4.8,
+        "monthSale": 325,
+        "time": 65,
+        "distance": 1232,
+        "flagFall": 15,
+        "deliveryCost": 4,
+        "deliveryDiscount": true,
+        "tags": ["今日657人下单", "掌柜热情", "好吃"],
+        "discount": [
+          {
+            "name": "活动",
+            "tag": ["28减8", "48减9"]
+          },
+          {
+            "name": "红包",
+            "tag": ["8元无门槛", "满10减4"]
+          }
+        ]
+      },
+      {
+        "id": 4444,
+        "image": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
+        "imageTag": "品牌",
+        "title": "阿尔法尔尕哈供货商",
+        "score": 4.8,
+        "monthSale": 325,
+        "time": 65,
+        "distance": 1232,
+        "flagFall": 15,
+        "deliveryCost": 2.5,
+        "deliveryDiscount": false,
+        "tags": ["今日657人下单", "掌柜热情", "好吃"],
+        "discount": [
+          {
+            "name": "活动",
+            "tag": ["28减8", "48减9"]
+          },
+          {
+            "name": "红包",
+            "tag": ["8元无门槛", "满10减4"]
+          }
+        ]
+      },
+      {
+        "id": 5555,
+        "image": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
+        "imageTag": "",
+        "title": "爱上隔热一样",
+        "score": 4.8,
+        "monthSale": 325,
+        "time": 65,
+        "distance": 1232,
+        "flagFall": 15,
+        "deliveryCost": 4,
+        "deliveryDiscount": true,
+        "tags": ["今日657人下单", "掌柜热情", "好吃"],
+        "discount": [
+          {
+            "name": "活动",
+            "tag": ["28减8", "48减9"]
+          },
+          {
+            "name": "红包",
+            "tag": ["8元无门槛", "满10减4"]
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "image": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
+        "imageTag": "",
+        "title": "啊果然土豪与iSF安德天皇",
+        "score": 4.8,
+        "monthSale": 325,
+        "time": 65,
+        "distance": 1232,
+        "flagFall": 15,
+        "deliveryCost": 4,
+        "deliveryDiscount": true,
+        "tags": ["今日657人下单", "掌柜热情", "好吃"],
+        "discount": [
+          {
+            "name": "活动",
+            "tag": ["28减8", "48减9"]
+          },
+          {
+            "name": "红包",
+            "tag": ["8元无门槛", "满10减4"]
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "image": "https://cube.elemecdn.com/e/c8/7b12c0221cfb67a51af064bdbd2d8jpg.jpg",
+        "imageTag": "",
+        "title": "事件过后就开始",
+        "score": 4.8,
+        "monthSale": 325,
+        "time": 65,
+        "distance": 1232,
+        "flagFall": 15,
+        "deliveryCost": 4,
+        "deliveryDiscount": true,
+        "tags": ["今日657人下单", "掌柜热情", "好吃"],
+        "discount": [
+          {
+            "name": "活动",
+            "tag": ["28减8"]
+          },
+          {
+            "name": "红包",
+            "tag": ["8元无门槛"]
+          },
+          {
+            "name": "服务",
+            "tag": ["食安险", "支持自取"]
+          }
+        ]
+      }
     ],
     "total": 7
+  },
+  "success": true,
+  "message": ""
 }

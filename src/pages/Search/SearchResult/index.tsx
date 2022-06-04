@@ -6,10 +6,11 @@ import request from 'utils/request';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import ShopCard from 'components/ShopCard';
 import SearchNav from 'components/SearchNav';
+import { Outlet, Link, useLocation } from 'react-router-dom';
 
 const SearchResult = () => {
   const [searchResultList, setSearchResultList] = useState([]);
-  const keyVal = new URLSearchParams(window.location.hash.split('?')[1]).get('keyVal');
+  const keyVal = new URLSearchParams(useLocation().search).get('keyVal');
   const [isShowResult, setIsShowResult] = useState(true);
 
   useEffect(() => {

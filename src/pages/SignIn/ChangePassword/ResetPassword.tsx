@@ -17,8 +17,8 @@ const ResetPassword = () => {
       password: values.newPassword,
     };
     if (passwordReg.test(values.newPassword)) {
-      request('mock/test.json', 'POST', searchParams).then((data) => {
-        if (data.data.msg === 'ok') window.location.href = '#/mine';
+      request('post', 'POST', searchParams).then((data) => {
+        if (data.success) window.location.href = '#/mine';
       });
     } else {
       Toast.show({
@@ -31,7 +31,6 @@ const ResetPassword = () => {
     if (all.newPassword === all.confirmPassword) setCanSubmit(true);
     else setCanSubmit(false);
     if (changed.hasOwnProperty('isShowPassword')) setIsShowPassword(changed.isShowPassword);
-    console.log(changed.isShowPassword);
   };
 
   return (

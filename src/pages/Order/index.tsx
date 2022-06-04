@@ -8,7 +8,7 @@ import request from 'utils/request';
 const Order = () => {
   const [orderList, setOrderList] = useState([]);
   useEffect(() => {
-    request('mock/getOrders.json', 'GET').then((data) => setOrderList(data.data));
+    request('orders', 'GET').then((data) => setOrderList(data.data.rows));
   }, []);
   return (
     <div className="order">

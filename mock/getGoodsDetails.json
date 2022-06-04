@@ -1,47 +1,36 @@
 {
-    "data": {
-        "image": "https://cube.elemecdn.com/c/58/986319b9b9e1a1ff87a0366dc10afjpg.jpg",
-        "name": "米线米线米线米线",
-        "tag": "回头客第一名",
-        "monthSale": 24,
-        "price": 15,
-        "packing": 2,
-        "minNum": 0,
-        "maxNum": 100,
-        "details": [
-            {
-                "name": "原料",
-                "des": [
-                    "土豆",
-                    "辣椒"
-                ]
-            },
-            {
-                "name": "辅料",
-                "des": [
-                    "料酒",
-                    "葱",
-                    "醋"
-                ]
-            },
-            {
-                "name": "口味",
-                "des": [
-                    "鲜香"
-                ]
-            },
-            {
-                "name": "制作方法",
-                "des": [
-                    "水煮"
-                ]
-            },
-            {
-                "name": "提示",
-                "des": [
-                    "本商品可能含有酒精成分，未满十八岁请勿购买本店酒类商品"
-                ]
-            }
-        ]
-    }
+  "data": {
+    "image": "https://cube.elemecdn.com/c/58/986319b9b9e1a1ff87a0366dc10afjpg.jpg",
+    "name": "米线米线米线米线",
+    "tag": "回头客第一名",
+    "monthSale": 24,
+    "price": 15,
+    "packing": 2,
+    "minNum": 0,
+    "maxNum": 100,
+    "details": [
+      {
+        "name": "原料",
+        "des": ["土豆", "辣椒"]
+      },
+      {
+        "name": "辅料",
+        "des": ["料酒", "葱", "醋"]
+      },
+      {
+        "name": "口味",
+        "des": ["鲜香"]
+      },
+      {
+        "name": "制作方法",
+        "des": ["水煮"]
+      },
+      {
+        "name": "提示",
+        "des": ["本商品可能含有酒精成分，未满十八岁请勿购买本店酒类商品"]
+      }
+    ]
+  },
+  "success": true,
+  "message": ""
 }

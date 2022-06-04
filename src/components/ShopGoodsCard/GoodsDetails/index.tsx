@@ -22,6 +22,7 @@ const GoodsDetails: FC<{
   curNum: number;
   minNum?: number;
   maxNum?: number;
+  hasDetails: boolean;
   details?: Array<{
     id: number;
     name: string;
@@ -41,6 +42,7 @@ const GoodsDetails: FC<{
   curNum,
   setCurNum,
   details,
+  hasDetails,
   onGoodNumChange,
   image,
   title,
@@ -49,14 +51,13 @@ const GoodsDetails: FC<{
   const [goodsDetails, setGoodsDetails] = useState<any>({});
   const [goodsDetailShoppingCart, setGoodsDetailShoppingCart] = useState<any>({});
   const [isShowSelect, setIsShowSelect] = useState(false);
-  // const goodsId = new URLSearchParams(window.location.href.split('?')[0]).get('goodsId');
 
   useEffect(() => {
-    request('mock/getGoodsDetails.json', 'GET', { goodsId: goodsId }).then((data) => {
+    request('goodsDetails', 'GET', { goodsId: goodsId }).then((data) => {
       setGoodsDetails(data.data);
       console.log('获取商品详情<<<服务器');
     });
-    request('mock/getShopShoppingCar.json', 'GET', { goodsId: goodsId }).then((data) => {
+    request('shopShoppingCar', 'GET', { goodsId: goodsId }).then((data) => {
       setGoodsDetailShoppingCart(data.data);
       console.log('获取详情页购物车信息<<<服务器');
     });
@@ -90,7 +91,7 @@ const GoodsDetails: FC<{
               onClick={() => {
                 if (details) setIsShowSelect(true);
                 else {
-                  request('mock/test.json', 'PUT', { goodsId: goodsId }).then((data) => {
+                  request('put', 'PUT', { goodsId: goodsId }).then((data) => {
                     console.log('商品详情加购 >>> 服务器');
                     onSetShopShoppingCartData();
                   });
@@ -101,7 +102,7 @@ const GoodsDetails: FC<{
               +加入购物车
             </Button>
           )}
-          {curNum > 0 && details && (
+          {curNum > 0 && hasDetails && (
             <div className="details-stepper">
               <IoIosRemoveCircleOutline color="#209FFA" onClick={() => setCurNum(curNum - 1)} />
 
@@ -109,7 +110,7 @@ const GoodsDetails: FC<{
               <IoIosAddCircle color="#209FFA" onClick={() => setIsShowSelect(true)} />
             </div>
           )}
-          {curNum > 0 && !details && (
+          {curNum > 0 && !hasDetails && (
             <div onClick={(e) => e.stopPropagation()}>
               <Stepper
                 min={minNum || 0}
@@ -129,21 +130,23 @@ const GoodsDetails: FC<{
             bodyStyle={{
               borderTopLeftRadius: '.5rem',
               borderTopRightRadius: '.5rem',
-              minHeight: '80vh',
+              height: '80vh',
             }}
           >
-            <ShopGoodsSelectCard
-              onClose={() => setIsShowSelect(false)}
-              details={details}
-              title={title}
-              image={image}
-              price={price}
-              minNum={minNum}
-              maxNum={maxNum}
-              onSetShopShoppingCartData={onSetShopShoppingCartData}
-              setCurNum={(val: number) => setCurNum(val)}
-              curNum={curNum}
-            />
+            <div className="goods-details-popup">
+              <ShopGoodsSelectCard
+                onClose={() => setIsShowSelect(false)}
+                details={details}
+                title={title}
+                image={image}
+                price={price}
+                minNum={minNum}
+                maxNum={maxNum}
+                onSetShopShoppingCartData={onSetShopShoppingCartData}
+                setCurNum={(val: number) => setCurNum(val)}
+                curNum={curNum}
+              />
+            </div>
           </Popup>
         </div>
       </div>

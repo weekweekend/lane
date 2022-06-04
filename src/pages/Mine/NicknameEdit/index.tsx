@@ -1,4 +1,4 @@
-import { NavBar, Input, Button } from 'antd-mobile';
+import { NavBar, Input, Button, Toast } from 'antd-mobile';
 import { useState } from 'react';
 import './index.less';
 import request from 'utils/request';
@@ -8,7 +8,25 @@ const NicknameEdit = () => {
     <div className="nickname-edit">
       <NavBar
         right={
-          <Button onClick={() => request('mock/test.json', 'PUT', { nickname }).then((data) => console.log(data))}>
+          <Button
+            onClick={() => {
+              if (/^.{2,12}$/.test(nickname)) {
+                request('put', 'PUT', { nickname }).then((data) => {
+                  if (data.success) {
+                    Toast.show({
+                      content: '修改成功',
+                      duration: 500,
+                    });
+                    history.back();
+                  }
+                });
+              } else {
+                Toast.show({
+                  content: '限2~12个中文、英文或数字',
+                });
+              }
+            }}
+          >
             保存
           </Button>
         }
