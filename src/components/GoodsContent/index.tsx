@@ -11,7 +11,6 @@ const GoodsContent: FC<{
   onSetShopShoppingCartData: () => void;
 }> = ({ id, goodsShoppingCartData, onSetShopShoppingCartData }) => {
   const [activeKey, setActiveKey] = useState('1');
-  const [titlePositionType, setTitlePositionType] = useState('');
   const [shopGoods, setShopGoods] = useState<any>([]);
 
   const { run: handleScroll } = useThrottleFn(

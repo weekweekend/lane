@@ -1,8 +1,9 @@
-import { FC, Suspense, useEffect, useState } from 'react';
-import { Tag, Image, Divider, NavBar, Form, Selector, Input, Button, Dialog, Radio } from 'antd-mobile';
-import { CloseOutline, DeleteOutline } from 'antd-mobile-icons';
+import { useEffect, useState } from 'react';
+import { NavBar, Form, Selector, Input, Button, Radio } from 'antd-mobile';
+import { DeleteOutline } from 'antd-mobile-icons';
 import './index.less';
 import request from 'utils/request';
+import { useLocation } from 'react-router-dom';
 
 const AddressEdit = () => {
   const [addrSexValue, setAddrSexValue] = useState<string>();

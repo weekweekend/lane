@@ -1,10 +1,9 @@
 import ShopCard from 'components/ShopCard';
-import React, { memo, FC, useState, useEffect } from 'react';
+import { FC, useState, useEffect } from 'react';
 import './index.less';
-import { SearchBar, Swiper, Grid, Divider } from 'antd-mobile';
+import { Swiper, Grid, Divider } from 'antd-mobile';
 import { SearchOutline, SmileFill } from 'antd-mobile-icons';
 import { Link } from 'react-router-dom';
-import { useSetState } from 'ahooks';
 import request from 'utils/request';
 import {
   FcLinux,
@@ -104,7 +103,6 @@ const tmp = [
 ];
 
 const HomePage: FC<{}> = () => {
-  const [homeScroll, setHomeScroll] = useState(0);
   const [homeHotSearch, setHomeHotSearch] = useState([]);
   const [homeShopList, setHomeShopList] = useState<Array<any>>([]);
 
@@ -112,10 +110,6 @@ const HomePage: FC<{}> = () => {
     request('hotSearch', 'GET').then((data) => setHomeHotSearch(data.data.rows));
     request('shop', 'GET').then((data) => setHomeShopList(data.data.rows));
   }, []);
-
-  window.addEventListener('scroll', (e) => {
-    setHomeScroll(window.scrollY);
-  });
 
   return (
     <div>
@@ -146,6 +140,7 @@ const HomePage: FC<{}> = () => {
           ))}
         </Swiper>
 
+        {/* todo：无限滚动 */}
         {homeShopList.map((item) => (
           <ShopCard key={item.id} {...item} />
         ))}

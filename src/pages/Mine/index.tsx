@@ -1,11 +1,12 @@
-import { Button, List, Avatar, Tabs, Swiper, Divider, Rate, Space, Toast, Selector, Image } from 'antd-mobile';
-import React, { useState, useEffect, useRef } from 'react';
+import { Button, List } from 'antd-mobile';
+import { useState, useEffect } from 'react';
 import './index.less';
 import { MdPhoneAndroid } from 'react-icons/md';
 import request from 'utils/request';
 
 const Mine = () => {
   const [accountMessage, setAccountMessage] = useState<any>({});
+
   useEffect(() => {
     request('account', 'GET').then((data) => setAccountMessage(data.data));
   }, []);

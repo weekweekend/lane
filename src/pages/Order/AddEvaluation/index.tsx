@@ -1,14 +1,14 @@
 import { Button, NavBar, Form, TextArea, Radio, Rate, Space, ImageUploader, Selector, Image, Toast } from 'antd-mobile';
 import { useState, useEffect } from 'react';
 import './index.less';
-import { Outlet, Link, useLocation } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import request from 'utils/request';
 
 const AddEvaluation = () => {
   const [orderMess, setOrderMess] = useState<any>({});
-  const [change, setChange] = useState(0);
   const [option, setOption] = useState([]);
-  const OrderId = new URLSearchParams(useLocation().search).get('orderId');
+  const [search] = useSearchParams();
+  const OrderId = search.get('orderId');
 
   const [form] = Form.useForm();
 
@@ -71,13 +71,7 @@ const AddEvaluation = () => {
           <Image src={orderMess.image}></Image>
           <h3>{orderMess.shopName}</h3>
         </div>
-        <Form
-          layout="horizontal"
-          mode="card"
-          form={form}
-          onFinish={onEvaluate}
-          onValuesChange={(val) => setChange(val)}
-        >
+        <Form layout="horizontal" mode="card" form={form} onFinish={onEvaluate}>
           <Space align="center">
             <Form.Item
               label="满意度"

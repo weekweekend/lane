@@ -1,8 +1,6 @@
 import { createRoot } from 'react-dom/client';
 import { HashRouter, Route, Routes } from 'react-router-dom';
-import React from 'react';
 import Layout from 'layouts/index';
-import Welcome from 'pages/Welcome';
 import List from 'pages/List';
 import Page404 from 'pages/404';
 import HomePage from 'pages/HomePage';
@@ -33,7 +31,7 @@ root.render(
       <Route path="/" element={<Layout />}>
         {/* <Route index element={<Welcome />} /> */}
         <Route index element={<HomePage />} />
-        <Route path="list" element={<List />} />
+        {/* todo:props控制渲染结果 只使用一个页面，一个接口 */}
         <Route path="order" element={<Order />} />
         <Route path="notEvaluate" element={<NotEvaluate />} />
         <Route path="evaluated" element={<Evaluated />} />

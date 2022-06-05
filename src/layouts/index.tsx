@@ -1,11 +1,12 @@
 import { memo, FC, useState, useEffect } from 'react';
-import { Button, ActionSheet, Popup, Tabs, Avatar } from 'antd-mobile';
+import { Tabs, Avatar } from 'antd-mobile';
 import { Outlet, Link } from 'react-router-dom';
-import { RiHome5Line, RiEmotion2Line, RiFileList2Line, RiShoppingCartLine, RiArrowDownSFill } from 'react-icons/ri';
+import { RiHome5Line, RiEmotion2Line, RiFileList2Line, RiArrowDownSFill } from 'react-icons/ri';
 import './index.less';
 import request from 'utils/request';
 
 const Layout: FC<{}> = () => {
+  // todo: 这个变量没有必要
   const [homeCurPage, setHomeCurPage] = useState('');
   const [homeCurAddress, setHomeCurAddress] = useState('');
   const [account, setAccount] = useState<any>({});

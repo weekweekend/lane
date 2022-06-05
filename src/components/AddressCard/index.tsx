@@ -1,11 +1,7 @@
-import { FC, useState } from 'react';
-import { Tag, Image, Divider, NavBar } from 'antd-mobile';
-import { CloseOutline, DownOutline, EditSOutline } from 'antd-mobile-icons';
+import { FC } from 'react';
+import { Tag } from 'antd-mobile';
+import { EditSOutline } from 'antd-mobile-icons';
 import './index.less';
-import { Link } from 'react-router-dom';
-import React, { RefObject } from 'react';
-import { Form, Input, Button, Dialog, TextArea, DatePicker, Selector, Slider, Stepper, Switch } from 'antd-mobile';
-import dayjs from 'dayjs';
 
 const AddressCard: FC<{
   id: number;

@@ -1,6 +1,5 @@
-import { FC, useEffect, useState } from 'react';
-import { Tag, Image, Divider, NavBar, List } from 'antd-mobile';
-import { CloseOutline, DownOutline } from 'antd-mobile-icons';
+import { useEffect, useState } from 'react';
+import { NavBar, List } from 'antd-mobile';
 import './index.less';
 import { Link } from 'react-router-dom';
 import AddressCard from 'components/AddressCard';
@@ -8,6 +7,7 @@ import request from 'utils/request';
 const Address = () => {
   const [addressList, setAddressList] = useState<Array<any>>([]);
   const [curAddress, setCurAddress] = useState<any>({});
+
   useEffect(() => {
     request('address', 'GET').then((data) => {
       setAddressList(data.data.rows);
@@ -16,6 +16,7 @@ const Address = () => {
       console.log(curIdx);
     });
   }, []);
+
   return (
     <div className="address-edit">
       <NavBar className="address-nav" right={<Link to="edit">新增地址</Link>} onBack={() => history.back()}>

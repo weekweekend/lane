@@ -1,15 +1,13 @@
-import { Button, Popup, Tag, Tabs, Swiper, Divider, Rate, Space, Toast, Selector, Image } from 'antd-mobile';
+import { Tag, Tabs, Swiper, Divider, Rate, Toast, Selector, Image } from 'antd-mobile';
 import {
-  RightOutline,
   SearchOutline,
   MoreOutline,
   HeartOutline,
   HeartFill,
   LeftOutline,
-  PhoneFill,
   EnvironmentOutline,
 } from 'antd-mobile-icons';
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import './index.less';
 import { SwiperRef } from 'antd-mobile/es/components/swiper';
 import GoodsContent from 'components/GoodsContent';
@@ -17,7 +15,7 @@ import { Action } from 'antd-mobile/es/components/popover';
 import { RiShoppingCart2Line } from 'react-icons/ri';
 import ShopEvaluationCard from 'components/ShopEvaluationCard';
 import request from 'utils/request';
-import { Outlet, Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import ShopShoppingCar from 'components/ShopShoppingCar';
 
 const tabItems = [
@@ -41,7 +39,10 @@ const Shop = () => {
   const [goodsShoppingCartData, setGoodsShoppingCartData] = useState<any>({});
 
   const shopId = new URLSearchParams(useLocation().search).get('shopId');
+
   useEffect(() => {
+    // todo: aHooks -> useEv.....
+    // addE removeE 第二个参数必须是同一个函数
     document.querySelector('#app')?.addEventListener('scroll', () => {
       setShopScroll(document.querySelector('#app')?.scrollTop || 0);
     });

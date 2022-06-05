@@ -1,5 +1,5 @@
-import { Button, Input, Tag, Selector, Image } from 'antd-mobile';
-import { useState, useEffect, useRef } from 'react';
+import { Tag } from 'antd-mobile';
+import { useState, useEffect } from 'react';
 import './index.less';
 import request from 'utils/request';
 import { Link } from 'react-router-dom';

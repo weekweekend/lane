@@ -1,6 +1,5 @@
-import { FC, useEffect, useState, useRef } from 'react';
-import { Image, Button, Popup, Stepper, Skeleton } from 'antd-mobile';
-import { CloseOutline, DownOutline } from 'antd-mobile-icons';
+import { FC, useEffect, useState } from 'react';
+import { Image, Button, Popup, Stepper } from 'antd-mobile';
 import './index.less';
 import { BiMedal } from 'react-icons/bi';
 import ShopGoodsSelectCard from './ShopGoodsSelectCard';
@@ -45,10 +44,7 @@ const ShopGoodsCard: FC<{
 }) => {
   const [isShowGoodsChoose, setIsShowGoodsChoose] = useState(false);
   const [curNum, setCurNum] = useState(0);
-  const [shoppingCart, setShoppingCart] = useState<any>({});
   const [isShowDetails, setIsShowDetails] = useState(false);
-
-  const target = `#/shop/goodsDetails?goodsId=${encodeURIComponent(id)}`;
 
   useEffect(() => {
     const idx = goodsShoppingCartData.rows?.findIndex((item: any) => item.id % 3 === 0 && id % 3 === 0);
@@ -58,7 +54,7 @@ const ShopGoodsCard: FC<{
   const onGoodNumChange = (val: number) => {
     const params = { goodsId: id, goodsNum: val };
     setCurNum(val);
-    request('put', 'PUT', params).then((data) => {
+    request('put', 'PUT', params).then(() => {
       console.log('修改数量>>>服务器');
       onSetShopShoppingCartData();
     });

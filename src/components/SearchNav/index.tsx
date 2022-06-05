@@ -3,7 +3,7 @@ import { Input, List, Tag } from 'antd-mobile';
 import { LeftOutline, SearchOutline } from 'antd-mobile-icons';
 import './index.less';
 import request from 'utils/request';
-import { useParams, useLocation, Routes } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 const SearchNav: FC<{
   onShowB: (bl: boolean) => void;

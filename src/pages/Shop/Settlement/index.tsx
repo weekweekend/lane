@@ -1,18 +1,8 @@
-import { Button, NavBar, Tag, Popup, Radio, Divider, Rate, Space, Toast, Selector, Image } from 'antd-mobile';
-import {
-  RightOutline,
-  CloseOutline,
-  MoreOutline,
-  HeartOutline,
-  HeartFill,
-  LeftOutline,
-  PhoneFill,
-  EnvironmentOutline,
-} from 'antd-mobile-icons';
-import React, { useState, useEffect, useRef } from 'react';
+import { Button, NavBar, Tag, Popup, Radio } from 'antd-mobile';
+import { RightOutline, CloseOutline } from 'antd-mobile-icons';
+import { useState, useEffect } from 'react';
 import './index.less';
 import { RiRedPacketFill } from 'react-icons/ri';
-import ShopEvaluationCard from 'components/ShopEvaluationCard';
 import SettlementGoodsCard from 'components/SettlementGoodsCard';
 import request from 'utils/request';
 import AddressCard from 'components/AddressCard';
