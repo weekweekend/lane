@@ -120,7 +120,8 @@ const ShopGoodsCard: FC<{
                   color="#209FFA"
                   onClick={(e) => {
                     e.stopPropagation();
-                    setIsShowGoodsChoose(true);
+                    setCurNum(curNum + 1);
+                    isShowGoodsChoose && setIsShowGoodsChoose(true);
                   }}
                 />
               </div>

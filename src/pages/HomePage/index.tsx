@@ -1,10 +1,12 @@
 import ShopCard from 'components/ShopCard';
 import { FC, useState, useEffect } from 'react';
 import './index.less';
-import { Swiper, Grid, Divider } from 'antd-mobile';
+import { Swiper, Grid, Divider, InfiniteScroll } from 'antd-mobile';
 import { SearchOutline, SmileFill } from 'antd-mobile-icons';
 import { Link } from 'react-router-dom';
+import { RiArrowDownSFill } from 'react-icons/ri';
 import request from 'utils/request';
+import sleep from 'utils/sleep';
 import {
   FcLinux,
   FcPaid,
@@ -14,6 +16,14 @@ import {
   FcSportsMode,
   FcPrivacy,
   FcLightAtTheEndOfTunnel,
+  FcLandscape,
+  FcFilmReel,
+  FcInTransit,
+  FcDribbble,
+  FcHighBattery,
+  FcBusinessContact,
+  FcHome,
+  FcCalendar,
 } from 'react-icons/fc';
 const tmp = [
   [
@@ -24,80 +34,80 @@ const tmp = [
     },
     {
       name: '超市便利',
-      url: 'acc',
+      url: '/',
       icon: <FcShop />,
     },
     {
       name: '美食团购',
-      url: 'acc',
+      url: '/',
       icon: <FcPaid />,
     },
     {
       name: '甜品饮品',
-      url: 'acc',
+      url: '/',
       icon: <FcEmptyTrash />,
     },
     {
       name: '跑腿',
-      url: 'acc',
+      url: '/',
       icon: <FcSportsMode />,
     },
     {
       name: '买药',
-      url: 'acc',
+      url: '/',
       icon: <FcPrivacy />,
     },
     {
       name: '鲜花',
-      url: 'acc',
+      url: '/',
       icon: <FcCloseUpMode />,
     },
     {
       name: '水果',
-      url: 'acc',
+      url: '/',
       icon: <FcLightAtTheEndOfTunnel />,
     },
   ],
   [
     {
-      name: '岁的法国',
-      url: 'acc',
-      icon: <FcLinux />,
+      name: '景点门票',
+      url: '/',
+      icon: <FcLandscape />,
     },
     {
-      name: '士大夫',
-      url: 'acc',
-      icon: <SmileFill />,
+      name: '电影票',
+      url: '/',
+      icon: <FcFilmReel />,
     },
     {
-      name: '的师父说过',
-      url: 'acc',
-      icon: <SmileFill />,
+      name: '货运搬家',
+      url: '/',
+      icon: <FcInTransit />,
     },
     {
-      name: '是法国',
-      url: 'acc',
-      icon: <SmileFill />,
+      name: '丽人美发',
+      url: '/',
+      icon: <FcDribbble />,
     },
     {
-      name: '优化',
-      url: 'acc',
-      icon: <SmileFill />,
+      name: '充电宝',
+      url: '/',
+      icon: <FcHighBattery />,
     },
     {
-      name: '微软',
-      url: 'acc',
-      icon: <SmileFill />,
+      name: '信用卡',
+      url: '/',
+      icon: <FcBusinessContact />,
     },
     {
-      name: '你好过分',
-      url: 'acc',
-      icon: <SmileFill />,
+      name: '洗衣家政',
+      url: '/',
+      icon: <FcHome />,
     },
     {
       name: '全部',
-      url: 'acc',
-      icon: <SmileFill />,
+      url: '/',
+      icon: <FcCalendar />,
     },
   ],
 ];
@@ -105,14 +115,29 @@ const tmp = [
 const HomePage: FC<{}> = () => {
   const [homeHotSearch, setHomeHotSearch] = useState([]);
   const [homeShopList, setHomeShopList] = useState<Array<any>>([]);
-
+  const [homeCurAddress, setHomeCurAddress] = useState('');
+  const [hasMore, setHasMore] = useState(true);
   useEffect(() => {
     request('hotSearch', 'GET').then((data) => setHomeHotSearch(data.data.rows));
-    request('shop', 'GET').then((data) => setHomeShopList(data.data.rows));
+    request('address', 'GET').then((data) => {
+      const idx = data.data.rows.findIndex((item: { cur: boolean }) => item.cur);
+      setHomeCurAddress(data.data.rows[idx].address + data.data.rows[idx].addrDetail);
+    });
   }, []);
+
+  async function loadMore() {
+    await sleep(1000);
+    const append = await request('shop', 'GET').then((data) => data.data.rows);
+    setHomeShopList([...homeShopList, ...append]);
+    setHasMore(append.length > 0 && homeShopList.length < 25);
+  }
 
   return (
     <div>
+      <div className="home-nav">
+        <Link to="address">{homeCurAddress} &nbsp;</Link>
+        <RiArrowDownSFill />
+      </div>
       <Link to="search" className="home-search">
         <span>
           <div>
@@ -140,11 +165,10 @@ const HomePage: FC<{}> = () => {
           ))}
         </Swiper>
 
-        {/* todo：无限滚动 */}
         {homeShopList.map((item) => (
           <ShopCard key={item.id} {...item} />
         ))}
-        <Divider>附近暂无更多店铺</Divider>
+        <InfiniteScroll loadMore={loadMore} hasMore={hasMore} />
       </div>
     </div>
   );

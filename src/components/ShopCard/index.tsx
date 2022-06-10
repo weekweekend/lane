@@ -1,8 +1,7 @@
 import { FC, useState } from 'react';
 import { Tag, Image, Divider } from 'antd-mobile';
-import { CloseOutline, DownOutline } from 'antd-mobile-icons';
+import { CloseOutline } from 'antd-mobile-icons';
 import './index.less';
-import { Link } from 'react-router-dom';
 
 const ShopCard: FC<{
   id: number;
@@ -49,7 +48,7 @@ const ShopCard: FC<{
   const target = `#/shop?shopId=${encodeURIComponent(id)}`;
   return (
     <a href={target} className="shop-card" style={isShowShopCard ? { display: 'flex' } : { display: 'none' }}>
-      {/* 搜索时候的卡片展示商品 */}
+      {/* 搜索结果的卡片展示商品 */}
       <div className="shop-card-image" style={goods ? { flex: 1 } : { flex: 2 }}>
         <Image src={image} alt="店铺图片" />
         {imageTag && /[\u4e00-\u9fa5]{2}/.test(imageTag) && (

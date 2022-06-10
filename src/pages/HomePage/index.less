@@ -1,7 +1,18 @@
-body {
-  background-color: #ccc;
+.home-nav {
+  height: 3rem;
+  display: flex;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.5rem;
+  box-sizing: border-box;
+  align-items: flex-end;
+  width: 80%;
+  a {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
 }
-
 .home-search {
   display: flex;
   height: 2.5rem;
@@ -53,7 +64,6 @@ body {
 }
 .home-content {
   padding: 0 0.6rem;
-  padding-bottom: 3rem;
   box-sizing: border-box;
 
   .home-service {

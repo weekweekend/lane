@@ -6,15 +6,15 @@ import { RiRedPacketFill } from 'react-icons/ri';
 import SettlementGoodsCard from 'components/SettlementGoodsCard';
 import request from 'utils/request';
 import AddressCard from 'components/AddressCard';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 
 const Settlement = () => {
-  const shopId = new URLSearchParams(useLocation().search).get('shopId');
   const [addrList, setAddrList] = useState([]);
   const [curAddr, setCurAddr] = useState<any>({});
   const [shopPurchases, setShopPurchases] = useState<any>({});
   const [isShowAddrSelect, setIsShowAddrSelect] = useState(false);
-
+  const [params] = useSearchParams();
+  const shopId = params.get('shopId');
   useEffect(() => {
     request('address', 'GET').then((data) => {
       setAddrList(data.data.rows);

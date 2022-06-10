@@ -1,9 +1,36 @@
 .order {
-  background-color: #fafafa;
-  padding: 0 0.6rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-  padding-top: 3.5rem;
-  padding-bottom: 4rem;
+  background-color: #f6f6f6;
+  .order-nav {
+    position: sticky;
+    top: 0;
+    background-color: #f6f6f6;
+    padding: 0;
+    z-index: 99;
+    height: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0.5rem;
+    box-sizing: border-box;
+    .adm-tabs-tab-active {
+      color: #333;
+      font-size: 1.1rem !important;
+    }
+
+    .adm-tabs-header {
+      position: relative;
+      left: -1.2rem;
+      border: none;
+      .adm-tabs-tab {
+        font-size: 0.95rem;
+        font-weight: 600;
+      }
+    }
+  }
+  .order-content {
+    padding: 0 0.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
 }

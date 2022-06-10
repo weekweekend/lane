@@ -82,7 +82,7 @@ const ShopEvaluationCard: FC<{
           <span
             onClick={() => {
               setIsLike(!isLike);
-              request('mock/test.json', 'PUT', { evaluationId: id, evaluationLike: !isLike + '' }).then((data) =>
+              request('put', 'PUT', { evaluationId: id, evaluationLike: !isLike + '' }).then((data) =>
                 console.log(data),
               );
             }}
@@ -95,7 +95,7 @@ const ShopEvaluationCard: FC<{
           <span
             onClick={() => {
               setIsLike(!isLike);
-              request('mock/test.json', 'PUT', { evaluationId: id, evaluationLike: !isLike + '' }).then((data) =>
+              request('put', 'PUT', { evaluationId: id, evaluationLike: !isLike + '' }).then((data) =>
                 console.log(data),
               );
             }}

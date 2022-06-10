@@ -10,18 +10,15 @@ import ChangePassword from 'pages/SignIn/ChangePassword';
 import Shop from 'pages/Shop';
 import ShoppingCar from 'pages/ShoppingCar';
 import Address from 'pages/Address';
-import Profile from 'pages/Profile';
 import Search from 'pages/Search';
 import AddressEdit from 'pages/Address/AddressEdit';
-import SelectAddress from 'pages/Address/AddressEdit/SelectAddress/SelectAddress';
 import SearchResult from 'pages/Search/SearchResult';
 import Settlement from 'pages/Shop/Settlement';
 import NicknameEdit from 'pages/Mine/NicknameEdit';
 import Intro from 'pages/Mine/Intro';
 import Order from 'pages/Order';
-import NotEvaluate from 'pages/Order/NotEvaluate';
-import Evaluated from 'pages/Order/Evaluated';
 import AddEvaluation from 'pages/Order/AddEvaluation';
+import OrderDetails from 'pages/Order/OrderDetails';
 
 const root = createRoot(document.getElementById('app')!);
 
@@ -29,19 +26,16 @@ root.render(
   <HashRouter>
     <Routes>
       <Route path="/" element={<Layout />}>
-        {/* <Route index element={<Welcome />} /> */}
         <Route index element={<HomePage />} />
         {/* todo:props控制渲染结果 只使用一个页面，一个接口 */}
         <Route path="order" element={<Order />} />
-        <Route path="notEvaluate" element={<NotEvaluate />} />
-        <Route path="evaluated" element={<Evaluated />} />
         <Route path="mine" element={<Mine />} />
         <Route path="*" element={<Page404 />} />
       </Route>
       <Route path="mine/nicknameEdit" element={<NicknameEdit />} />
       <Route path="mine/intro" element={<Intro />} />
       <Route path="order/addEvaluation" element={<AddEvaluation />} />
-
+      <Route path="order/orderDetails" element={<OrderDetails />} />
       <Route path="shop" element={<Shop />}></Route>
       <Route path="shop/settlement" element={<Settlement />}></Route>
 
@@ -50,8 +44,6 @@ root.render(
       <Route path="shoppingCar" element={<ShoppingCar />}></Route>
       <Route path="address" element={<Address />}></Route>
       <Route path="address/edit" element={<AddressEdit />}></Route>
-      <Route path="address/edit/selectAddress" element={<SelectAddress />}></Route>
-      <Route path="profile" element={<Profile />}></Route>
       <Route path="search" element={<Search />}></Route>
       <Route path="search/searchResult" element={<SearchResult />}></Route>
     </Routes>

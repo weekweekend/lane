@@ -1,7 +1,7 @@
 import React, { memo, FC, useState, useEffect, useImperativeHandle, forwardRef } from 'react';
 import { Button, Badge, Popup } from 'antd-mobile';
 import { DeleteOutline } from 'antd-mobile-icons';
-import { Outlet, Link, useLocation } from 'react-router-dom';
+import { Outlet, Link, useLocation, useSearchParams } from 'react-router-dom';
 import { RiShoppingBag3Fill } from 'react-icons/ri';
 import './index.less';
 import ShoppingCarCard from 'components/ShoppingCarCard';
@@ -13,7 +13,9 @@ const ShopShoppingCar: FC<{
 }> = ({ goodsShoppingCartData, onSetShopShoppingCartData }) => {
   const [isShowShoppingCar, setIsShowShoppingCar] = useState(false);
   const [height, setHeight] = useState('0');
-  const shopId = new URLSearchParams(useLocation().search).get('shopId');
+  const [params] = useSearchParams();
+  const shopId = params.get('shopId');
+
   return (
     <div className="Shop-Shopping-Car">
       <Popup

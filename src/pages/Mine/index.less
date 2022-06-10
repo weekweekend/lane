@@ -3,14 +3,27 @@
   background-color: #fafafa;
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - 4rem);
+  min-height: calc(100vh - 2.8rem);
+
+  .mine-nav {
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    box-sizing: border-box;
+    padding: 0.5rem;
+    .adm-avatar {
+      --size: 2.5rem;
+      border-radius: 50%;
+    }
+    h2 {
+      font-size: 1.1rem;
+    }
+  }
   .adm-list-default:nth-child(1) {
     margin-top: 3.5rem;
   }
-  .adm-avatar {
-    --size: 1.8rem;
-    border-radius: 50%;
-  }
+
   .adm-list-body,
   .adm-list-header {
     font-size: 0.8rem;

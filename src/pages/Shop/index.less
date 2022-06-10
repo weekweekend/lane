@@ -1,7 +1,7 @@
 .shop-bgi {
   width: 100%;
   height: 5rem;
-  background-image: url(https://cube.elemecdn.com/2/f2/b87d9434e357673eca8285c158028jpeg.jpeg);
+
   background-size: 100%;
   background-position: center;
 }
@@ -249,70 +249,24 @@
 .shop-nav {
   z-index: 99;
   box-sizing: border-box;
-  padding: 0.1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 2.25rem;
   position: fixed;
-  width: 100%;
+  padding: 0 0.5rem;
+  width: 98%;
   background-color: rgba(255, 255, 255, 0);
   top: 0;
-  font-size: 1.2rem;
+  font-size: 0.9rem;
   color: #fff;
-  transition: color 0.1s, background-color 0.1s;
-
-  .shop-nav-left,
-  .shop-nav-right {
-    margin: 0.5rem;
-    display: flex;
-    flex: 1;
-    justify-content: space-between;
-    > div {
-      display: flex;
-      flex: 1;
-      justify-content: center;
-    }
-    .shop-focus {
-      > div {
-        display: flex;
-        align-items: center;
-        gap: 0.2rem;
-      }
-      span {
-        font-size: 0.7rem;
-        white-space: nowrap;
-      }
-    }
+  transition: color 1s, background-color 0.1s;
+  svg {
+    font-size: 1.2rem;
   }
-  .shop-nav-more {
-    transition: opacity 0.3s;
-    position: absolute;
-    font-size: 0.7rem;
-    top: 2rem;
-    right: 0.5rem;
-    background-color: #333;
-    padding: 0.6rem 1rem;
-    color: #fff;
-    border-radius: 0.5rem;
-    .shop-nav-more-content {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: relative;
-      gap: 0.2rem;
-      font-size: 0.8rem;
-    }
-    .shop-nav-more-content::before {
-      content: '';
-      position: absolute;
-      height: 0;
-      width: 0;
-      top: -1rem;
-      right: 0;
-      border-bottom: 0.6rem solid #333;
-      border-right: 0.3rem solid transparent;
-      border-left: 0.6rem solid transparent;
-    }
+  .shop-focus {
+    gap: 0.3rem;
+    display: flex;
+    align-items: flex-end;
   }
 }

@@ -12,10 +12,11 @@ function request(
   //   console.log('请登录');
   //   return;
   // }
-  let oUrl: any;
-  window.location.href.includes('eele')
-    ? (oUrl = new URL(url, 'https://mock.apifox.cn/m1/1066506-0-default/'))
-    : (oUrl = new URL(url, 'http://127.0.0.1:4523/m1/1066506-0-default/'));
+  // let oUrl: any;
+  // window.location.href.includes('eele')
+  //   ? (oUrl = new URL(url, 'https://mock.apifox.cn/m1/1066506-0-default/'))
+  //   : (oUrl = new URL(url, 'http://127.0.0.1:4523/m1/1066506-0-default/'));
+  let oUrl = new URL(url, 'https://mock.apifox.cn/m1/1066506-0-default/');
 
   if (method === 'GET') {
     Object.entries(clearObject(params)).forEach(([key, value]) => {

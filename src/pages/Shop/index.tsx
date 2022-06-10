@@ -1,12 +1,5 @@
-import { Tag, Tabs, Swiper, Divider, Rate, Toast, Selector, Image } from 'antd-mobile';
-import {
-  SearchOutline,
-  MoreOutline,
-  HeartOutline,
-  HeartFill,
-  LeftOutline,
-  EnvironmentOutline,
-} from 'antd-mobile-icons';
+import { Tag, Tabs, Swiper, Divider, Rate, Toast, Selector, Image, InfiniteScroll } from 'antd-mobile';
+import { HeartOutline, HeartFill, LeftOutline, EnvironmentOutline } from 'antd-mobile-icons';
 import { useState, useEffect, useRef } from 'react';
 import './index.less';
 import { SwiperRef } from 'antd-mobile/es/components/swiper';
@@ -15,8 +8,10 @@ import { Action } from 'antd-mobile/es/components/popover';
 import { RiShoppingCart2Line } from 'react-icons/ri';
 import ShopEvaluationCard from 'components/ShopEvaluationCard';
 import request from 'utils/request';
-import { useLocation } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import ShopShoppingCar from 'components/ShopShoppingCar';
+import { useEventListener } from 'ahooks';
+import sleep from 'utils/sleep';
 
 const tabItems = [
   { key: 'order', title: '点餐' },
@@ -27,7 +22,6 @@ const tabItems = [
 const actions: Action[] = [{ key: 'shopCar', icon: <RiShoppingCart2Line />, text: '购物车' }];
 
 const Shop = () => {
-  const [shopName, setShopName] = useState('');
   const swiperRef = useRef<SwiperRef>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isFocus, setIsFocus] = useState(false);
@@ -37,25 +31,37 @@ const Shop = () => {
   const [shopEvaluationList, setShopEvaluationList] = useState<Array<any>>([]);
   const [shopIntro, setShopIntro] = useState<any>({});
   const [goodsShoppingCartData, setGoodsShoppingCartData] = useState<any>({});
+  const [shopData, setShopData] = useState<any>({});
+  const [hasMore, setHasMore] = useState(true);
 
-  const shopId = new URLSearchParams(useLocation().search).get('shopId');
+  const [search] = useSearchParams();
+  const shopId = search.get('shopId');
+
+  useEventListener(
+    'scroll',
+    (e) => {
+      setShopScroll(e.target.scrollTop);
+    },
+    { target: document.querySelector('#app') },
+  );
 
   useEffect(() => {
     // todo: aHooks -> useEv.....
     // addE removeE 第二个参数必须是同一个函数
-    document.querySelector('#app')?.addEventListener('scroll', () => {
-      setShopScroll(document.querySelector('#app')?.scrollTop || 0);
-    });
-    request('shopEvaluation', 'GET', { shopId: shopId }).then((data) => setShopEvaluationList(data.data.rows));
-    request('shopIntro', 'GET', { shopId: shopId }).then((data) => setShopIntro(data.data));
+
+    request('curShop', 'GET', { shopId: shopId }).then((data) => setShopData(data.data));
     request('shopShoppingCar', 'GET', { shopId: shopId }).then((data) => {
       console.log('拉取购物车信息 ');
       setGoodsShoppingCartData(data.data);
     });
-    return removeEventListener('scroll', (e) => {
-      setShopScroll(document.querySelector('#app')?.scrollTop || 0);
-    });
   }, [shopId]);
+
+  async function loadMore() {
+    await sleep(1000);
+    const append = await request('shopEvaluation', 'GET', { shopId }).then((data) => data.data.rows);
+    setShopEvaluationList([...shopEvaluationList, ...append]);
+    setHasMore(append.length > 0 && shopEvaluationList.length < 25);
+  }
 
   const onFocus = () => {
     const tmp = isFocus;
@@ -84,7 +90,30 @@ const Shop = () => {
 
   return (
     <div style={{ position: 'relative' }}>
-      <div className="shop-bgi" />
+      <div
+        className="shop-nav"
+        style={{
+          backgroundColor: `rgba(255,255,255,${shopScroll / 200})`,
+          color: `rgb(${255 - shopScroll},${255 - shopScroll},${255 - shopScroll})`,
+        }}
+      >
+        <LeftOutline onClick={() => history.back()} />
+        <div className="shop-focus">
+          {isFocus && (
+            <>
+              <HeartFill color="red" onClick={onFocus} />
+              <span>已关注</span>
+            </>
+          )}
+          {!isFocus && (
+            <>
+              <HeartOutline onClick={onFocus} />
+              <span>关注</span>
+            </>
+          )}
+        </div>
+      </div>
+      <div className="shop-bgi" style={{ backgroundImage: `url(${shopData.image})` }} />
       <div className="shop-main">
         <div className="shop-main-nav">
           <Tabs
@@ -93,6 +122,12 @@ const Shop = () => {
               const index = tabItems.findIndex((item) => item.key === key);
               setActiveIndex(index);
               swiperRef.current?.swipeTo(index);
+              index === 0 && request('curShop', 'GET', { shopId: shopId }).then((data) => setShopData(data.data));
+              index === 1 &&
+                request('shopEvaluation', 'GET', { shopId: shopId }).then((data) =>
+                  setShopEvaluationList(data.data.rows),
+                );
+              index === 2 && request('shopIntro', 'GET', { shopId: shopId }).then((data) => setShopIntro(data.data));
             }}
           >
             {tabItems.map((item) => (
@@ -177,7 +212,7 @@ const Shop = () => {
                 {shopEvaluationList.map((item) => (
                   <ShopEvaluationCard key={item.id} {...item} />
                 ))}
-                <Divider>暂无更多评价</Divider>
+                <InfiniteScroll loadMore={loadMore} hasMore={hasMore} />
               </div>
             </Swiper.Item>
             <Swiper.Item className="shop-main-intro">
@@ -228,87 +263,43 @@ const Shop = () => {
       <div className="shop-board">
         <div className="shop-board-msg">
           <div className="shop-board-msg-title">
-            <h2>江湖烧烤烧烤</h2>
+            <h2>{shopData.title}</h2>
             <div>
-              <span>4.9分</span>
+              <span>{shopData.score?.toFixed(2)}分</span>
               <span>蓝骑士专送</span>
-              <span>约55分钟</span>
+              <span>约{shopData.time < 60 ? shopData.time + '分钟' : Math.floor(shopData.time / 60) + '小时'}</span>
               <span>·</span>
-              <span>月售1233</span>
+              <span>月售{shopData.monthSale}</span>
             </div>
           </div>
-          <Image
-            src={
-              'https://img.alicdn.com/imgextra/i2/2209448391393/O1CN01AtKE031MA2MFx2F8n_!!2209448391393-0-koubei.jpg_400x400Q85s50.jpg'
-            }
-            width="100%"
-            fit="cover"
-            style={{ borderRadius: 4 }}
-          />
+          <Image src={shopData.image} width="100%" fit="cover" style={{ borderRadius: 4 }} />
         </div>
         <div className="shop-board-discount">
           <div>
             <div className="shop-board-hongbao-vip">
-              <span>￥8无门槛</span>
+              <span>￥{shopData?.hongbao?.find((item: any) => item.name === 'vip')?.tag}无门槛</span>
               <span>兑</span>
             </div>
             <div className="shop-board-hongbao-shop">
-              <span>￥3</span>
+              <span>￥{shopData?.hongbao?.find((item: any) => item.name === 'shop')?.tag}</span>
               <span>兑</span>
             </div>
           </div>
           <div className="shop-board-discount-shop">
             <div>
-              <span>28减4</span>
-              <Divider direction="vertical" />
-              <span>49减5</span>
-              <Divider direction="vertical" />
-              <span>100减13</span>
+              {shopData.discount?.map((item: any, idx: number) => (
+                <div key={item}>
+                  {idx > 0 && <Divider direction="vertical" />}
+                  <span>{item}</span>
+                </div>
+              ))}
             </div>
-            <div>首次光临减1</div>
+            {shopData.first > 0 && <div>首次光临减{shopData.first}</div>}
           </div>
           <div></div>
         </div>
       </div>
-      <div
-        className="shop-nav"
-        style={{
-          backgroundColor: `rgba(255,255,255,${shopScroll / 200})`,
-          color: `rgb(${255 - shopScroll},${255 - shopScroll},${255 - shopScroll})`,
-        }}
-      >
-        <div className="shop-nav-left">
-          <LeftOutline onClick={() => history.back()} />
-        </div>
-        <div className="shop-nav-right">
-          <div>
-            <SearchOutline onClick={() => (window.location.href = '#/shop/shopSearch')} />
-          </div>
-          <div className="shop-focus">
-            {isFocus && (
-              <div>
-                <HeartFill color="red" onClick={onFocus} />
-                <span>已关注</span>
-              </div>
-            )}
-            {!isFocus && (
-              <div>
-                <HeartOutline onClick={onFocus} />
-                <span>关注</span>
-              </div>
-            )}
-          </div>
-          <div>
-            <MoreOutline onClick={onMore} />
-            <a href="#/shoppingCar" className="shop-nav-more" style={isShowMore ? { opacity: '1' } : { opacity: '0' }}>
-              <div className="shop-nav-more-content">
-                <RiShoppingCart2Line />
-                购物车
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
+
       <ShopShoppingCar
         goodsShoppingCartData={goodsShoppingCartData}
         onSetShopShoppingCartData={onSetShopShoppingCartData}

@@ -3,11 +3,12 @@ import { NavBar, Form, Selector, Input, Button, Radio } from 'antd-mobile';
 import { DeleteOutline } from 'antd-mobile-icons';
 import './index.less';
 import request from 'utils/request';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 
 const AddressEdit = () => {
   const [addrSexValue, setAddrSexValue] = useState<string>();
-  const paramsId = new URLSearchParams(useLocation().search).get('id');
+  const [params] = useSearchParams();
+  const paramsId = params.get('id');
 
   useEffect(() => {
     if (paramsId) {

@@ -1,22 +1,30 @@
-import { Button, Input, Tag, Selector, Image } from 'antd-mobile';
-import { LeftOutline, SearchOutline } from 'antd-mobile-icons';
-import { useState, useEffect, useRef } from 'react';
+import { InfiniteScroll } from 'antd-mobile';
+import { useState, useEffect } from 'react';
 import './index.less';
 import request from 'utils/request';
-import { RiDeleteBin6Line } from 'react-icons/ri';
 import ShopCard from 'components/ShopCard';
 import SearchNav from 'components/SearchNav';
-import { Outlet, Link, useLocation } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
+import sleep from 'utils/sleep';
 
 const SearchResult = () => {
-  const [searchResultList, setSearchResultList] = useState([]);
-  const keyVal = new URLSearchParams(useLocation().search).get('keyVal');
+  const [searchResultList, setSearchResultList] = useState<Array<any>>([]);
+  const [hasMore, setHasMore] = useState(true);
   const [isShowResult, setIsShowResult] = useState(true);
-
+  const [params] = useSearchParams();
+  const keyVal = params.get('keyVal');
   useEffect(() => {
     if (keyVal) console.log('搜索了');
     request('searchResult', 'GET', { keyVal: keyVal }).then((data) => setSearchResultList(data.data.rows));
   }, [keyVal]);
+
+  async function loadMore() {
+    await sleep(1000);
+    const append = await request('searchResult', 'GET', { keyVal: keyVal }).then((data) => data.data.rows);
+    setSearchResultList([...searchResultList, ...append]);
+    setHasMore(append.length > 0 && searchResultList.length < 25);
+  }
+
   return (
     <>
       <SearchNav onShowB={(bl: boolean) => setIsShowResult(bl)} />
@@ -25,6 +33,7 @@ const SearchResult = () => {
           <ShopCard key={item.id} {...item} />
         ))}
       </div>
+      <InfiniteScroll loadMore={loadMore} hasMore={hasMore} />
     </>
   );
 };

@@ -1,12 +1,8 @@
-import { FC, useEffect, useState } from 'react';
-import { Tag, Image, Divider, NavBar } from 'antd-mobile';
-import { RightOutline, DownOutline, EditSOutline } from 'antd-mobile-icons';
+import { FC } from 'react';
+import { Tag, Image } from 'antd-mobile';
+import { RightOutline } from 'antd-mobile-icons';
 import './index.less';
-import { Link } from 'react-router-dom';
-import React, { RefObject } from 'react';
-import { Form, Input, Button, Dialog, TextArea, DatePicker, Selector, Slider, Stepper, Switch } from 'antd-mobile';
-import dayjs from 'dayjs';
-import request from 'utils/request';
+import { Button } from 'antd-mobile';
 
 const OrderCard: FC<{
   orderId: number;
@@ -22,18 +18,28 @@ const OrderCard: FC<{
   totalPrice: number;
   evaluation?: string;
   isEvaluated: boolean;
-  inEvaluated?: boolean;
-}> = ({ orderId, shopId, image, shopName, state, tag, goods, totalPrice, evaluation, inEvaluated, isEvaluated }) => {
+  orderPage: 'all' | 'evaluated' | 'notEvaluate';
+}> = ({ orderId, shopId, image, shopName, state, tag, goods, totalPrice, evaluation, isEvaluated, orderPage }) => {
   return (
-    <div className="order-card">
-      <div className="order-card-title">
+    <div
+      className="order-card"
+      onClick={(e) => {
+        e.stopPropagation();
+        window.location.href = `#/order/orderDetails?orderId=${encodeURIComponent(orderId)}`;
+      }}
+    >
+      <a
+        href={`#/shop?shopId=${encodeURIComponent(shopId)}`}
+        className="order-card-title"
+        onClick={(e) => e.stopPropagation()}
+      >
         <div>
           <Image src={image} />
           <h3>{shopName}</h3>
           <RightOutline color="#999" />
         </div>
         <div className="order-state">{state}</div>
-      </div>
+      </a>
       <div className="order-card-tag">
         {tag &&
           tag.map((item, idx) => (
@@ -61,12 +67,17 @@ const OrderCard: FC<{
         </div>
       </div>
       <div className="order-card-operation">
-        {isEvaluated && !inEvaluated && (
-          <Button color="primary" fill="outline" shape="rounded">
-            再来一单
-          </Button>
+        {orderPage === 'all' && !isEvaluated && (
+          <>
+            <a href={`#/order/addEvaluation?orderId=${encodeURIComponent(orderId)}`}>
+              <Button shape="rounded">去评价</Button>
+            </a>
+            <Button color="primary" fill="outline" shape="rounded">
+              再来一单
+            </Button>
+          </>
         )}
-        {isEvaluated && inEvaluated && (
+        {orderPage === 'all' && isEvaluated && (
           <div>
             <p>{evaluation}</p>
             <Button color="primary" fill="outline" shape="rounded">
@@ -74,7 +85,16 @@ const OrderCard: FC<{
             </Button>
           </div>
         )}
-        {!isEvaluated && (
+
+        {orderPage === 'evaluated' && (
+          <div>
+            <p>{evaluation}</p>
+            <Button color="primary" fill="outline" shape="rounded">
+              再来一单
+            </Button>
+          </div>
+        )}
+        {orderPage === 'notEvaluate' && (
           <>
             <a href={`#/order/addEvaluation?orderId=${encodeURIComponent(orderId)}`}>
               <Button shape="rounded">去评价</Button>
