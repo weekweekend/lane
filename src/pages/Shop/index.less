@@ -42,10 +42,9 @@
     }
     .shop-main-evaluation {
       padding: 0.6rem;
-      overflow-y: scroll;
       box-sizing: border-box;
       height: 100vh;
-
+      overflow-y: scroll;
       .evaluation-summary {
         padding: 0.8rem 0.6rem;
         display: flex;
@@ -105,8 +104,10 @@
       }
       .evaluation-content {
         margin-bottom: 6.5rem;
-        overflow-y: scroll;
       }
+    }
+    .shop-main-evaluation::-webkit-scrollbar {
+      width: 0;
     }
     .shop-main-intro {
       padding: 0.6rem;

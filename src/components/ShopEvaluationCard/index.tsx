@@ -1,7 +1,6 @@
-import { memo, FC, useState, useEffect } from 'react';
+import { FC, useState } from 'react';
 import './index.less';
 import { Avatar, Tag, Rate, Image } from 'antd-mobile';
-import { MoreOutline } from 'antd-mobile-icons';
 import { AiOutlineLike, AiTwotoneLike } from 'react-icons/ai';
 import request from 'utils/request';
 
@@ -21,9 +20,26 @@ const ShopEvaluationCard: FC<{
   content: string;
   image?: Array<string>;
   reply?: string;
+  hasReply: boolean;
+  hasRecommend: boolean;
   recommend?: string;
   like: boolean;
-}> = ({ id, avatar, name, anonymous, label, time, evaluation, content, image, reply, recommend, like }) => {
+}> = ({
+  id,
+  avatar,
+  name,
+  anonymous,
+  label,
+  time,
+  evaluation,
+  content,
+  image,
+  reply,
+  recommend,
+  like,
+  hasReply,
+  hasRecommend,
+}) => {
   const [isLike, setIsLike] = useState(like);
   return (
     <div className="shop-evaluation-card">
@@ -35,15 +51,14 @@ const ShopEvaluationCard: FC<{
               <span>匿名用户</span>
             ) : (
               <span>
-                {/^\w/.exec(name)}****
-                {/\w$/.exec(name)}
-                <Tag color="#2db7f5">{label}</Tag>
+                {/^./.exec(name)}****
+                {/.$/.exec(name)}
+                {label && <Tag color="#2db7f5">{label}</Tag>}
               </span>
             )}
-            <span className="valuate-card-time">2020-20-20</span>
+            <span className="valuate-card-time">{time}</span>
           </div>
         </div>
-        {/* <MoreOutline color={'#ccc'} fontSize={'1rem'} /> */}
       </div>
       <div className="evaluation-card-score">
         <div>
@@ -61,7 +76,7 @@ const ShopEvaluationCard: FC<{
           ))}
         </span>
       </div>
-      {reply && (
+      {hasReply && (
         <div className="evaluation-card-reply">
           <p>商家回复</p>
           {reply}
@@ -69,7 +84,7 @@ const ShopEvaluationCard: FC<{
       )}
 
       <div className="evaluation-card-like">
-        {recommend && (
+        {hasRecommend && (
           <div>
             TA的推荐：
             <Tag color={'#E9F6FE'} style={{ '--text-color': '#07A3EE' }}>

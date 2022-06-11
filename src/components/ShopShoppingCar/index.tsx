@@ -9,7 +9,7 @@ import request from 'utils/request';
 
 const ShopShoppingCar: FC<{
   goodsShoppingCartData: any;
-  onSetShopShoppingCartData: (del?: boolean) => void;
+  onSetShopShoppingCartData: (del?: boolean) => any;
 }> = ({ goodsShoppingCartData, onSetShopShoppingCartData }) => {
   const [isShowShoppingCar, setIsShowShoppingCar] = useState(false);
   const [height, setHeight] = useState('0');
@@ -31,7 +31,7 @@ const ShopShoppingCar: FC<{
           <div className="nav-left">
             已选商品
             <span>
-              包装费 <i>{goodsShoppingCartData.packing}元</i>
+              包装费 <i>{goodsShoppingCartData.packing?.toFixed(2)}元</i>
             </span>
           </div>
           <div
@@ -54,9 +54,10 @@ const ShopShoppingCar: FC<{
             <ShoppingCarCard
               key={item.id}
               {...item}
-              onSetNewList={() => {
-                onSetShopShoppingCartData();
-                request('shopShoppingCar', 'GET').then((data) => setHeight(`${data.data.rows?.length * 6}rem`));
+              onSetNewList={async () => {
+                const len = await onSetShopShoppingCartData();
+                if (len === 1) setHeight(`8rem`);
+                else setHeight(`${len * 7}rem`);
               }}
             />
           ))}
@@ -68,7 +69,7 @@ const ShopShoppingCar: FC<{
           disabled={!goodsShoppingCartData.rows?.length}
           onClick={() => {
             setIsShowShoppingCar(!isShowShoppingCar);
-            setHeight(height === '0' ? `${goodsShoppingCartData.rows?.length * 6}rem` : '0');
+            setHeight(height === '0' ? `${goodsShoppingCartData.rows?.length * 7}rem` : '0');
           }}
         >
           <Badge
@@ -85,20 +86,20 @@ const ShopShoppingCar: FC<{
           <div className="shopping-car-price">
             <div>
               <span className="shopping-car-price-after">
-                ￥<i>{goodsShoppingCartData.after || 0}</i>
+                ￥<i>{goodsShoppingCartData.after?.toFixed(2) || 0}</i>
               </span>
               <span className="shopping-car-price-before">
-                {goodsShoppingCartData?.before ? '￥' + goodsShoppingCartData?.before : ''}
+                {goodsShoppingCartData?.before ? '￥' + goodsShoppingCartData?.before?.toFixed(2) : ''}
               </span>
             </div>
             <div>
               {Boolean(goodsShoppingCartData?.predict) && (
                 <span className="shopping-car-price-estimated">
-                  预估到手<i>￥{goodsShoppingCartData?.predict}</i>
+                  预估到手<i>￥{goodsShoppingCartData?.predict?.toFixed(2)}</i>
                 </span>
               )}
               &nbsp;&nbsp;
-              <span>{'预估加配送费' + goodsShoppingCartData?.delivery || '免配送费'}</span>
+              <span>{'预估加配送费' + goodsShoppingCartData?.delivery?.toFixed(2) || '免配送费'}</span>
             </div>
           </div>
         </Button>
@@ -106,7 +107,9 @@ const ShopShoppingCar: FC<{
         <Button
           className="checkout"
           shape="rounded"
-          disabled={!goodsShoppingCartData.rows?.length}
+          disabled={
+            !goodsShoppingCartData.rows?.length || goodsShoppingCartData.before < goodsShoppingCartData.minPrice
+          }
           onClick={() => {
             window.location.href = `#/shop/settlement?shopId=${encodeURIComponent(shopId || '')}`;
           }}
@@ -116,9 +119,9 @@ const ShopShoppingCar: FC<{
               : { backgroundColor: '#209FFA' }
           }
         >
-          {!goodsShoppingCartData.rows?.length && '￥' + goodsShoppingCartData.minPrice + ' 起送'}
+          {!goodsShoppingCartData.rows?.length && '￥' + goodsShoppingCartData.minPrice?.toFixed(2) + ' 起送'}
           {goodsShoppingCartData.before < goodsShoppingCartData.minPrice &&
-            '差￥' + (goodsShoppingCartData.minPrice - goodsShoppingCartData.before) + ' 起送'}
+            '差￥' + (goodsShoppingCartData.minPrice - goodsShoppingCartData.before)?.toFixed(1) + ' 起送'}
           {goodsShoppingCartData.before >= goodsShoppingCartData.minPrice && '去结算'}
         </Button>
       </footer>

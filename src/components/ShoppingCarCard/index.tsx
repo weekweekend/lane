@@ -1,8 +1,6 @@
-import { FC, useState } from 'react';
-import { Image, Button, Popup, Stepper } from 'antd-mobile';
-import { CloseOutline, DownOutline } from 'antd-mobile-icons';
+import { FC } from 'react';
+import { Image, Stepper } from 'antd-mobile';
 import './index.less';
-import { BiMedal } from 'react-icons/bi';
 import request from 'utils/request';
 
 const ShoppingCarCard: FC<{
@@ -34,16 +32,16 @@ const ShoppingCarCard: FC<{
         )}
         <div className="shop-shoppingCar-card-price">
           <span>
-            ￥<i>{price}</i>
+            ￥<i>{price?.toFixed(2)}</i>
           </span>
           <Stepper
             max={maxNum}
             min={0}
             value={number}
             onChange={(val) => {
-              request('mock/test.json', 'PUT', { id: id, number: val }).then((data) => {
-                console.log('改变商品数量>>>服务器', data.data.msg);
-                data.data.msg === 'ok' && onSetNewList();
+              request('put', 'PUT', { id: id, number: val }).then((data) => {
+                console.log('改变商品数量>>>服务器');
+                data.success && onSetNewList();
               });
             }}
           />

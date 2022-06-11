@@ -1,14 +1,10 @@
-import { Button, Popup, Tag, Tabs, Swiper, Divider, Rate, Space, Toast, Stepper, Image } from 'antd-mobile';
-import { AddCircleOutline, LeftOutline, MinusCircleOutline, EnvironmentOutline } from 'antd-mobile-icons';
-import { useState, useEffect, useRef, FC } from 'react';
+import { Button, Popup, Stepper, Image } from 'antd-mobile';
+import { LeftOutline } from 'antd-mobile-icons';
+import { useState, useEffect, FC } from 'react';
 import { IoIosAddCircle, IoIosRemoveCircleOutline } from 'react-icons/io';
 
 import './index.less';
-import { SwiperRef } from 'antd-mobile/es/components/swiper';
-import GoodsContent from 'components/GoodsContent';
-import { Action } from 'antd-mobile/es/components/popover';
 import { RiMedalFill } from 'react-icons/ri';
-import ShopEvaluationCard from 'components/ShopEvaluationCard';
 import request from 'utils/request';
 import ShopShoppingCar from 'components/ShopShoppingCar';
 import ShopGoodsSelectCard from '../ShopGoodsSelectCard';
@@ -79,9 +75,9 @@ const GoodsDetails: FC<{
         <div>
           <div>
             <span className="goods-details-des-price">
-              ￥<i>{goodsDetails.price} </i>
+              ￥<i>{goodsDetails.price?.toFixed(2)} </i>
             </span>
-            <span>包装费￥{goodsDetails.packing}/份</span>
+            <span>包装费￥{goodsDetails.packing?.toFixed(2)}/份</span>
           </div>
 
           {curNum === 0 && (

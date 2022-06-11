@@ -111,6 +111,7 @@ const ShopGoodsCard: FC<{
                   color="#209FFA"
                   onClick={(e) => {
                     e.stopPropagation();
+                    onSetShopShoppingCartData();
                     setCurNum(curNum - 1);
                   }}
                 />
@@ -120,6 +121,7 @@ const ShopGoodsCard: FC<{
                   color="#209FFA"
                   onClick={(e) => {
                     e.stopPropagation();
+                    onSetShopShoppingCartData();
                     setCurNum(curNum + 1);
                     isShowGoodsChoose && setIsShowGoodsChoose(true);
                   }}

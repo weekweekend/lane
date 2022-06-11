@@ -10,7 +10,6 @@ import ShopEvaluationCard from 'components/ShopEvaluationCard';
 import request from 'utils/request';
 import { useSearchParams } from 'react-router-dom';
 import ShopShoppingCar from 'components/ShopShoppingCar';
-import { useEventListener } from 'ahooks';
 import sleep from 'utils/sleep';
 
 const tabItems = [
@@ -29,6 +28,7 @@ const Shop = () => {
   const [shopScroll, setShopScroll] = useState(0);
   const [evaluationCurTag, setEvaluationCurTag] = useState('1');
   const [shopEvaluationList, setShopEvaluationList] = useState<Array<any>>([]);
+  const [shopScore, setShopScore] = useState<any>();
   const [shopIntro, setShopIntro] = useState<any>({});
   const [goodsShoppingCartData, setGoodsShoppingCartData] = useState<any>({});
   const [shopData, setShopData] = useState<any>({});
@@ -36,20 +36,12 @@ const Shop = () => {
 
   const [search] = useSearchParams();
   const shopId = search.get('shopId');
-
-  useEventListener(
-    'scroll',
-    (e) => {
-      setShopScroll(e.target.scrollTop);
-    },
-    { target: document.querySelector('#app') },
-  );
-
   useEffect(() => {
     // todo: aHooks -> useEv.....
     // addE removeE 第二个参数必须是同一个函数
 
     request('curShop', 'GET', { shopId: shopId }).then((data) => setShopData(data.data));
+    console.log('拉取了');
     request('shopShoppingCar', 'GET', { shopId: shopId }).then((data) => {
       console.log('拉取购物车信息 ');
       setGoodsShoppingCartData(data.data);
@@ -77,17 +69,20 @@ const Shop = () => {
   };
 
   const onMore = () => setIsShowMore(!isShowMore);
-  const onSetShopShoppingCartData = (del?: Boolean) =>
-    request('shopShoppingCar', 'GET', { id: shopId }).then((data) => {
+  const onSetShopShoppingCartData = async (del?: Boolean) => {
+    let len = 0;
+    await request('shopShoppingCar', 'GET', { id: shopId }).then((data) => {
       if (del) {
         setGoodsShoppingCartData({ rows: [], delivery: data.data.delivery, minPrice: data.data.minPrice });
         console.log('清空购物车');
       } else {
         console.log('拉取购物车信息<<<服务器');
         setGoodsShoppingCartData(data.data);
+        len = data.data.rows.length;
       }
     });
-
+    return len;
+  };
   return (
     <div style={{ position: 'relative' }}>
       <div
@@ -122,11 +117,11 @@ const Shop = () => {
               const index = tabItems.findIndex((item) => item.key === key);
               setActiveIndex(index);
               swiperRef.current?.swipeTo(index);
-              index === 0 && request('curShop', 'GET', { shopId: shopId }).then((data) => setShopData(data.data));
               index === 1 &&
-                request('shopEvaluation', 'GET', { shopId: shopId }).then((data) =>
-                  setShopEvaluationList(data.data.rows),
-                );
+                request('shopEvaluation', 'GET', { shopId: shopId }).then((data) => {
+                  setShopEvaluationList(data.data.rows);
+                  setShopScore(data.data);
+                });
               index === 2 && request('shopIntro', 'GET', { shopId: shopId }).then((data) => setShopIntro(data.data));
             }}
           >
@@ -157,21 +152,21 @@ const Shop = () => {
               <div className="evaluation-summary">
                 <div className="evaluation-score">
                   <div>
-                    <h1>4.9</h1>
+                    <h1>{shopScore?.score.toFixed(1)}</h1>
                     <span>
-                      高于附近0.00%的商家
-                      <Rate readOnly value={4.9} />
+                      高于附近{shopScore?.morethan.toFixed(2)}%的商家
+                      <Rate readOnly value={shopScore?.score} />
                     </span>
                   </div>
                   <div>
                     <span>
-                      味道 <strong>4.9</strong>
+                      味道 <strong>{shopScore?.taste.toFixed(1)}</strong>
                     </span>
                     <span>
-                      包装<strong>4.9</strong>
+                      包装<strong>{shopScore?.packing.toFixed(1)}</strong>
                     </span>
                     <span>
-                      配送满意度<strong>93%</strong>
+                      配送满意度<strong>{shopScore?.deliver.toFixed(1)}%</strong>
                     </span>
                   </div>
                 </div>
@@ -204,6 +199,9 @@ const Shop = () => {
                   onChange={(v) => {
                     if (v.length) {
                       setEvaluationCurTag(v[0]);
+                      request('shopEvaluation', 'GET', { shopId: shopId }).then((data) => {
+                        setShopEvaluationList(data.data.rows);
+                      });
                     }
                   }}
                 />
