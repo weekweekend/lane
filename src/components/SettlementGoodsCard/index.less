@@ -27,12 +27,22 @@
     }
   }
   .settlement-goods-card-right {
-    width: 4rem;
+    display: flex;
+    flex-direction: column;
+    width: 5rem;
     text-align: right;
-    font-weight: 600;
-    font-size: 0.9rem;
-    i {
-      font-size: 0.7rem;
+    > div {
+      font-size: 0.75rem;
+      display: flex;
+      justify-content: flex-end;
+      align-items: baseline;
+      i {
+        font-weight: 600;
+        font-size: 0.6rem;
+      }
+      h3 {
+        font-size: 0.9rem;
+      }
     }
   }
 }

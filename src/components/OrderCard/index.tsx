@@ -25,6 +25,7 @@ const OrderCard: FC<{
       className="order-card"
       onClick={(e) => {
         e.stopPropagation();
+        console.log('去详情');
         window.location.href = `#/order/orderDetails?orderId=${encodeURIComponent(orderId)}`;
       }}
     >
@@ -72,7 +73,7 @@ const OrderCard: FC<{
             <a href={`#/order/addEvaluation?orderId=${encodeURIComponent(orderId)}`}>
               <Button shape="rounded">去评价</Button>
             </a>
-            <Button color="primary" fill="outline" shape="rounded">
+            <Button color="primary" fill="outline" shape="rounded" onClick={(e) => e.stopPropagation()}>
               再来一单
             </Button>
           </>
@@ -97,7 +98,9 @@ const OrderCard: FC<{
         {orderPage === 'notEvaluate' && (
           <>
             <a href={`#/order/addEvaluation?orderId=${encodeURIComponent(orderId)}`}>
-              <Button shape="rounded">去评价</Button>
+              <Button shape="rounded" onClick={(e) => e.stopPropagation()}>
+                去评价
+              </Button>
             </a>
             <Button color="primary" fill="outline" shape="rounded">
               再来一单

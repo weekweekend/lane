@@ -7,6 +7,7 @@ import SettlementGoodsCard from 'components/SettlementGoodsCard';
 import request from 'utils/request';
 import AddressCard from 'components/AddressCard';
 import { useLocation, useSearchParams } from 'react-router-dom';
+import sleep from 'utils/sleep';
 
 const Settlement = () => {
   const [addrList, setAddrList] = useState([]);
@@ -15,6 +16,7 @@ const Settlement = () => {
   const [isShowAddrSelect, setIsShowAddrSelect] = useState(false);
   const [params] = useSearchParams();
   const shopId = params.get('shopId');
+
   useEffect(() => {
     request('address', 'GET').then((data) => {
       setAddrList(data.data.rows);
@@ -114,14 +116,14 @@ const Settlement = () => {
             <span>包装费</span>
             <div>
               <i>￥</i>
-              {shopPurchases.packing}
+              {shopPurchases.packing?.toFixed(2)}
             </div>
           </div>
           <div>
             <span>配送费</span>
             <div>
               <i>￥</i>
-              {shopPurchases.delivery}
+              {shopPurchases.delivery?.toFixed(2)}
             </div>
           </div>
           <div>
@@ -131,7 +133,7 @@ const Settlement = () => {
             </span>
             <div style={{ color: 'orangered' }}>
               <i>-￥</i>
-              {shopPurchases.discount}
+              {shopPurchases.discount?.toFixed(2)}
               <RightOutline fontSize={'.8rem'} color="#999" />
             </div>
           </div>
@@ -140,10 +142,10 @@ const Settlement = () => {
           <span>优惠说明</span>
           <div>
             <div>
-              已优惠<i>￥{shopPurchases.totalDiscount}</i>
+              已优惠<i>￥{shopPurchases.totalDiscount?.toFixed(2)}</i>
             </div>
             <span>
-              小计￥<i>{shopPurchases.totalPrice}</i>
+              小计￥<i>{shopPurchases.totalPrice?.toFixed(2)}</i>
             </span>
           </div>
         </div>
@@ -153,11 +155,22 @@ const Settlement = () => {
         <div>
           <span>
             合计 <strong>￥</strong>
-            <i>{shopPurchases.totalPrice}</i>
+            <i>{shopPurchases.totalPrice?.toFixed(2)}</i>
           </span>
-          <div>已优惠￥{shopPurchases.totalDiscount}</div>
+          <div>已优惠￥{shopPurchases.totalDiscount?.toFixed(2)}</div>
         </div>
-        <Button color="primary" shape="rounded" onClick={() => console.log('提交订单')}>
+        <Button
+          color="primary"
+          shape="rounded"
+          onClick={() => {
+            request('submitOrder', 'POST').then(async (data) => {
+              if (data.success) {
+                await sleep(1000);
+                window.location.href = window.location.href = `#/order/orderDetails?orderId=${data.orderId}&&state=1`;
+              }
+            });
+          }}
+        >
           提交订单
         </Button>
       </div>
