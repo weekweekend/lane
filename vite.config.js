@@ -1,5 +1,6 @@
 import path from 'path';
 import react from '@vitejs/plugin-react';
+import legacyPlugin from '@vitejs/plugin-legacy';
 
 export default () => ({
   base: './',
