@@ -27,7 +27,6 @@ root.render(
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
-        {/* todo:props控制渲染结果 只使用一个页面，一个接口 */}
         <Route path="order" element={<Order />} />
         <Route path="mine" element={<Mine />} />
         <Route path="*" element={<Page404 />} />

@@ -27,7 +27,7 @@ export default () => ({
   plugins: [
     react(),
     legacyPlugin({
-      targets: ['chrome 52'], // 需要兼容的目标列表，可以设置多个
+      targets: ['chrome 78', 'chrome 92'], // 需要兼容的目标列表，可以设置多个
       additionalLegacyPolyfills: ['regenerator-runtime/runtime'], // 面向IE11时需要此插件
     }),
   ],
