@@ -41,6 +41,8 @@ export default () => ({
         assetFileNames: '[name][extname]',
       },
     },
+    target: ['chrome78'],
+    cssTarget: ['chrome78'],
   },
 
   server: {
