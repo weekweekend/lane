@@ -16,6 +16,7 @@ const Order = () => {
     setOrderList([...orderList, ...append]);
     setHasMore(append.length > 0 && orderList.length < 25);
   }
+
   return (
     // todo：无限滚动
     <div className="order">
@@ -26,7 +27,6 @@ const Order = () => {
           setCurOrderPage(val);
           setOrderList([]);
           setHasMore(true);
-          request('orders', 'GET', { type: val }).then((data) => setOrderList(data.data.rows));
         }}
       >
         <Tabs.Tab title="全部" key="all" />

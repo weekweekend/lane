@@ -1,6 +1,5 @@
 import path from 'path';
 import react from '@vitejs/plugin-react';
-import legacyPlugin from '@vitejs/plugin-legacy';
 
 export default () => ({
   base: './',
@@ -24,13 +23,7 @@ export default () => ({
     },
   },
 
-  plugins: [
-    react(),
-    legacyPlugin({
-      targets: ['chrome 78', 'chrome 92'], // 需要兼容的目标列表，可以设置多个
-      additionalLegacyPolyfills: ['regenerator-runtime/runtime'], // 面向IE11时需要此插件
-    }),
-  ],
+  plugins: [react()],
 
   build: {
     cssCodeSplit: false,
@@ -41,8 +34,6 @@ export default () => ({
         assetFileNames: '[name][extname]',
       },
     },
-    target: ['chrome78'],
-    cssTarget: ['chrome78'],
   },
 
   server: {
