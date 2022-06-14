@@ -9,6 +9,7 @@ package-lock.json
 # production
 /dist
 /mock
+stats.html
 
 # misc
 .DS_Store

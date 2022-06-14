@@ -1,8 +1,9 @@
 import path from 'path';
 import react from '@vitejs/plugin-react';
+import { visualizer } from 'rollup-plugin-visualizer';
 
 export default () => ({
-  base: './',
+  base: 'https://eele-1251241442.cos.ap-shanghai.myqcloud.com/',
   resolve: {
     alias: {
       components: path.resolve(__dirname, './src/components'),
@@ -23,14 +24,29 @@ export default () => ({
     },
   },
 
-  plugins: [react()],
+  plugins: [react(), visualizer({ open: true })],
 
   build: {
     cssCodeSplit: false,
     rollupOptions: {
       output: {
-        entryFileNames: '[name].js',
-        chunkFileNames: '[name].js',
+        // //最小拆包
+        // manualChunks: (id) => {
+        //   if (id.includes('node_modules')) {
+        //     console.log(id.toString().split('node_modules/')[1].split('/'));
+        //     //return 的是[name]
+        //     return id.toString().split('node_modules/')[1].split('/')[0].toString();
+        //   }
+        // }, // 用于从入口点创建的块的打包输出格式[name]表示文件名,[hash]表示该文件内容hash值
+        // entryFileNames: 'js/[name].[hash].js', // 用于命名代码拆分时创建的共享块的输出命名
+        // chunkFileNames: 'js/[name].[hash].js', // 用于输出静态资源的命名，[ext]表示文件扩展名
+        // assetFileNames: '[ext]/[name].[hash].[ext]',
+        manualChunks: {
+          'react-dom': ['react-dom'],
+          'antd-mobile': ['antd-mobile'],
+        },
+        entryFileNames: 'js/[name].js',
+        chunkFileNames: 'js/[name].js',
         assetFileNames: '[name][extname]',
       },
     },
