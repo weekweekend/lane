@@ -37,7 +37,15 @@ const Mine = () => {
           登陆密码
         </List.Item>
       </List>
-      <Button color="danger" shape="rounded" block>
+      <Button
+        color="danger"
+        shape="rounded"
+        block
+        onClick={() => {
+          localStorage.removeItem('token');
+          window.location.reload();
+        }}
+      >
         退出当前账号
       </Button>
     </div>

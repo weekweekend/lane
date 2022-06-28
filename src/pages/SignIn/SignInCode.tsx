@@ -20,8 +20,8 @@ const SignInCode = () => {
       emailCode: values.code,
     };
     if (phoneReg.test(values.phone) && codeReg.test(values.code) && values.agree)
-      request('/user/loginByCode', 'POST', searchParams, { 'Content-Type': 'application/json' })?.then((data) => {
-        if (data.msg === 'success') {
+      request('loginByCode', 'POST', searchParams, { 'Content-Type': 'application/json' }, false)?.then((data) => {
+        if (data.success) {
           console.log(data);
           localStorage.setItem('token', data.data);
           window.location.href = '#/mine';
@@ -59,12 +59,14 @@ const SignInCode = () => {
             primary: true,
             onClick: () => {
               form.setFieldsValue({ agree: true });
-              request('user/loginByCode', 'POST', searchParams)?.then((data) => {
-                if (data.msg === 'success') {
-                  localStorage.setItem('token', data.data);
-                  window.location.href = '#/mine';
-                }
-              });
+              request('loginByCode', 'POST', searchParams, { 'Content-Type': 'application/json' }, false)?.then(
+                (data) => {
+                  if (data.success) {
+                    localStorage.setItem('token', data.data);
+                    window.location.href = '#/mine';
+                  }
+                },
+              );
             },
           },
         ],
@@ -83,9 +85,9 @@ const SignInCode = () => {
   const getCode = () => {
     const val = form.getFieldValue('phone');
     console.log(val);
-    request('email/sendMail', 'GET', { phone: val })?.then((data) => {
+    request('getCode', 'GET', { phone: val }, {}, false)?.then((data) => {
       console.log(data);
-      if (data.msg === 'success') {
+      if (data.success) {
         setIsShowCountdown(true);
         setCanGetCode(false);
       } else {

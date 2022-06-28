@@ -15,8 +15,12 @@ const SignInPassword = () => {
       password: values.password,
     };
     if (values.username && values.password && values.agree)
-      request('/user/loginByPassword', 'POST', searchParams)?.then((data) => {
-        if (data.data.msg === 'ok') window.location.href = '#/mine';
+      request('loginByPassword', 'POST', searchParams, { 'Content-Type': 'application/json' }, false)?.then((data) => {
+        if (data.success) {
+          console.log(data);
+          localStorage.setItem('token', data.data);
+          window.location.href = '#/mine';
+        }
       });
     if (!values.username) {
       Toast.show({
@@ -46,9 +50,15 @@ const SignInPassword = () => {
             primary: true,
             onClick: () => {
               form.setFieldsValue({ agree: true });
-              request('mock/test.json', 'POST', searchParams)?.then((data) => {
-                if (data.data.msg === 'ok') window.location.href = '#/mine';
-              });
+              request('loginByPassword', 'POST', searchParams, { 'Content-Type': 'application/json' }, false)?.then(
+                (data) => {
+                  if (data.success) {
+                    console.log(data);
+                    localStorage.setItem('token', data.data);
+                    window.location.href = '#/mine';
+                  }
+                },
+              );
             },
           },
         ],
