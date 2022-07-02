@@ -1,8 +1,8 @@
 import ShopCard from 'components/ShopCard';
 import { FC, useState, useEffect } from 'react';
 import './index.less';
-import { Swiper, Grid, Divider, InfiniteScroll } from 'antd-mobile';
-import { SearchOutline, SmileFill } from 'antd-mobile-icons';
+import { Swiper, Grid, InfiniteScroll } from 'antd-mobile';
+import { SearchOutline } from 'antd-mobile-icons';
 import { Link } from 'react-router-dom';
 import { RiArrowDownSFill } from 'react-icons/ri';
 import request from 'utils/request';
@@ -111,12 +111,20 @@ const tmp = [
     },
   ],
 ];
-
+let obj = {
+  location: '116.481488,39.990464',
+  keywords: '',
+  types: '050301',
+  offset: 20,
+  page: 1,
+  extensions: 'all',
+};
 const HomePage: FC<{}> = () => {
   const [homeHotSearch, setHomeHotSearch] = useState([]);
   const [homeShopList, setHomeShopList] = useState<Array<any>>([]);
   const [homeCurAddress, setHomeCurAddress] = useState('');
   const [hasMore, setHasMore] = useState(true);
+
   useEffect(() => {
     request('hotSearch', 'GET').then((data) => setHomeHotSearch(data.data.rows));
     request('address', 'GET').then((data) => {
@@ -138,6 +146,7 @@ const HomePage: FC<{}> = () => {
         <Link to="address">{homeCurAddress} &nbsp;</Link>
         <RiArrowDownSFill />
       </div>
+
       <Link to="search" className="home-search">
         <span>
           <div>

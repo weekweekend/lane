@@ -1,5 +1,5 @@
-import React, { Suspense, useState, useEffect } from 'react';
-import { Form, Input, Button, Radio, Toast, Modal, Checkbox } from 'antd-mobile';
+import { useState } from 'react';
+import { Button } from 'antd-mobile';
 import { CloseOutline } from 'antd-mobile-icons';
 import './index.less';
 import SignInCode from './SignInCode';

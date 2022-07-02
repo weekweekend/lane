@@ -1,8 +1,6 @@
-import { LeftOutline, DownOutline } from 'antd-mobile-icons';
-import { Form, NavBar, Input, Button, Modal, Toast } from 'antd-mobile';
+import { LeftOutline } from 'antd-mobile-icons';
 import './index.less';
-import { useEffect, useState } from 'react';
-import request from 'utils/request';
+import { useState } from 'react';
 import ProvideNumber from './ProvideNumber';
 import VerifyNumber from './VerifyNumber';
 import ResetPassword from './ResetPassword';

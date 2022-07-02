@@ -1,5 +1,5 @@
-import React, { Suspense, useState, useEffect } from 'react';
-import { Form, Input, Button, Radio, Toast, Modal, Checkbox, Dialog } from 'antd-mobile';
+import { useState } from 'react';
+import { Form, Input, Button, Radio, Toast, Modal } from 'antd-mobile';
 import './index.less';
 import request from 'utils/request';
 import Countdown from 'components/Countdown';

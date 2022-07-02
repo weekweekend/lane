@@ -29,7 +29,7 @@ const VerifyNumber: FC<{ phone: string; onVerifyNumber: () => void }> = ({ phone
   };
 
   const getCode = () => {
-    request('code', 'GET', { phone: phone }).then((data) => {
+    request('getCode', 'GET', { phone: phone }).then((data) => {
       if (data.success) {
         setIsShowCountdown(true);
         setCanGetCode(false);

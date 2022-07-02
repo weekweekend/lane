@@ -5,6 +5,7 @@ function request(
   method: 'GET' | 'POST' | 'PUT' | 'DELETE',
   params: Record<string, string | number | null | undefined> = {},
   headers: Record<string, string> = method === 'GET' ? {} : { 'Content-Type': 'application/json' },
+  /** 是否需要token验证 */
   useToken: boolean = true,
 ) {
   const token = localStorage.getItem('token');

@@ -11,6 +11,7 @@ const Address = () => {
   useEffect(() => {
     request('address', 'GET').then((data) => {
       setAddressList(data.data.rows);
+
       const curIdx = data.data.rows.findIndex((item: { cur: boolean }) => item.cur);
       if (curIdx >= 0) setCurAddress(data.data.rows[curIdx]);
       console.log(curIdx);
