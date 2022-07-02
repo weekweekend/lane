@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react';
 import { visualizer } from 'rollup-plugin-visualizer';
 
 export default () => ({
-  base: 'https://eele-1251241442.cos.ap-shanghai.myqcloud.com/',
+  base: 'https://eele-1251241442.cos.ap-shanghai.myqcloud.com/dist/',
   resolve: {
     alias: {
       components: path.resolve(__dirname, './src/components'),
