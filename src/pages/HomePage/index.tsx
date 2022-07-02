@@ -1,8 +1,9 @@
 import ShopCard from 'components/ShopCard';
 import { FC, useState, useEffect } from 'react';
-import './index.less';
+
 import { Swiper, Grid, InfiniteScroll } from 'antd-mobile';
 import { SearchOutline } from 'antd-mobile-icons';
+import './index.less';
 import { Link } from 'react-router-dom';
 import { RiArrowDownSFill } from 'react-icons/ri';
 import request from 'utils/request';
