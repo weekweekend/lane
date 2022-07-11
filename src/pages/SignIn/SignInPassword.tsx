@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Form, Input, Button, Radio, Toast, Modal } from 'antd-mobile';
 import './index.less';
 import request from 'utils/request';
@@ -6,6 +6,12 @@ import request from 'utils/request';
 const SignInPassword = () => {
   const [canSubmit, setCanSubmit] = useState(false);
 
+  useEffect(() => {
+    form.setFieldsValue({
+      username: 18651379793,
+      password: `asd12345`,
+    });
+  }, []);
   const [form] = Form.useForm();
 
   const onPasswordFinish = ({ ...values }) => {

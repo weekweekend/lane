@@ -1,14 +1,20 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Form, Input, Button, Radio, Toast, Modal } from 'antd-mobile';
 import './index.less';
 import request from 'utils/request';
 import Countdown from 'components/Countdown';
 
 const SignInCode = () => {
-  const [canGetCode, setCanGetCode] = useState(false);
+  const [canGetCode, setCanGetCode] = useState(true);
   const [isShowCountdown, setIsShowCountdown] = useState(false);
   const [canSubmit, setCanSubmit] = useState(false);
 
+  useEffect(() => {
+    form.setFieldsValue({
+      phone: 18651379793,
+      code: 123456,
+    });
+  }, []);
   const phoneReg = /^1[3-9]\d{9}$/;
   const codeReg = /^\d{6}$/;
 
