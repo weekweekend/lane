@@ -135,7 +135,7 @@ const HomePage: FC<{}> = () => {
   }, []);
 
   async function loadMore() {
-    await sleep(1000);
+    await sleep(300);
     const append = await request('shop', 'GET').then((data) => data.data.rows);
     setHomeShopList([...homeShopList, ...append]);
     setHasMore(append.length > 0 && homeShopList.length < 25);

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Form, Input, Button, Radio, Toast, Modal } from 'antd-mobile';
+import { Form, Input, Button, Checkbox, Toast, Modal } from 'antd-mobile';
 import './index.less';
 import request from 'utils/request';
 import Countdown from 'components/Countdown';
@@ -7,7 +7,7 @@ import Countdown from 'components/Countdown';
 const SignInCode = () => {
   const [canGetCode, setCanGetCode] = useState(true);
   const [isShowCountdown, setIsShowCountdown] = useState(false);
-  const [canSubmit, setCanSubmit] = useState(false);
+  const [canSubmit, setCanSubmit] = useState(true);
 
   useEffect(() => {
     form.setFieldsValue({
@@ -81,6 +81,7 @@ const SignInCode = () => {
   };
 
   const onValChange = ({ ...changed }, { ...all }) => {
+    console.log(all);
     if (changed.hasOwnProperty('phone')) {
       setCanGetCode(phoneReg.test(all.phone));
     }
@@ -105,60 +106,72 @@ const SignInCode = () => {
   };
 
   return (
-    <Form
-      className="sign-in"
-      layout="horizontal"
-      mode="card"
-      form={form}
-      onFinish={onFinish}
-      onValuesChange={onValChange}
-    >
-      <Form.Header>手机号登陆</Form.Header>
-      <Form.Item name="phone">
-        <Input placeholder="请输入手机号" clearable />
-      </Form.Item>
-      <Form.Item
-        name="code"
-        extra={
-          isShowCountdown ? (
-            <Button color="primary" fill="outline" shape="rounded" size="small" disabled>
-              已发送（
-              <Countdown
-                diff={59}
-                onEnd={() => {
-                  setIsShowCountdown(false);
-                  setCanGetCode(true);
-                }}
-              />
-              s）
-            </Button>
-          ) : (
-            <Button color="primary" fill="outline" shape="rounded" size="mini" disabled={!canGetCode} onClick={getCode}>
-              发送验证码
-            </Button>
-          )
-        }
+    <>
+      <Form
+        className="sign-in"
+        layout="horizontal"
+        mode="card"
+        form={form}
+        onFinish={onFinish}
+        onValuesChange={onValChange}
       >
-        <Input placeholder="验证码" clearable />
-      </Form.Item>
-      <Form.Item>
-        <Button block color="primary" shape="rounded" size="large" type="submit" disabled={!canSubmit}>
-          登 录
-        </Button>
-      </Form.Item>
-      <Form.Item name="agree" className="border-none">
-        <Radio
-          style={{
-            '--icon-size': '.8rem',
-            '--font-size': '.7rem',
-            '--gap': '.5rem',
-            lineHeight: 1.5,
-          }}
+        <Form.Header>手机号登陆</Form.Header>
+        <Form.Item name="phone">
+          <Input placeholder="请输入手机号" clearable />
+        </Form.Item>
+        <Form.Item
+          name="code"
+          extra={
+            isShowCountdown ? (
+              <Button color="primary" fill="outline" shape="rounded" size="small" disabled>
+                已发送（
+                <Countdown
+                  diff={59}
+                  onEnd={() => {
+                    setIsShowCountdown(false);
+                    setCanGetCode(true);
+                  }}
+                />
+                s）
+              </Button>
+            ) : (
+              <Button
+                color="primary"
+                fill="outline"
+                shape="rounded"
+                size="mini"
+                disabled={!canGetCode}
+                onClick={getCode}
+              >
+                发送验证码
+              </Button>
+            )
+          }
         >
-          未注册手机号登陆后将自动生成账号，且代表你以阅读并同意《用户服务协议》、《隐私政策》
-        </Radio>
-      </Form.Item>
-    </Form>
+          <Input placeholder="验证码" clearable />
+        </Form.Item>
+        <Form.Item>
+          <Button block color="primary" shape="rounded" size="large" type="submit" disabled={!canSubmit}>
+            登 录
+          </Button>
+        </Form.Item>
+        <Form.Item name="agree" className="border-none">
+          <Checkbox
+            style={{
+              '--icon-size': '.8rem',
+              '--font-size': '.7rem',
+              '--gap': '.5rem',
+              lineHeight: 1.5,
+            }}
+          >
+            未注册手机号登陆后将自动生成账号，且代表你以阅读并同意《用户服务协议》、《隐私政策》
+          </Checkbox>
+        </Form.Item>
+      </Form>
+      <p className="notice">
+        <strong>友情提示</strong>：本项目使用 mock 数据，交互中存在数据逻辑错误现象，望包涵
+      </p>
+    </>
   );
 };
 export default SignInCode;

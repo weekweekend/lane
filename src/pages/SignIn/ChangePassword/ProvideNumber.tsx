@@ -16,12 +16,14 @@ const ProvideNumber: FC<{
   useEffect(() => {
     form.setFieldsValue({
       curArea: curArea,
+      phone: 18651379793,
     });
-    request('area', 'GET').then((data) => setAreaList(data.data.rows));
+    setCurphone('18651379793');
+    request('area', 'GET', {}, {}, false)?.then((data) => setAreaList(data.data.rows));
   }, []);
 
   const onFinish = ({ ...values }) => {
-    request('isAccount', 'GET', { phone: values.phone }).then((data) => {
+    request('isAccount', 'GET', { phone: values.phone }, {}, false).then((data) => {
       if (data.data) {
         onProvideNumber(values.phone);
       } else {

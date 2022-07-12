@@ -8,18 +8,22 @@ import Countdown from 'components/Countdown';
 const VerifyNumber: FC<{ phone: string; onVerifyNumber: () => void }> = ({ phone, onVerifyNumber }) => {
   const [canGetCode, setCanGetCode] = useState(true);
   const [isShowCountdown, setIsShowCountdown] = useState(false);
-  const [canSubmit, setCanSubmit] = useState(false);
+  const [canSubmit, setCanSubmit] = useState(true);
 
   const codeReg = /^\d{6}$/;
 
   const [form] = Form.useForm();
-
+  useEffect(() => {
+    form.setFieldsValue({
+      code: 654321,
+    });
+  }, []);
   const onFinish = ({ ...values }) => {
     const searchParams = {
       phone: phone,
       code: values.code,
     };
-    request('isAccount', 'GET', searchParams).then((data) => {
+    request('isAccount', 'GET', searchParams, {}, false).then((data) => {
       if (data.data) onVerifyNumber();
       else
         Toast.show({
@@ -29,7 +33,7 @@ const VerifyNumber: FC<{ phone: string; onVerifyNumber: () => void }> = ({ phone
   };
 
   const getCode = () => {
-    request('getCode', 'GET', { phone: phone }).then((data) => {
+    request('getCode', 'GET', { phone: phone }, {}, false).then((data) => {
       if (data.success) {
         setIsShowCountdown(true);
         setCanGetCode(false);

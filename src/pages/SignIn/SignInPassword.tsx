@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react';
-import { Form, Input, Button, Radio, Toast, Modal } from 'antd-mobile';
+import { Form, Input, Button, Checkbox, Toast, Modal, Radio } from 'antd-mobile';
 import './index.less';
 import request from 'utils/request';
 
 const SignInPassword = () => {
-  const [canSubmit, setCanSubmit] = useState(false);
-
+  const [canSubmit, setCanSubmit] = useState(true);
+  const [isShowPassword, setIsShowPassword] = useState(false);
+  const passwordReg = /(?!^(\d+|[a-zA-Z]+|[~!@#$%^&*()_.]+)$)^[\w~!@#$%^&*()_.]{6,18}$/;
+  const usernameReg = /^[a-zA-Z0-9_-]{4,16}$/;
   useEffect(() => {
     form.setFieldsValue({
       username: 18651379793,
-      password: `asd12345`,
+      password: `asd12345&`,
     });
   }, []);
   const [form] = Form.useForm();
@@ -27,6 +29,7 @@ const SignInPassword = () => {
           window.location.href = '#/mine';
         }
       });
+
     if (!values.username) {
       Toast.show({
         content: '请输入用户名',
@@ -72,8 +75,14 @@ const SignInPassword = () => {
   };
 
   const onValChange = ({ ...changed }, { ...all }) => {
-    if (all.username && all.password) {
-      setCanSubmit(true);
+    if (changed.hasOwnProperty('password')) {
+      setCanSubmit(passwordReg.test(changed.password) && all.username);
+    }
+    if (changed.hasOwnProperty('username')) {
+      setCanSubmit(usernameReg.test(changed.username) && all.password);
+    }
+    if (changed.hasOwnProperty('isShowPassword')) {
+      setIsShowPassword(changed.isShowPassword);
     }
   };
 
@@ -91,9 +100,22 @@ const SignInPassword = () => {
         <Input placeholder="用户名" clearable />
       </Form.Item>
       <Form.Item name="password">
-        <Input placeholder="密码" clearable type="password" />
+        <Input placeholder="密码" clearable type={isShowPassword ? 'text' : 'password'} />
       </Form.Item>
-      <Form.Item>
+      <Form.Item name="isShowPassword">
+        <Radio
+          style={{
+            '--icon-size': '.8rem',
+            '--font-size': '.7rem',
+            '--gap': '.5rem',
+            marginTop: '.5rem',
+            lineHeight: 1.5,
+          }}
+        >
+          显示密码
+        </Radio>
+      </Form.Item>
+      <Form.Item className="border-none">
         <Button block color="primary" shape="rounded" size="large" type="submit" disabled={!canSubmit}>
           登 录
         </Button>
@@ -102,7 +124,7 @@ const SignInPassword = () => {
         <a href="#/signIn/changePassword">忘记密码</a>
       </Form.Item>
       <Form.Item name="agree" className="border-none position-bottom">
-        <Radio
+        <Checkbox
           style={{
             '--icon-size': '.8rem',
             '--font-size': '.7rem',
@@ -111,7 +133,7 @@ const SignInPassword = () => {
           }}
         >
           已阅读并同意《用户服务协议》、《隐私政策》
-        </Radio>
+        </Checkbox>
       </Form.Item>
     </Form>
   );
