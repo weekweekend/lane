@@ -53,7 +53,6 @@ const SignInPassword = () => {
             text: '不同意',
             style: {
               textAlign: 'center',
-              width: `45%`,
               fontSize: `0.8rem`,
               border: `1px solid #ccc`,
               color: `#333`,
@@ -65,7 +64,6 @@ const SignInPassword = () => {
             primary: true,
             style: {
               textAlign: 'center',
-              width: `45%`,
               fontSize: `0.8rem`,
             },
             onClick: () => {

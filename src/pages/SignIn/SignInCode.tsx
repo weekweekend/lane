@@ -58,11 +58,21 @@ const SignInCode = () => {
           {
             key: 'disagree',
             text: '不同意',
+            style: {
+              textAlign: 'center',
+              fontSize: `0.8rem`,
+              border: `1px solid #ccc`,
+              color: `#333`,
+            },
           },
           {
             key: 'agree',
             text: '同意',
             primary: true,
+            style: {
+              textAlign: 'center',
+              fontSize: `0.8rem`,
+            },
             onClick: () => {
               form.setFieldsValue({ agree: true });
               request('loginByCode', 'POST', searchParams, { 'Content-Type': 'application/json' }, false)?.then(
