@@ -1,7 +1,6 @@
 import { createRoot } from 'react-dom/client';
 import { HashRouter, Route, Routes } from 'react-router-dom';
 import Layout from 'layouts/index';
-import List from 'pages/List';
 import Page404 from 'pages/404';
 import HomePage from 'pages/HomePage';
 import SignIn from 'pages/SignIn';

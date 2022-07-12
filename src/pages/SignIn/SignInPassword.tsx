@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Form, Input, Button, Checkbox, Toast, Modal, Radio } from 'antd-mobile';
+import { Form, Input, Button, Checkbox, Toast, Modal } from 'antd-mobile';
 import './index.less';
 import request from 'utils/request';
 
@@ -51,11 +51,23 @@ const SignInPassword = () => {
           {
             key: 'disagree',
             text: '不同意',
+            style: {
+              textAlign: 'center',
+              width: `45%`,
+              fontSize: `0.8rem`,
+              border: `1px solid #ccc`,
+              color: `#333`,
+            },
           },
           {
             key: 'agree',
             text: '同意',
             primary: true,
+            style: {
+              textAlign: 'center',
+              width: `45%`,
+              fontSize: `0.8rem`,
+            },
             onClick: () => {
               form.setFieldsValue({ agree: true });
               request('loginByPassword', 'POST', searchParams, { 'Content-Type': 'application/json' }, false)?.then(
@@ -103,7 +115,7 @@ const SignInPassword = () => {
         <Input placeholder="密码" clearable type={isShowPassword ? 'text' : 'password'} />
       </Form.Item>
       <Form.Item name="isShowPassword">
-        <Radio
+        <Checkbox
           style={{
             '--icon-size': '.8rem',
             '--font-size': '.7rem',
@@ -113,7 +125,7 @@ const SignInPassword = () => {
           }}
         >
           显示密码
-        </Radio>
+        </Checkbox>
       </Form.Item>
       <Form.Item className="border-none">
         <Button block color="primary" shape="rounded" size="large" type="submit" disabled={!canSubmit}>
