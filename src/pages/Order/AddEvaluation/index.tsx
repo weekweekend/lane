@@ -48,7 +48,7 @@ const AddEvaluation = () => {
   };
 
   async function mockUpload(file: File) {
-    await sleep(3000);
+    await sleep(2000);
     return {
       url: URL.createObjectURL(file),
     };

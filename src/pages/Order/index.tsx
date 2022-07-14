@@ -11,7 +11,7 @@ const Order = () => {
   const [hasMore, setHasMore] = useState(true);
 
   async function loadMore() {
-    await sleep(1000);
+    await sleep(500);
     const append = await request('orders', 'GET', { type: curOrderPage }).then((data) => data.data.rows);
     setOrderList([...orderList, ...append]);
     setHasMore(append.length > 0 && orderList.length < 25);

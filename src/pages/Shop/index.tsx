@@ -49,7 +49,7 @@ const Shop = () => {
   }, [shopId]);
 
   async function loadMore() {
-    await sleep(1000);
+    await sleep(500);
     const append = await request('shopEvaluation', 'GET', { shopId }).then((data) => data.data.rows);
     setShopEvaluationList([...shopEvaluationList, ...append]);
     setHasMore(append.length > 0 && shopEvaluationList.length < 25);

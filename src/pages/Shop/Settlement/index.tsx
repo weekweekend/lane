@@ -6,7 +6,7 @@ import { RiRedPacketFill } from 'react-icons/ri';
 import SettlementGoodsCard from 'components/SettlementGoodsCard';
 import request from 'utils/request';
 import AddressCard from 'components/AddressCard';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import sleep from 'utils/sleep';
 
 const Settlement = () => {

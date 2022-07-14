@@ -13,13 +13,9 @@ const SearchResult = () => {
   const [isShowResult, setIsShowResult] = useState(true);
   const [params] = useSearchParams();
   const keyVal = params.get('keyVal');
-  useEffect(() => {
-    if (keyVal) console.log('搜索了');
-    request('searchResult', 'GET', { keyVal: keyVal }).then((data) => setSearchResultList(data.data.rows));
-  }, [keyVal]);
 
   async function loadMore() {
-    await sleep(1000);
+    await sleep(500);
     const append = await request('searchResult', 'GET', { keyVal: keyVal }).then((data) => data.data.rows);
     setSearchResultList([...searchResultList, ...append]);
     setHasMore(append.length > 0 && searchResultList.length < 25);
