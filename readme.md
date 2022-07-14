@@ -24,8 +24,10 @@ npm run build
 npm run preview
 ```
 
-## 项目演示
+## 项目图片
 
 #### [项目在线地址](https://eele.ga/)
 
-![](images/show.gif)
+![](images/1.jpg)
+![](images/2.jpg)
+![](images/3.jpg)
