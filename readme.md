@@ -28,6 +28,8 @@ npm run preview
 
 #### [项目在线地址](https://eele.ga/)
 
-![](images/1.jpg)
-![](images/2.jpg)
-![](images/3.jpg)
+![image](https://gitee.com/zhouz_927/notes/raw/main/%E6%B7%B7%E5%90%88/image/1.jpg)
+
+![image](https://gitee.com/zhouz_927/notes/raw/main/%E6%B7%B7%E5%90%88/image/2.jpg)
+
+![image](https://gitee.com/zhouz_927/notes/raw/main/%E6%B7%B7%E5%90%88/image/3.jpg)
