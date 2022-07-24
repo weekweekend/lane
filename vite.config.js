@@ -50,14 +50,14 @@ export default () => ({
         assetFileNames: '[name][extname]',
       },
     },
-    terserOptions: {
-      minify: 'terser',
-      compress: {
-        //生产环境时移除console
-        drop_console: true,
-        drop_debugger: true,
-      },
-    },
+    // terserOptions: {
+    //   minify: 'terser',
+    //   compress: {
+    //     //生产环境时移除console
+    //     drop_console: true,
+    //     drop_debugger: true,
+    //   },
+    // },
   },
 
   server: {
