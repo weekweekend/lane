@@ -57,7 +57,7 @@ const Shop = () => {
     setIsFocus(!isFocus);
     if (tmp)
       Toast.show({
-        content: '成功取消关注',
+        content: '取消关注成功',
       });
     else
       Toast.show({

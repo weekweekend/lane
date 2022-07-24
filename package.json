@@ -12,7 +12,7 @@
     "@amap/amap-jsapi-loader": "^1.0.1",
     "@uiw/react-amap": "^3.0.4",
     "ahooks": "^3.3.10",
-    "antd-mobile": "^5.11.2",
+    "antd-mobile": "5.11.2",
     "antd-mobile-icons": "^0.2.2",
     "dayjs": "^1.11.2",
     "lorem-ipsum": "^2.0.4",
