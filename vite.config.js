@@ -51,6 +51,7 @@ export default () => ({
       },
     },
     terserOptions: {
+      minify: 'terser',
       compress: {
         //生产环境时移除console
         drop_console: true,
