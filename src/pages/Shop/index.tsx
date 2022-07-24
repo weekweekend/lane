@@ -37,9 +37,6 @@ const Shop = () => {
   const [search] = useSearchParams();
   const shopId = search.get('shopId');
   useEffect(() => {
-    // todo: aHooks -> useEv.....
-    // addE removeE 第二个参数必须是同一个函数
-
     request('curShop', 'GET', { shopId: shopId }).then((data) => setShopData(data.data));
     console.log('拉取了');
     request('shopShoppingCar', 'GET', { shopId: shopId }).then((data) => {
@@ -60,7 +57,7 @@ const Shop = () => {
     setIsFocus(!isFocus);
     if (tmp)
       Toast.show({
-        content: '取消关注成功',
+        content: '成功取消关注',
       });
     else
       Toast.show({
