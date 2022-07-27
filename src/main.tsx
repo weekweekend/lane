@@ -28,7 +28,6 @@ root.render(
         <Route index element={<HomePage />} />
         <Route path="order" element={<Order />} />
         <Route path="mine" element={<Mine />} />
-        <Route path="*" element={<Page404 />} />
       </Route>
       <Route path="mine/nicknameEdit" element={<NicknameEdit />} />
       <Route path="mine/intro" element={<Intro />} />
@@ -44,6 +43,7 @@ root.render(
       <Route path="address/edit" element={<AddressEdit />}></Route>
       <Route path="search" element={<Search />}></Route>
       <Route path="search/searchResult" element={<SearchResult />}></Route>
+      <Route path="*" element={<Page404 />} />
     </Routes>
   </HashRouter>,
 );
