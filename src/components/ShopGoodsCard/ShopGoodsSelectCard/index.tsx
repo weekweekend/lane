@@ -1,10 +1,8 @@
-import { FC, useEffect, useState } from 'react';
-import { Image, Button, Popup, Stepper, Selector, Form } from 'antd-mobile';
-import { CloseOutline, DownOutline } from 'antd-mobile-icons';
+import { FC, useEffect } from 'react';
+import { Image, Button, Stepper, Selector, Form } from 'antd-mobile';
+import { CloseOutline } from 'antd-mobile-icons';
 import './index.less';
-import { BiMedal } from 'react-icons/bi';
 import request from 'utils/request';
-import Item from 'antd-mobile/es/components/dropdown/item';
 
 export interface IShopXXXProps {
   onClose: () => void;
@@ -35,10 +33,6 @@ const ShopGoodsSelectCard: FC<IShopXXXProps> = ({
   curNum,
   setCurNum,
 }) => {
-  const [goodsNum, setGoodsNum] = useState(0);
-  const [tasteVal, setTasteVal] = useState();
-  const [shoppingCart, setShoppingCart] = useState<any>({});
-
   const onFinish = ({ ...values }) => {
     request('put', 'PUT', values).then((data) => {
       if (data.success) {

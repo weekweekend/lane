@@ -1,5 +1,5 @@
-import React, { Suspense, useState, useEffect, FC } from 'react';
-import { Form, Input, Button, Radio, Toast, Modal, Checkbox, Dialog } from 'antd-mobile';
+import { useState, useEffect, FC } from 'react';
+import { Form, Input, Button, Toast } from 'antd-mobile';
 import { InformationCircleOutline } from 'antd-mobile-icons';
 import './index.less';
 import request from 'utils/request';

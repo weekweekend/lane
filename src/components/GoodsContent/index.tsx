@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, FC } from 'react';
+import { useEffect, useRef, useState, FC } from 'react';
 import { SideBar } from 'antd-mobile';
 import './index.less';
 import { useThrottleFn } from 'ahooks';

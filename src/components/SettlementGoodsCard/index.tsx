@@ -1,8 +1,6 @@
-import { FC, useState } from 'react';
-import { Tag, Image, Divider } from 'antd-mobile';
-import { CloseOutline, DownOutline } from 'antd-mobile-icons';
+import { FC } from 'react';
+import { Image } from 'antd-mobile';
 import './index.less';
-import { Link } from 'react-router-dom';
 
 const SettlementGoodsCard: FC<{
   isOrder?: boolean;

@@ -1,5 +1,5 @@
-import { LeftOutline, DownOutline } from 'antd-mobile-icons';
-import { Form, NavBar, Input, Button, Modal, Toast } from 'antd-mobile';
+import { DownOutline } from 'antd-mobile-icons';
+import { Form, Input, Button, Modal, Toast } from 'antd-mobile';
 import './index.less';
 import { useEffect, useState, FC } from 'react';
 import request from 'utils/request';

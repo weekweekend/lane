@@ -1,7 +1,7 @@
-import React, { memo, FC, useState, useEffect, useImperativeHandle, forwardRef } from 'react';
+import { FC, useState } from 'react';
 import { Button, Badge, Popup } from 'antd-mobile';
 import { DeleteOutline } from 'antd-mobile-icons';
-import { Outlet, Link, useLocation, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { RiShoppingBag3Fill } from 'react-icons/ri';
 import './index.less';
 import ShoppingCarCard from 'components/ShoppingCarCard';

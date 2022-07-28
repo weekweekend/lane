@@ -1,5 +1,4 @@
 import { Button, List, Avatar } from 'antd-mobile';
-import { Outlet, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import './index.less';
 import { MdPhoneAndroid } from 'react-icons/md';
