@@ -132,7 +132,7 @@ const HomePage: FC<{}> = () => {
     await sleep(300);
     const append = await request('shop', 'GET').then((data) => data.data.rows);
     setHomeShopList([...homeShopList, ...append]);
-    setHasMore(append.length > 0 && homeShopList.length < 25 && homeShopList.length > 1);
+    setHasMore(append.length > 0 && homeShopList.length < 55);
   }
 
   return (

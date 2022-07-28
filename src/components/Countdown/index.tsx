@@ -12,19 +12,19 @@ const Countdown: FC<{
   const ref = useRef<any>();
 
   useEffect(() => {
-    let tmp = diff;
     setRestTime(diff);
+    let tmp = diff;
+
     ref.current = setInterval(() => {
       setRestTime(--tmp);
       if (!tmp) {
-        console.log('清除计时器');
+        // console.log('清除计时器');
         clearInterval(ref.current);
         onEnd();
       }
     }, 1000);
 
     return () => {
-      console.log('清除计时器卸载时');
       clearInterval(ref.current);
       onEnd();
     };

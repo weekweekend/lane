@@ -105,7 +105,7 @@ const ShopGoodsSelectCard: FC<IShopXXXProps> = ({
             block
             color="primary"
             shape="rounded"
-            style={{ position: 'fixed', bottom: '1rem', width: '94%' }}
+            style={{ position: 'fixed', bottom: '1rem', width: '94%', fontSize: '.7rem' }}
           >
             选好了
           </Button>

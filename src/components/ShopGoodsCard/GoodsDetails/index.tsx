@@ -80,7 +80,7 @@ const GoodsDetails: FC<{
             <span>包装费￥{goodsDetails.packing?.toFixed(2)}/份</span>
           </div>
 
-          {curNum === 0 && (
+          {curNum === 0 && hasDetails && (
             <Button
               color="primary"
               shape="rounded"
@@ -106,7 +106,7 @@ const GoodsDetails: FC<{
               <IoIosAddCircle color="#209FFA" onClick={() => setIsShowSelect(true)} />
             </div>
           )}
-          {curNum > 0 && !hasDetails && (
+          {!hasDetails && (
             <div onClick={(e) => e.stopPropagation()}>
               <Stepper
                 min={minNum || 0}

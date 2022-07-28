@@ -50,7 +50,7 @@ const Shop = () => {
     await sleep(500);
     const append = await request('shopEvaluation', 'GET', { shopId }).then((data) => data.data.rows);
     setShopEvaluationList([...shopEvaluationList, ...append]);
-    setHasMore(append.length > 0 && shopEvaluationList.length < 25 && shopEvaluationList.length > 1);
+    setHasMore(append.length > 0 && shopEvaluationList.length < 25);
   }
 
   const onFocus = () => {

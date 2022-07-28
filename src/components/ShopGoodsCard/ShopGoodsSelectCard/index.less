@@ -45,19 +45,26 @@
     margin-top: 3rem;
   }
   .goods-select-num {
+    width: 100%;
     position: fixed;
     top: 6.7rem;
     z-index: 99;
     padding: 0.5rem 0;
     .adm-list-item-content {
-      justify-content: space-between;
+      display: flex;
+      // justify-content: flex-end;
       gap: 6.5rem;
+      .adm-stepper {
+        --height: 1.3rem;
+        --input-width: 1.5rem;
+        --button-font-size: 0.6rem;
+        --input-font-size: 0.6rem;
+      }
     }
   }
   .goods-select-select {
     width: 100%;
     margin-bottom: 1rem;
-
     .adm-space-horizontal {
       display: flex;
       flex-wrap: wrap;
