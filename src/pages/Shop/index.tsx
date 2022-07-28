@@ -36,6 +36,17 @@ const Shop = () => {
 
   const [search] = useSearchParams();
   const shopId = search.get('shopId');
+  useEffect(() => {
+    {
+      const scrollHandle = (e: { target: any }) => {
+        setShopScroll(e.target.scrollTop);
+      };
+      document.querySelector('#app')?.addEventListener('scroll', scrollHandle);
+      return () => {
+        document.querySelector('#app')?.removeEventListener('sroll', scrollHandle);
+      };
+    }
+  }, []);
 
   useEffect(() => {
     request('curShop', 'GET', { shopId: shopId }).then((data) => setShopData(data.data));
@@ -82,7 +93,7 @@ const Shop = () => {
     return len;
   };
   return (
-    <div style={{ position: 'relative' }}>
+    <div className="scrolll" style={{ position: 'relative' }}>
       <div
         className="shop-nav"
         style={{

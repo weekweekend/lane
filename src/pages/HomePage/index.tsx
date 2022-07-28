@@ -1,7 +1,7 @@
 import ShopCard from 'components/ShopCard';
 import { FC, useState, useEffect } from 'react';
 
-import { Swiper, Grid, InfiniteScroll } from 'antd-mobile';
+import { Swiper, Grid, InfiniteScroll, Skeleton } from 'antd-mobile';
 import { SearchOutline } from 'antd-mobile-icons';
 import './index.less';
 import { Link } from 'react-router-dom';
@@ -169,7 +169,19 @@ const HomePage: FC<{}> = () => {
             </Swiper.Item>
           ))}
         </Swiper>
-
+        {homeShopList.length <= 0 && (
+          <>
+            <br />
+            <Skeleton.Title animated />
+            <Skeleton.Paragraph lineCount={3} animated />
+            <br />
+            <Skeleton.Title animated />
+            <Skeleton.Paragraph lineCount={3} animated />
+            <br />
+            <Skeleton.Title animated />
+            <Skeleton.Paragraph lineCount={3} animated />
+          </>
+        )}
         {homeShopList.map((item) => (
           <ShopCard key={item.id} {...item} />
         ))}

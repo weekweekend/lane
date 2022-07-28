@@ -7,7 +7,6 @@ import SignIn from 'pages/SignIn';
 import Mine from 'pages/Mine';
 import ChangePassword from 'pages/SignIn/ChangePassword';
 import Shop from 'pages/Shop';
-import ShoppingCar from 'pages/ShoppingCar';
 import Address from 'pages/Address';
 import Search from 'pages/Search';
 import AddressEdit from 'pages/Address/AddressEdit';
@@ -38,7 +37,6 @@ root.render(
 
       <Route path="signIn" element={<SignIn />} />
       <Route path="signIn/changePassword" element={<ChangePassword />} />
-      <Route path="shoppingCar" element={<ShoppingCar />}></Route>
       <Route path="address" element={<Address />}></Route>
       <Route path="address/edit" element={<AddressEdit />}></Route>
       <Route path="search" element={<Search />}></Route>

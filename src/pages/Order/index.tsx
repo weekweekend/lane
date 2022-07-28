@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { Tabs, Divider, InfiniteScroll } from 'antd-mobile';
+import { useState } from 'react';
+import { Tabs, Skeleton, InfiniteScroll } from 'antd-mobile';
 import './index.less';
 import OrderCard from 'components/OrderCard';
 import request from 'utils/request';
@@ -35,6 +35,16 @@ const Order = () => {
       </Tabs>
 
       <div className="order-content">
+        {orderList.length <= 0 && (
+          <>
+            <Skeleton.Title animated />
+            <Skeleton.Paragraph lineCount={5} animated />
+            <Skeleton.Title animated />
+            <Skeleton.Paragraph lineCount={5} animated />
+            <Skeleton.Title animated />
+            <Skeleton.Paragraph lineCount={5} animated />
+          </>
+        )}
         {orderList.map((item: any) => (
           <OrderCard {...item} key={item.orderId} orderPage={curOrderPage} />
         ))}

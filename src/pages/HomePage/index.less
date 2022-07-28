@@ -66,6 +66,19 @@
   padding: 0 0.6rem;
   box-sizing: border-box;
 
+  .adm-skeleton-title {
+    height: 1.2rem;
+    --border-radius: 0.2rem;
+    margin: 0 0.6rem;
+  }
+  .adm-skeleton-paragraph {
+    margin: 0 0.6rem;
+    .adm-skeleton:nth-child((n-1)) {
+      --width: 100%;
+      --height: 0.7rem;
+      --border-radius: 0.2rem;
+    }
+  }
   .home-service {
     margin-bottom: 0.5rem;
     .adm-swiper-track-inner {

@@ -1,11 +1,11 @@
 /** 安全的 JSON 解析 */
-// export function parseJSON(text?: string | null) {
-//   try {
-//     return JSON.parse(text || '');
-//   } catch (e) {
-//     return null;
-//   }
-// }
+export function parseJSON(text?: string | null) {
+  try {
+    return JSON.parse(text || '');
+  } catch (e) {
+    return null;
+  }
+}
 
 /** 过滤对象 key/value */
 export function filterObject<T extends Record<string, any>>(

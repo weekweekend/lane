@@ -1,10 +1,10 @@
-import { InfiniteScroll } from 'antd-mobile';
+import { InfiniteScroll, Skeleton } from 'antd-mobile';
 import { useState, useEffect } from 'react';
 import './index.less';
 import request from 'utils/request';
 import ShopCard from 'components/ShopCard';
 import SearchNav from 'components/SearchNav';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import sleep from 'utils/sleep';
 
 const SearchResult = () => {
@@ -29,6 +29,18 @@ const SearchResult = () => {
     <>
       <SearchNav onShowB={(bl: boolean) => setIsShowResult(bl)} />
       <div style={isShowResult ? { display: 'block' } : { display: 'none' }}>
+        {searchResultList.length <= 0 && (
+          <div style={{ margin: '0 .7rem' }}>
+            <Skeleton.Title animated />
+            <Skeleton.Paragraph lineCount={3} animated />
+            <Skeleton.Title animated />
+            <Skeleton.Paragraph lineCount={3} animated />
+            <Skeleton.Title animated />
+            <Skeleton.Paragraph lineCount={3} animated />
+            <Skeleton.Title animated />
+            <Skeleton.Paragraph lineCount={3} animated />
+          </div>
+        )}
         {searchResultList.map((item: any) => (
           <ShopCard key={item.id} {...item} />
         ))}
