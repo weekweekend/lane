@@ -112,14 +112,7 @@ const tmp = [
     },
   ],
 ];
-let obj = {
-  location: '116.481488,39.990464',
-  keywords: '',
-  types: '050301',
-  offset: 20,
-  page: 1,
-  extensions: 'all',
-};
+
 const HomePage: FC<{}> = () => {
   const [homeHotSearch, setHomeHotSearch] = useState([]);
   const [homeShopList, setHomeShopList] = useState<Array<any>>([]);
@@ -128,6 +121,7 @@ const HomePage: FC<{}> = () => {
 
   useEffect(() => {
     request('hotSearch', 'GET').then((data) => setHomeHotSearch(data.data.rows));
+
     request('address', 'GET').then((data) => {
       const idx = data.data.rows.findIndex((item: { cur: boolean }) => item.cur);
       setHomeCurAddress(data.data.rows[idx].address + data.data.rows[idx].addrDetail);
@@ -138,7 +132,7 @@ const HomePage: FC<{}> = () => {
     await sleep(300);
     const append = await request('shop', 'GET').then((data) => data.data.rows);
     setHomeShopList([...homeShopList, ...append]);
-    setHasMore(append.length > 0 && homeShopList.length < 25);
+    setHasMore(append.length > 0 && homeShopList.length < 25 && homeShopList.length > 1);
   }
 
   return (
@@ -157,6 +151,7 @@ const HomePage: FC<{}> = () => {
           <span>搜 索</span>
         </span>
       </Link>
+
       <div className="home-content">
         <Swiper className="home-service">
           {tmp.map((item, index) => (

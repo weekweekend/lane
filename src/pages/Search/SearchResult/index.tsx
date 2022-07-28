@@ -12,13 +12,17 @@ const SearchResult = () => {
   const [hasMore, setHasMore] = useState(true);
   const [isShowResult, setIsShowResult] = useState(true);
   const [params] = useSearchParams();
-  const keyVal = params.get('keyVal');
+  let keyVal = params.get('keyVal');
+
+  useEffect(() => {
+    setSearchResultList([]);
+  }, [keyVal]);
 
   async function loadMore() {
     await sleep(500);
     const append = await request('searchResult', 'GET', { keyVal: keyVal }).then((data) => data.data.rows);
     setSearchResultList([...searchResultList, ...append]);
-    setHasMore(append.length > 0 && searchResultList.length < 25);
+    setHasMore(append.length > 0 && searchResultList.length < 55);
   }
 
   return (

@@ -3,7 +3,7 @@ import { NavBar, Form, Selector, Input, Button, Radio } from 'antd-mobile';
 import { DeleteOutline } from 'antd-mobile-icons';
 import './index.less';
 import request from 'utils/request';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 const AddressEdit = () => {
   const [addrSexValue, setAddrSexValue] = useState<string>();
@@ -13,7 +13,7 @@ const AddressEdit = () => {
   useEffect(() => {
     if (paramsId) {
       request('oldAddress', 'GET', { id: paramsId }).then((data) => {
-        console.log('需要编辑的》》》', data.data);
+        // console.log('需要编辑的》》》', data.data);
         form.setFieldsValue({
           address: data.data.address,
           addressDetail: data.data.addrDetail,
@@ -28,14 +28,14 @@ const AddressEdit = () => {
 
   const onSubmitAddress = ({ ...values }) => {
     if (!values.AddressTag || !values.AddressTag.length) delete values.AddressTag;
-    console.log('提交的数据》》》', values);
+    // console.log('提交的数据》》》', values);
     paramsId
       ? request('put', 'PUT', { id: paramsId, ...values }).then((data) => {
-          console.log('编辑了》》》', data);
+          // console.log('编辑了》》》', data);
           if (data.success) history.back();
         })
       : request('post', 'POST', values).then((data) => {
-          console.log('新增了》》》', data);
+          // console.log('新增了》》》', data);
           if (data.success) history.back();
         });
   };

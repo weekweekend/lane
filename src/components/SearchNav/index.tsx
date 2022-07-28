@@ -12,7 +12,10 @@ const SearchNav: FC<{
   const [searchAssociation, setSearchAssociation] = useState([]);
   const [isShowSA, setIsShowSA] = useState(false);
   const [searchParams] = useSearchParams();
+
+  // 用于判断是否在结果界面
   const searchKeyVal = searchParams.get('keyVal');
+  if (searchKeyVal) searchParams.set('keyVal', keyValue);
 
   const onSearchValChange = (val: string) => {
     setKeyValue(val);
@@ -21,6 +24,7 @@ const SearchNav: FC<{
   };
 
   useEffect(() => {
+    // 当为搜索结果页面时
     if (searchKeyVal) {
       request('searchAssociation', 'GET', { keyVal: searchKeyVal }).then((data) =>
         setSearchAssociation(data.data.rows),
@@ -35,7 +39,9 @@ const SearchNav: FC<{
         <a href={window.location.hash === '#/search' ? '#/' : '#/search'}>
           <LeftOutline fontSize={'1.1rem'} />
         </a>
-
+        {/* 搜素输入框
+        onchange 根据是否有值确定是否展示搜索列表,并获取列表
+        获得焦点时,看是否含有关键词展示搜索列表 - true; 隐藏搜索历史 - false */}
         <Input
           placeholder="请输入内容"
           value={keyValue}
@@ -47,10 +53,13 @@ const SearchNav: FC<{
             }, 100);
           }}
           onFocus={() => {
-            setIsShowSA(true);
-            onShowB(!keyValue);
+            setTimeout(() => {
+              setIsShowSA(true);
+              onShowB(!keyValue);
+            }, 100);
           }}
         />
+        {/* 根据是否有值来确定搜索是否能点击 */}
         {keyValue ? (
           <a
             href={`#/search/searchResult?keyVal=${encodeURIComponent(keyValue)}`}

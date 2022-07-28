@@ -36,6 +36,7 @@ const Shop = () => {
 
   const [search] = useSearchParams();
   const shopId = search.get('shopId');
+
   useEffect(() => {
     request('curShop', 'GET', { shopId: shopId }).then((data) => setShopData(data.data));
     console.log('拉取了');
@@ -49,7 +50,7 @@ const Shop = () => {
     await sleep(500);
     const append = await request('shopEvaluation', 'GET', { shopId }).then((data) => data.data.rows);
     setShopEvaluationList([...shopEvaluationList, ...append]);
-    setHasMore(append.length > 0 && shopEvaluationList.length < 25);
+    setHasMore(append.length > 0 && shopEvaluationList.length < 25 && shopEvaluationList.length > 1);
   }
 
   const onFocus = () => {

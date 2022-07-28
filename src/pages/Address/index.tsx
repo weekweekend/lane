@@ -23,7 +23,7 @@ const Address = () => {
       <NavBar className="address-nav" right={<Link to="edit">新增地址</Link>} onBack={() => history.back()}>
         收货地址
       </NavBar>
-      <List className="address-list address-cur" header="常用地址">
+      <List className="address-list address-cur" header="当前地址">
         <List.Item>
           <AddressCard {...curAddress} />
         </List.Item>
@@ -33,7 +33,7 @@ const Address = () => {
           <List.Item
             key={item.address}
             onClick={(e) => {
-              console.log(e.target);
+              // console.log(e.target);
               setCurAddress(addressList[idx]);
               request('put', 'PUT').then((data) => console.log('换地址>>>', data.data.msg, item));
             }}

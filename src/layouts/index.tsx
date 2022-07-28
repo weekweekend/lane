@@ -10,7 +10,6 @@ const Layout: FC<{}> = () => {
       <main style={{ position: 'relative' }}>
         <Outlet />
       </main>
-
       <footer>
         <a href="#/" className={homeCurPage === '/' ? 'home-cur-active' : ''}>
           <RiHome5Line /> <span>首页</span>
